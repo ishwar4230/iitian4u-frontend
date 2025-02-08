@@ -4,7 +4,8 @@ import { Tabs, Button, Menu, Burger, Drawer } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { IconUserCircle } from "@tabler/icons-react";
 import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode"; // Import JWT decoder
+import {jwtDecode} from "jwt-decode"; // Import JWT decoder
+import axios from "axios";
 import { login, logout } from "./redux/slices/authSlice";
 
 import Aspirant from "./tabs/aspirant/Aspirant";
@@ -25,10 +26,11 @@ const HomePage = () => {
   // Check for authentication on page load
   useEffect(() => {
     const token = Cookies.get("token");
-
+    console.log("on-page-open",token);
     if (token) {
       try {
         const decoded = jwtDecode(token); // Decode token to get user ID
+        console.log("decoded",decoded);
         if (decoded?.id) {
           dispatch(login(decoded.id)); // Store ID as a string in Redux
         }
@@ -38,14 +40,20 @@ const HomePage = () => {
     }
   }, [dispatch]);
 
-  const handleLogin = (userData) => {
+  const handleLogin = () => {
     //dispatch(login(userData)); // Dispatch actual login data
     setActiveTab("home"); // Redirect to home after login
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    setActiveTab("home");
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/logout",{ withCredentials: true });
+      Cookies.remove("token");
+      dispatch(logout());
+      setActiveTab("home");
+    } catch (error) {
+      alert(error.response?.data?.message || "Logout failed!");
+    }
   };
 
   return (
