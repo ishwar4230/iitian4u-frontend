@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/authSlice";
 import { Button, TextInput, PasswordInput, Card, Group } from "@mantine/core";
 import axios from "axios";
-
+import config from "../../Config";
+import { notifications } from '@mantine/notifications';
 const Login = ({ onLogin }) => {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
@@ -11,27 +12,45 @@ const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const API_PREFIX = config.API_PREFIX;
 
   const handleLogin = async () => {
     try {
       console.log(mobile,password);
-      const res = await axios.post("http://localhost:5000/api/auth/login", { phone: mobile, password }, { withCredentials: true });
+      const res = await axios.post(`${API_PREFIX}/api/auth/login`, { phone: mobile, password }, { withCredentials: true });
       console.log(res);
       dispatch(login(res.data.user.id)); // Store user ID in Redux
       onLogin(); // Redirect to Home tab
+      notifications.show({
+              title: 'Success!',
+              message: 'Logged in successfully',
+              color: 'green',
+            })
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed!");
+      notifications.show({
+        title: 'Error!',
+        message: `Error while logging in ${error.response?.data?.message}`,
+        color: 'red',
+      })
     }
   };
 
   const handleSignup = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/register", { name, email, phone: mobile, password });
-      alert("Signup successful! Please login.");
+      await axios.post(`${API_PREFIX}/api/auth/register`, { name, email, phone: mobile, password });
       setIsSignup(false); // Switch to login after signup
+      notifications.show({
+        title: 'Success!',
+        message: 'Signed up successfully, Login Now!',
+        color: 'green',
+      })
     } catch (error) {
-      alert(error.response?.data?.message || "Signup failed!");
-    }
+      notifications.show({
+        title: 'Error!',
+        message: `Error while signing up ${error.response?.data?.message}`,
+        color: 'red',
+      })
+        }
   };
 
   return (
