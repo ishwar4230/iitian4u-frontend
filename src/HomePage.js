@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Tabs, Button, Menu, Burger, Drawer } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
-import { IconUserCircle } from "@tabler/icons-react";
+import { notifications } from "@mantine/notifications";
+import {
+  IconHome,
+  IconSchool,
+  IconBriefcase,
+  IconLogin,
+  IconUserCircle,
+  IconRocket,
+  } from "@tabler/icons-react";
 import Cookies from "js-cookie";
 import {jwtDecode} from "jwt-decode"; // Import JWT decoder
 import axios from "axios";
 import { login, logout } from "./redux/slices/authSlice";
+import config from "./Config";
 
 import Aspirant from "./tabs/aspirant/Aspirant";
 import CareerCon from "./tabs/career/CareerCon";
@@ -22,7 +31,7 @@ const HomePage = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 768px)"); // Detect mobile screens
-
+  const API_PREFIX = config.API_PREFIX;
   // Check for authentication on page load
   useEffect(() => {
     const token = Cookies.get("token");
@@ -47,10 +56,15 @@ const HomePage = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/logout",{ withCredentials: true });
+      const res = await axios.post(`${API_PREFIX}/api/auth/logout`,{ withCredentials: true });
       Cookies.remove("token");
       dispatch(logout());
       setActiveTab("home");
+      notifications.show({
+              title: 'Logged out!',
+              message: 'Logged out successfully',
+              color: 'green',
+            })
     } catch (error) {
       alert(error.response?.data?.message || "Logout failed!");
     }
@@ -69,17 +83,17 @@ const HomePage = () => {
           }}
         >
           {/* Left: Brand Logo */}
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>BrandLogo</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>| IITians4U</div>
 
           {/* Right: Navigation Items */}
           <div style={{ display: "flex", gap: "40px" }}>
-            <Tabs.Tab value="home">Home</Tabs.Tab>
-            <Tabs.Tab value="aspirant">Aspirant</Tabs.Tab>
-            <Tabs.Tab value="college">College Counselling</Tabs.Tab>
-            <Tabs.Tab value="career">Career Counselling</Tabs.Tab>
+            <Tabs.Tab value="home" leftSection={<IconHome size={15}/>}>Home</Tabs.Tab>
+            <Tabs.Tab value="aspirant" leftSection={<IconRocket size={15}/>}>Aspirant</Tabs.Tab>
+            <Tabs.Tab value="college" leftSection={<IconSchool size={15} />}>College Counselling</Tabs.Tab>
+            <Tabs.Tab value="career" leftSection={<IconBriefcase size={15} />}>Career Counselling</Tabs.Tab>
 
             {!isLoggedIn ? (
-              <Tabs.Tab value="login">Login</Tabs.Tab>
+              <Tabs.Tab value="login" leftSection={<IconLogin size={15}/>}>Login</Tabs.Tab>
             ) : (
               <>
                 <IconUserCircle
@@ -107,12 +121,12 @@ const HomePage = () => {
       {/* Mobile Drawer Menu */}
       <Drawer opened={mobileMenuOpened} onClose={close} title="Menu" padding="md" size="75%">
         <Tabs.List style={{ display: "flex", flexDirection: "column", gap: "10px" }} onClick={close}>
-          <Tabs.Tab value="home">Home</Tabs.Tab>
-          <Tabs.Tab value="aspirant">Aspirant</Tabs.Tab>
-          <Tabs.Tab value="college">College Counselling</Tabs.Tab>
-          <Tabs.Tab value="career">Career Counselling</Tabs.Tab>
+          <Tabs.Tab value="home" icon={<IconHome size={18} />}>Home</Tabs.Tab>
+          <Tabs.Tab value="aspirant" icon={<IconHome size={18} />}>Aspirant</Tabs.Tab>
+          <Tabs.Tab value="college" icon={<IconSchool size={18} />}>College Counselling</Tabs.Tab>
+          <Tabs.Tab value="career" icon={<IconBriefcase size={18} />}>Career Counselling</Tabs.Tab>
           {!isLoggedIn ? (
-            <Tabs.Tab value="login">Login</Tabs.Tab>
+            <Tabs.Tab value="login" icon={<IconLogin size={18} />}>Login</Tabs.Tab>
           ) : (
             <>
               <Tabs.Tab value="profile">Profile</Tabs.Tab>
