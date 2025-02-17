@@ -22,6 +22,7 @@ import CareerCon from "./tabs/career/CareerCon";
 import HomeTab from "./tabs/home/HomeTab";
 import CollegeCon from "./tabs/college/CollegeCon";
 import Login from "./tabs/login/Login";
+import BookSlot from "./tabs/slot/BookSlot";
 import Profile from "./tabs/profile/Profile"; // Importing Profile tab
 
 const HomePage = () => {
@@ -35,11 +36,9 @@ const HomePage = () => {
   // Check for authentication on page load
   useEffect(() => {
     const token = Cookies.get("token");
-    console.log("on-page-open",token);
     if (token) {
       try {
         const decoded = jwtDecode(token); // Decode token to get user ID
-        console.log("decoded",decoded);
         if (decoded?.id) {
           dispatch(login(decoded.id)); // Store ID as a string in Redux
         }
@@ -96,6 +95,7 @@ const HomePage = () => {
               <Tabs.Tab value="login" leftSection={<IconLogin size={15}/>}>Login</Tabs.Tab>
             ) : (
               <>
+                <Tabs.Tab value="slot" leftSection={<IconBriefcase size={15} />}>Book Slot</Tabs.Tab>
                 <IconUserCircle
                   size={30}
                   style={{ cursor: "pointer" }}
@@ -121,15 +121,16 @@ const HomePage = () => {
       {/* Mobile Drawer Menu */}
       <Drawer opened={mobileMenuOpened} onClose={close} title="Menu" padding="md" size="75%">
         <Tabs.List style={{ display: "flex", flexDirection: "column", gap: "10px" }} onClick={close}>
-          <Tabs.Tab value="home" icon={<IconHome size={18} />}>Home</Tabs.Tab>
-          <Tabs.Tab value="aspirant" icon={<IconHome size={18} />}>Aspirant</Tabs.Tab>
-          <Tabs.Tab value="college" icon={<IconSchool size={18} />}>College Counselling</Tabs.Tab>
-          <Tabs.Tab value="career" icon={<IconBriefcase size={18} />}>Career Counselling</Tabs.Tab>
+          <Tabs.Tab value="home" leftSection={<IconHome size={15}/>}>Home</Tabs.Tab>
+          <Tabs.Tab value="aspirant" leftSection={<IconRocket size={15}/>}>Aspirant</Tabs.Tab>
+          <Tabs.Tab value="college" leftSection={<IconSchool size={15} />}>College Counselling</Tabs.Tab>
+          <Tabs.Tab value="career" leftSection={<IconBriefcase size={15} />}>Career Counselling</Tabs.Tab>
           {!isLoggedIn ? (
-            <Tabs.Tab value="login" icon={<IconLogin size={18} />}>Login</Tabs.Tab>
+            <Tabs.Tab value="login" leftSection={<IconLogin size={15}/>}>Login</Tabs.Tab>
           ) : (
             <>
-              <Tabs.Tab value="profile">Profile</Tabs.Tab>
+              <Tabs.Tab value="slot" leftSection={<IconBriefcase size={15} />}>Book Slot</Tabs.Tab>
+              <Tabs.Tab value="profile" leftSection={<IconUserCircle size={15} />}>Profile</Tabs.Tab>
               <Button color="red" onClick={handleLogout} style={{ marginTop: "10px" }}>
                 Logout
               </Button>
@@ -157,9 +158,14 @@ const HomePage = () => {
         </Tabs.Panel>
       )}
       {isLoggedIn && (
+        <>
+        <Tabs.Panel value="slot">
+        <BookSlot /> {/* Profile Tab */}
+      </Tabs.Panel>
         <Tabs.Panel value="profile">
           <Profile /> {/* Profile Tab */}
         </Tabs.Panel>
+        </>
       )}
     </Tabs>
   );
