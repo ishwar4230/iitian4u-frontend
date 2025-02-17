@@ -4,6 +4,8 @@ import FAQItem from "./FAQItem";  //HTML of FAQ Accordion
 import faqData from "./faqData.json";   //JSON of FAQ questions
 import teamMembers from "./teamMembers.json" ; // JSON of Know Your Mentors
 import CardSlider from "./CardSlider";
+import AspirantTopImage from "../data/aspirant-page-top.png";
+import ContentAspirant from "./ContentAspirant";
 
 //Here the code for FAQ section in FAQitem.js is processed i.e. Integrate Q&A data stored in JSON to FAQItem component
 const FAQSection = () => {
@@ -24,7 +26,7 @@ const FAQSection = () => {
   );
 };
 
-// Contact Card Component
+// Contact Card Component for Know Your Mentors
 const ContactCard = ({ name, title, imgSrc }) => {
   return (
     <div className="contact-card">
@@ -54,12 +56,16 @@ const ContactSection = () => {
 const Aspirant = () => {
   return (
     <div className="aspirant-container">
-      <FAQSection />
+      <img className="Top-Image" src={AspirantTopImage} alt="IITians4U"/>
+      <ContentAspirant/>
+      <h1 className="kym-heading">Know Your Mentors</h1>
       <ContactSection />
       <div className="Testimonials">
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
         <CardSlider/>
       </div>
+      <h1 className="faqs-heading">Frequently asked</h1>
+      <FAQSection />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 .accordion {
-    background-color: #eee;
+    background-color: #E1EBEE;
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -43,24 +43,68 @@
   .faq-section {
     width: 100%;
   }
+  .faqs-heading{
+    margin-left: 35%;
+    margin-bottom : 10px;
+    margin-top : 10px;
+    font-family : "Poppins";
+    font-size:50px;
+  }
+  /* FAQ CSS ENDS HERE*/
+  .Top-Image{
+    margin-top:0;
+    margin-bottom: 0;
+    padding-top:0;
+  }
+  .content-aspirant-top{
+    background-color: #cbedff;
+    margin-top:-20px;
+    padding-top:0;
+    display:flex;
+    flex-direction:row;
+  }
+.content-aspirant-right{
+  margin-left:12%;
+}
+.content-aspirant-right-heading{
+  font-size:3rem;
+  font-family:"Poppins";
+}
+.aspirant-point{
+  font-size:1.5rem;
+  font-family:"Poppins";
+  margin-top:0.6rem;
+}
+@media (max-width: 768px) {
+  .content-aspirant-right-heading{
+    font-size:1.5rem;
+    font-family:"Poppins";
+  }
+}
+
+.content-aspirant-image{
+  width:24rem;
+  margin-left:2rem;
+}
 /* CSS FOR CONTACT CARDS */
   .contact-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 60px;
   }
   
   .contact-card {
-    background-color: rgb(203, 220, 252);
+    background-color: #E1EBEE;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px 5px #48abe0;
+    margin-bottom:30px;
   }
   
-  .contact-card .picture img {
+  /* .contact-card .picture img {
     border-radius: 50%;
-  }
+  } */
   
   @media (max-width: 768px) {
     .contact-section {
@@ -70,7 +114,6 @@
   /*CSS FOR SLIDER*/
   /* Google Fonts - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
 
  .Testimonials {
   display: flex;
@@ -238,8 +281,27 @@
   font-family: "Poppins";
   margin-left:2rem;
 }
+
+.kym-heading{
+  font-family:"Poppins";
+  font-size:50px;
+  margin-top:0.25rem;
+  margin-left:33%;
+}
 @media screen and (max-width: 768px) {
   .Testis-heading{
     display:none;
   }
+  .faqs-heading{
+    margin-left:25%;
+    font-size:2rem;
+  }
+  .kym-heading{
+    font-family:"Poppins";
+    font-size:20px;
+  }
+  .content-aspirant-image{
+    display:none;
+  }
 }
+
