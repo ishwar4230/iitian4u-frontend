@@ -3,6 +3,7 @@ import "./styleAspirant.css";
 import FAQItem from "./FAQItem";  //HTML of FAQ Accordion
 import faqData from "./faqData.json";   //JSON of FAQ questions
 import teamMembers from "./teamMembers.json" ; // JSON of Know Your Mentors
+import CardSlider from "./CardSlider";
 
 //Here the code for FAQ section in FAQitem.js is processed i.e. Integrate Q&A data stored in JSON to FAQItem component
 const FAQSection = () => {
@@ -55,6 +56,10 @@ const Aspirant = () => {
     <div className="aspirant-container">
       <FAQSection />
       <ContactSection />
+      <div className="Testimonials">
+        <h1 className="Testis-heading"> Hear Our Success Stories</h1>
+        <CardSlider/>
+      </div>
     </div>
   );
 };
