@@ -16,9 +16,7 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async () => {
     try {
-      console.log(mobile,password);
       const res = await axios.post(`${API_PREFIX}/api/auth/login`, { phone: mobile, password }, { withCredentials: true });
-      console.log(res);
       dispatch(login(res.data.user.id)); // Store user ID in Redux
       onLogin(); // Redirect to Home tab
       notifications.show({
