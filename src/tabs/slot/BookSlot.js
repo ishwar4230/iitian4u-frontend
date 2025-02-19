@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Select, Button, Card, Text, Notification, Container, Grid, Loader, Modal } from "@mantine/core";
+import React, {useCallback, useState, useEffect } from "react";
+import { Select, Button, Card, Text, Container, Grid, Loader, Modal } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -20,19 +20,21 @@ const BookSlot = () => {
   const [selectedSlot, setSelectedSlot] = useState(null); // Stores selected slot for confirmation
   const API_PREFIX = config.API_PREFIX;
 
-  useEffect(() => {
-    fetchActivePlans();
-  }, []);
+  
 
-  const fetchActivePlans = async () => {
+  const fetchActivePlans = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
+      const response = await axios.get(`${config.API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
       setPlans(response.data.activePlans);
     } catch (error) {
       console.error("Error fetching active plans:", error);
       setPlans([]);
     }
-  };
+  }, []); // Empty dependency array ensures this function remains the same across renders
+
+  useEffect(() => {
+    fetchActivePlans();
+  }, [fetchActivePlans]); // Runs only once when the component mounts
 
   const fetchSlots = async () => {
     setLoading(true);

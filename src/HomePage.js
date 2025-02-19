@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Tabs, Button, Menu, Burger, Drawer, Image } from "@mantine/core";
+import { Tabs, Button, Burger, Drawer, Image } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import {
@@ -30,7 +30,7 @@ const HomePage = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [mobileMenuOpened, { open, close }] = useDisclosure(false);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const user = useSelector((state) => state.auth.user);
+  //const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 768px)"); // Detect mobile screens
   const API_PREFIX = config.API_PREFIX;
@@ -56,7 +56,7 @@ const HomePage = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(`${API_PREFIX}/api/auth/logout`,{ withCredentials: true });
+      await axios.post(`${API_PREFIX}/api/auth/logout`,{ withCredentials: true });
       Cookies.remove("token");
       dispatch(logout());
       setActiveTab("home");
