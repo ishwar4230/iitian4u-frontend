@@ -7,6 +7,9 @@ import {
   IconHome,
   IconSchool,
   IconBriefcase,
+  IconBrandFacebook,
+  IconBrandLinkedin,
+  IconBrandInstagram,
   IconLogin,
   IconUserCircle,
   IconRocket,
@@ -25,6 +28,7 @@ import Login from "./tabs/login/Login";
 import BookSlot from "./tabs/slot/BookSlot";
 import Profile from "./tabs/profile/Profile"; // Importing Profile tab
 import Logo from "./tabs/data/logo.svg";
+import "./HomePageStyle.css";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -71,6 +75,7 @@ const HomePage = () => {
   };
 
   return (
+    <>
     <Tabs value={activeTab} onChange={setActiveTab} style={{ width: "100%" }}>
       {/* Desktop Navbar - Hidden on Mobile */}
       {!isMobile && (
@@ -192,6 +197,33 @@ const HomePage = () => {
         )}
       </div>
     </Tabs>
+    <footer className="footer">
+  {/* Left Section */}
+  <div className="footer-left">
+    <img src={Logo} alt="IITians4U Logo" className="footer-logo" />
+    <p>© {new Date().getFullYear()} IITians4U. All Rights Reserved.</p>
+    <div className="social-icons">
+      <IconBrandFacebook size={20} />
+      <IconBrandLinkedin size={20} />
+      <IconBrandInstagram size={20} />
+    </div>
+  </div>
+
+  {/* Right Section */}
+  <div className="footer-right">
+    <ul>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/services">Frequently asked</a></li>
+      <li><a href="/contact">Testimonials</a></li>
+    </ul>
+    <ul>
+      <li><a href="/privacy">Aspirant</a></li>
+      <li><a href="/terms">College Counselling</a></li>
+      <li><a href="/faq">Career Counselling</a></li>
+    </ul>
+  </div>
+</footer>
+    </>
   );
 };
 

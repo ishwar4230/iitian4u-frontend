@@ -7,6 +7,7 @@ import CardSlider from "./CardSlider";
 import AspirantTopImage from "../data/aspirant-page-top.png";
 import ContentAspirant from "./ContentAspirant";
 
+
 //Here the code for FAQ section in FAQitem.js is processed i.e. Integrate Q&A data stored in JSON to FAQItem component
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -66,6 +67,7 @@ const Aspirant = () => {
       </div>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
+
     </div>
   );
 };
