@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Select, Button, Card, Text, Notification, Container, Grid, Loader } from "@mantine/core";
+import { Select, Button, Card, Text, Notification, Container, Grid, Loader, Modal } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -16,16 +16,17 @@ const BookSlot = () => {
   const [courseName, setCourseName] = useState("");
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(null); // Stores selected slot for confirmation
   const API_PREFIX = config.API_PREFIX;
 
   useEffect(() => {
     fetchActivePlans();
   }, []);
 
-  // Fetch active plans
   const fetchActivePlans = async () => {
     try {
-      const response = await axios.get(`${API_PREFIX}/plan/get-active-plans`,{ withCredentials: true });
+      const response = await axios.get(`${API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
       setPlans(response.data.activePlans);
     } catch (error) {
       console.error("Error fetching active plans:", error);
@@ -33,11 +34,10 @@ const BookSlot = () => {
     }
   };
 
-  // Fetch slots based on selection
   const fetchSlots = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_PREFIX}/slot/get-slots`,{ withCredentials: true });
+      const response = await axios.get(`${API_PREFIX}/slot/get-slots`, { withCredentials: true });
       setSlots(response.data);
     } catch (error) {
       console.error("Error fetching slots:", error);
@@ -45,21 +45,32 @@ const BookSlot = () => {
     setLoading(false);
   };
 
-  // Format course types for dropdown
   const uniqueCourseTypes = [...new Set(plans.map(plan => plan.course_type.replace(/_/g, " ").toUpperCase()))];
 
-  // Filter course names based on selected type
   const filteredCourseNames = plans
     .filter(plan => plan.course_type.replace(/_/g, " ").toUpperCase() === courseType)
     .map(plan => plan.course_name.replace(/_/g, " ").toUpperCase());
 
-  // Book Slot
-  const bookSlot = async (slot_id) => {
+  // Handle booking with modal confirmation
+  const openBookingModal = (slot) => {
+    setSelectedSlot(slot);
+    setModalOpen(true);
+  };
+
+  const confirmBooking = async () => {
+    if (!selectedSlot) return;
     try {
       const selectedCourseType = courseType.replace(/ /g, "_").toLowerCase();
       const selectedCourseName = courseName.replace(/ /g, "_").toLowerCase();
-      await axios.post(`${API_PREFIX}/slot/book-slot`, { slot_id, course_type: selectedCourseType, course_name: selectedCourseName },{ withCredentials: true });
+
+      await axios.post(
+        `${API_PREFIX}/slot/book-slot`,
+        { slot_id: selectedSlot._id, course_type: selectedCourseType, course_name: selectedCourseName },
+        { withCredentials: true }
+      );
+
       showNotification({ title: "Success", message: "Slot booked successfully!", color: "green" });
+      setModalOpen(false);
       fetchSlots();
     } catch (error) {
       showNotification({ title: "Error", message: "Failed to book slot", color: "red" });
@@ -68,6 +79,21 @@ const BookSlot = () => {
 
   return (
     <Container size="md">
+      {/* Booking Confirmation Modal */}
+      <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Confirm Booking" zIndex={2000}>
+        {selectedSlot && (
+          <Text>
+            Are you sure you want to book this slot on{" "}
+            <strong>{dayjs(selectedSlot.start_time).tz("Asia/Kolkata").format("DD MMM YYYY")}</strong> at{" "}
+            <strong>{dayjs(selectedSlot.start_time).tz("Asia/Kolkata").format("hh:mm A")}</strong>?
+          </Text>
+        )}
+        <Button color="green" fullWidth mt="md" onClick={confirmBooking}>
+          Confirm Booking
+        </Button>
+      </Modal>
+
+      {/* Check if user has an active plan */}
       {plans.length === 0 ? (
         <Card shadow="sm" padding="lg" radius="md" withBorder>
           <Text weight={500} size="lg" align="center">No Active Plan</Text>
@@ -104,36 +130,35 @@ const BookSlot = () => {
 
           {/* Show Slots */}
           {loading ? (
-  <Loader size="lg" mt="md" />
-) : (
-  
-    Object.entries(
-      slots
-        .sort((a, b) => new Date(a.start_time) - new Date(b.start_time)) // Sort slots by date
-        .reduce((groupedSlots, slot) => {
-          const dateKey = dayjs(slot.start_time).tz("Asia/Kolkata").format("DD MMM YYYY"); // Group by date
-          if (!groupedSlots[dateKey]) groupedSlots[dateKey] = [];
-          groupedSlots[dateKey].push(slot);
-          return groupedSlots;
-        }, {})
-    ).map(([date, slotsForDate]) => (
-      <div key={date}>
-        <Text weight={600} size="md" mt="md">{date}</Text> {/* Show date heading */}
-        <Grid>
-          {slotsForDate.map(slot => (
-            <Grid.Col span={6} key={slot._id}>
-              <Card shadow="sm" padding="sm" radius="md" withBorder>
-                <Text size="sm">{dayjs(slot.start_time).tz("Asia/Kolkata").format("hh:mm A")}</Text>
-                <Button mt="sm" fullWidth onClick={() => bookSlot(slot._id)}>Book Slot</Button>
-              </Card>
-            </Grid.Col>
-          ))}
-        </Grid>
-      </div>
-    ))
-  
-)}
-
+            <Loader size="lg" mt="md" />
+          ) : (
+            Object.entries(
+              slots
+                .sort((a, b) => new Date(a.start_time) - new Date(b.start_time)) // Sort slots by date
+                .reduce((groupedSlots, slot) => {
+                  const dateKey = dayjs(slot.start_time).tz("Asia/Kolkata").format("DD MMM YYYY");
+                  if (!groupedSlots[dateKey]) groupedSlots[dateKey] = [];
+                  groupedSlots[dateKey].push(slot);
+                  return groupedSlots;
+                }, {})
+            ).map(([date, slotsForDate]) => (
+              <div key={date}>
+                <Text weight={600} size="md" mt="md">{date}</Text>
+                <Grid>
+                  {slotsForDate.map(slot => (
+                    <Grid.Col span={6} key={slot._id}>
+                      <Card shadow="sm" padding="sm" radius="md" withBorder>
+                        <Text size="sm">{dayjs(slot.start_time).tz("Asia/Kolkata").format("hh:mm A")}</Text>
+                        <Button mt="sm" fullWidth onClick={() => openBookingModal(slot)}>
+                          Book Slot
+                        </Button>
+                      </Card>
+                    </Grid.Col>
+                  ))}
+                </Grid>
+              </div>
+            ))
+          )}
         </>
       )}
     </Container>

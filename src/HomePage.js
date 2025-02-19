@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Tabs, Button, Menu, Burger, Drawer } from "@mantine/core";
+import { Tabs, Button, Menu, Burger, Drawer, Image } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import {
@@ -24,6 +24,7 @@ import CollegeCon from "./tabs/college/CollegeCon";
 import Login from "./tabs/login/Login";
 import BookSlot from "./tabs/slot/BookSlot";
 import Profile from "./tabs/profile/Profile"; // Importing Profile tab
+import Logo from "./tabs/data/logo.svg";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -75,14 +76,21 @@ const HomePage = () => {
       {!isMobile && (
         <Tabs.List
           style={{
+            position: "fixed",  // Fixed position to keep it on top
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1000,  // Ensures it's above other elements
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             padding: "10px 20px",
+            backgroundColor: "white", // Ensure background color is visible
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Adds slight shadow for depth
           }}
         >
           {/* Left: Brand Logo */}
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>| IITians4U</div>
+          <Image src={Logo} alt="Brand Logo" height={40} />
 
           {/* Right: Navigation Items */}
           <div style={{ display: "flex", gap: "40px" }}>
@@ -112,8 +120,22 @@ const HomePage = () => {
 
       {/* Mobile Hamburger Menu - Hidden on Desktop */}
       {isMobile && (
-        <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px" }}>
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>BrandLogo</div>
+        <div
+         style={{
+          position: "fixed",  // Fix the navbar at the top
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,  // Ensures it's above other elements
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "10px 20px",
+          backgroundColor: "white", // Ensure background is visible
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Adds a shadow effect 
+          }}
+        >
+          <Image src={Logo} alt="Brand Logo" height={40} />
           <Burger opened={mobileMenuOpened} onClick={open} aria-label="Toggle navigation" />
         </div>
       )}
@@ -140,33 +162,35 @@ const HomePage = () => {
       </Drawer>
 
       {/* Tabs Content */}
-      <Tabs.Panel value="home">
-        <HomeTab />
-      </Tabs.Panel>
-      <Tabs.Panel value="aspirant">
-        <Aspirant />
-      </Tabs.Panel>
-      <Tabs.Panel value="college">
-        <CollegeCon />
-      </Tabs.Panel>
-      <Tabs.Panel value="career">
-        <CareerCon />
-      </Tabs.Panel>
-      {!isLoggedIn && (
-        <Tabs.Panel value="login">
-          <Login onLogin={handleLogin} /> {/* Pass handleLogin to Login */}
+      <div style={{ marginTop: "60px" }}>
+        <Tabs.Panel value="home">
+          <HomeTab />
         </Tabs.Panel>
-      )}
-      {isLoggedIn && (
-        <>
-        <Tabs.Panel value="slot">
-        <BookSlot /> {/* Profile Tab */}
-      </Tabs.Panel>
-        <Tabs.Panel value="profile">
-          <Profile /> {/* Profile Tab */}
+        <Tabs.Panel value="aspirant">
+          <Aspirant />
         </Tabs.Panel>
-        </>
-      )}
+        <Tabs.Panel value="college">
+          <CollegeCon />
+        </Tabs.Panel>
+        <Tabs.Panel value="career">
+          <CareerCon />
+        </Tabs.Panel>
+        {!isLoggedIn && (
+          <Tabs.Panel value="login">
+            <Login onLogin={handleLogin} /> {/* Pass handleLogin to Login */}
+          </Tabs.Panel>
+        )}
+        {isLoggedIn && (
+          <>
+          <Tabs.Panel value="slot">
+          <BookSlot /> {/* Profile Tab */}
+        </Tabs.Panel>
+          <Tabs.Panel value="profile">
+            <Profile /> {/* Profile Tab */}
+          </Tabs.Panel>
+          </>
+        )}
+      </div>
     </Tabs>
   );
 };
