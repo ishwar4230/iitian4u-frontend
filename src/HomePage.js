@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Tabs, Button, Burger, Drawer, Image } from "@mantine/core";
+import { Tabs, Button, Burger, Drawer,Menu, Image } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import {
@@ -13,6 +13,10 @@ import {
   IconLogin,
   IconUserCircle,
   IconRocket,
+  IconCalendar,
+  IconCalendarClock,
+  IconClipboardList,
+  IconLogout,
   } from "@tabler/icons-react";
 import Cookies from "js-cookie";
 import {jwtDecode} from "jwt-decode"; // Import JWT decoder
@@ -26,13 +30,17 @@ import HomeTab from "./tabs/home/HomeTab";
 import CollegeCon from "./tabs/college/CollegeCon";
 import Login from "./tabs/login/Login";
 import BookSlot from "./tabs/slot/BookSlot";
-import Profile from "./tabs/profile/Profile"; // Importing Profile tab
+// import Profile from "./tabs/profile/Profile"; // Importing Profile tab
+import MyDetails from "./tabs/profile/MyDetails";
+import MyPlans from "./tabs/profile/MyPlans";
+import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [mobileMenuOpened, { open, close }] = useDisclosure(false);
+  const [profileDropdownOpened, setProfileDropdownOpened] = useState(false); // Profile dropdown state
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   //const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -108,16 +116,40 @@ const HomePage = () => {
               <Tabs.Tab value="login" leftSection={<IconLogin size={15}/>}>Login</Tabs.Tab>
             ) : (
               <>
-                <Tabs.Tab value="slot" leftSection={<IconBriefcase size={15} />}>Book Slot</Tabs.Tab>
-                <IconUserCircle
-                  size={30}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => setActiveTab("profile")} // Open profile tab instead of dropdown
-                />
-                <Button color="red" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </>
+                  <Tabs.Tab value="slot" leftSection={<IconCalendarClock size={15} />}>
+                    Book Slot
+                  </Tabs.Tab>
+
+                  {/* Profile Dropdown */}
+                  <Menu
+                    opened={profileDropdownOpened}
+                    onClose={() => setProfileDropdownOpened(false)}
+                    shadow="md"
+                    position="bottom-end"
+                  >
+                    <Menu.Target>
+                      <IconUserCircle
+                        size={30}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setProfileDropdownOpened((o) => !o)}
+                      />
+                    </Menu.Target>
+                    <Menu.Dropdown style={{ marginTop: "10px" }}>
+                      <Menu.Item leftSection={<IconUserCircle size={15} />} onClick={() => setActiveTab("profile")}>
+                        My Profile
+                      </Menu.Item>
+                      <Menu.Item leftSection={<IconCalendar size={15} />} onClick={() => setActiveTab("upcoming-sessions")}>
+                        My Upcoming Sessions
+                      </Menu.Item>
+                      <Menu.Item leftSection={<IconClipboardList size={15} />} onClick={() => setActiveTab("my-plans")}>
+                        My Plans
+                      </Menu.Item>
+                      <Menu.Item leftSection={<IconLogout size={15} />} onClick={handleLogout} color="red">
+                        Logout
+                      </Menu.Item>
+                    </Menu.Dropdown>
+                  </Menu>
+                </>
             )}
           </div>
         </Tabs.List>
@@ -141,12 +173,19 @@ const HomePage = () => {
           }}
         >
           <Image src={Logo} alt="Brand Logo" height={40} />
-          <Burger opened={mobileMenuOpened} onClick={open} aria-label="Toggle navigation" />
+          <Burger opened={mobileMenuOpened} onClick={() => (mobileMenuOpened ? close() : open())} aria-label="Toggle navigation" />
         </div>
       )}
 
       {/* Mobile Drawer Menu */}
-      <Drawer opened={mobileMenuOpened} onClose={close} title="Menu" padding="md" size="75%">
+      <Drawer
+         opened={mobileMenuOpened}
+         onClose={close}
+         title="Menu"
+         padding="md"
+         size="75%" 
+         styles={{ content: { marginTop: "60px" } }}
+      >
         <Tabs.List style={{ display: "flex", flexDirection: "column", gap: "10px" }} onClick={close}>
           <Tabs.Tab value="home" leftSection={<IconHome size={15}/>}>Home</Tabs.Tab>
           <Tabs.Tab value="aspirant" leftSection={<IconRocket size={15}/>}>Aspirant</Tabs.Tab>
@@ -156,8 +195,10 @@ const HomePage = () => {
             <Tabs.Tab value="login" leftSection={<IconLogin size={15}/>}>Login</Tabs.Tab>
           ) : (
             <>
-              <Tabs.Tab value="slot" leftSection={<IconBriefcase size={15} />}>Book Slot</Tabs.Tab>
+              <Tabs.Tab value="slot" leftSection={<IconCalendarClock size={15} />}>Book Slot</Tabs.Tab>
               <Tabs.Tab value="profile" leftSection={<IconUserCircle size={15} />}>Profile</Tabs.Tab>
+              <Tabs.Tab value="upcoming-sessions" leftSection={<IconCalendar size={15} />}>My Upcoming Sessions</Tabs.Tab>
+              <Tabs.Tab value="my-plans" leftSection={<IconClipboardList size={15} />}>My Plans</Tabs.Tab>
               <Button color="red" onClick={handleLogout} style={{ marginTop: "10px" }}>
                 Logout
               </Button>
@@ -191,13 +232,19 @@ const HomePage = () => {
           <BookSlot /> {/* Profile Tab */}
         </Tabs.Panel>
           <Tabs.Panel value="profile">
-            <Profile /> {/* Profile Tab */}
+            <MyDetails /> {/* Profile Tab */}
           </Tabs.Panel>
+          <Tabs.Panel value="upcoming-sessions">
+          <MyUpcomingSessions />
+        </Tabs.Panel>
+        <Tabs.Panel value="my-plans">
+          <MyPlans />
+        </Tabs.Panel>
           </>
         )}
       </div>
     </Tabs>
-    <footer className="footer">
+    <footer className="footer" style={{marginTop:"20px"}}>
   {/* Left Section */}
   <div className="footer-left">
     <img src={Logo} alt="IITians4U Logo" className="footer-logo" />

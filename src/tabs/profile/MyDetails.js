@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Loader, TextInput, Button, Avatar, Container, Group, Title, Checkbox } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
-import config from "../../../Config";
+import config from "../../Config";
 const MyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Container, Group, Title, Loader, Text } from "@mantine/core";
-import config from "../../../Config";
+import config from "../../Config";
 
 const MyUpcomingSessions = () => {
   const [sessions, setSessions] = useState([]);
