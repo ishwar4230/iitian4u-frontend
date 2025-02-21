@@ -11,7 +11,7 @@ const MyPlans = () => {
 
   useEffect(() => {
     fetchPlans();
-  }, []);
+  }, [fetchPlans]);
 
   const fetchPlans = async () => {
     try {

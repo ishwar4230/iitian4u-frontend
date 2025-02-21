@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Container, Group, Title, Loader, Text } from "@mantine/core";
+import { Card, Container, Title, Loader, Text } from "@mantine/core";
 import config from "../../Config";
 
 const MyUpcomingSessions = () => {
@@ -10,7 +10,7 @@ const MyUpcomingSessions = () => {
 
   useEffect(() => {
     fetchSessions();
-  }, []);
+  }, [fetchSessions]);
 
   const fetchSessions = async () => {
     try {

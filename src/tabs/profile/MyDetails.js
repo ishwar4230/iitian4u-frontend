@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Loader, TextInput, Button, Avatar, Container, Group, Title, Checkbox } from "@mantine/core";
+import { Loader, TextInput, Button, Avatar, Container, Group, Checkbox } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import config from "../../Config";
 const MyDetails = () => {
@@ -23,7 +23,7 @@ const MyDetails = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [fetchProfile]);
 
   const fetchProfile = async () => {
     try {
