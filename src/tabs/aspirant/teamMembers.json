@@ -1,6 +1,6 @@
 [
-    { "name": "Ishwar Kashyap", "title": "IIT Pilani", "imgSrc": "https://picsum.photos/130/130?image=1027" },
-    { "name": "Sonu Rai", "title": "IIT Durgapur", "imgSrc": "https://picsum.photos/130/130?image=1027"},
-    { "name": "Sam Altman", "title": "IIT Kharagpur", "imgSrc": "https://picsum.photos/130/130?image=1027" },
-    { "name": "Sam Altman", "title": "IIT Kharagpur", "imgSrc": "https://picsum.photos/130/130?image=1027" }
+    { "name": "Coming soon", "title": "IIT Bombay", "imgSrc": "https://picsum.photos/130/130?image=1027" },
+    { "name": "Coming soon", "title": "IIT Delhi", "imgSrc": "https://picsum.photos/130/130?image=1027"},
+    { "name": "Coming soon", "title": "IIT Madras", "imgSrc": "https://picsum.photos/130/130?image=1027" },
+    { "name": "Coming soon", "title": "IIT Kharagpur", "imgSrc": "https://picsum.photos/130/130?image=1027" }
   ]

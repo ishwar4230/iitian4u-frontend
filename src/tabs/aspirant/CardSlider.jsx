@@ -8,22 +8,22 @@ import "./styleAspirant.css"; // Import the CSS file
 
 const cardData = [
   {
-    name: "Sonu Kumar Rai",
-    description: "The mentors at IITians4U really made that difference and took me from 90 percentile to 99 percentile",
+    name: "Coming Soon",
+    description: "Hear our success stories. How ordinary students have performed excellently following expert guidance.",
     image: "https://randomuser.me/api/portraits/men/1.jpg",
   },
   {
-    name: "Biswa Ranjan Barik",
-    description: "The mentors treated me like their own family member except that I did not get a share of their property",
+    name: "Coming soon",
+    description: "Hear our success stories. How ordinary students have performed excellently following expert guidance.",
     image: "https://randomuser.me/api/portraits/women/1.jpg",
   },
   {
-    name: "Ishwar Kashyap",
-    description: "The mentors at IITians4U really made that difference and took me from 90 percentile to 99 percentile",
+    name: "Coming soon",
+    description: "Hear our success stories. How ordinary students have performed excellently following expert guidance.",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
   },
   {
-    name: "Sambhav Jena",
+    name: "Coming soon",
     description: "The mentors at IITians4U really made that difference and took me from 90 percentile to 99 percentile",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
   }
