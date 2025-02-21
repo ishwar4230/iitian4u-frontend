@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Loader, TextInput, Button, Avatar, Container, Group, Checkbox } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
@@ -7,7 +7,6 @@ const MyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [isCollegeStudent, setIsCollegeStudent] = useState(false);
-  const API_PREFIX = config.API_PREFIX;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -21,15 +20,12 @@ const MyDetails = () => {
     image: "",
   });
 
-  useEffect(() => {
-    fetchProfile();
-  }, [fetchProfile]);
 
-  const fetchProfile = async () => {
+
+  const fetchProfile = useCallback(async () => {
     try {
-      const res = await axios.get(`${API_PREFIX}/api/profile`, { withCredentials: true });
+      const res = await axios.get(`${config.API_PREFIX}/api/profile`, { withCredentials: true });
 
-      // Extract only relevant fields, setting empty values if missing
       const profileData = {
         name: res.data.name || "",
         phone: res.data.phone || "",
@@ -44,13 +40,17 @@ const MyDetails = () => {
       };
 
       setFormData(profileData);
-      setIsCollegeStudent(profileData.college); // If college exists, set as college student
+      setIsCollegeStudent(!!profileData.college); // Convert value to boolean
       setLoading(false);
     } catch (error) {
       console.error("Error fetching profile:", error);
       setLoading(false);
     }
-  };
+  }, []); // Dependency added to prevent stale closures
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +59,7 @@ const MyDetails = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      await axios.put(`${API_PREFIX}/api/profile`, formData, { withCredentials: true });
+      await axios.put(`${config.API_PREFIX}/api/profile`, formData, { withCredentials: true });
       setEditing(false);
       notifications.show({
         title: 'Profile Updated!',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Accordion, Container, Title, Loader, Text } from "@mantine/core";
 import config from "../../Config";
@@ -7,18 +7,14 @@ const MyPlans = () => {
   const [activePlans, setActivePlans] = useState([]);
   const [expiredPlans, setExpiredPlans] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_PREFIX = config.API_PREFIX;
 
-  useEffect(() => {
-    fetchPlans();
-  }, [fetchPlans]);
 
-  const fetchPlans = async () => {
+  const fetchPlans = useCallback(async () => {
     try {
-      const activeRes = await axios.get(`${API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
+      const activeRes = await axios.get(`${config.API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
       setActivePlans(activeRes.data.activePlans);
 
-      const expiredRes = await axios.get(`${API_PREFIX}/plan/get-expired-plans`, { withCredentials: true });
+      const expiredRes = await axios.get(`${config.API_PREFIX}/plan/get-expired-plans`, { withCredentials: true });
       setExpiredPlans(expiredRes.data.expiredPlans);
 
       setLoading(false);
@@ -26,7 +22,11 @@ const MyPlans = () => {
       console.error("Error fetching plans:", error);
       setLoading(false);
     }
-  };
+  }, []); // No dependencies since config.API_PREFIX doesn't change frequently
+
+  useEffect(() => {
+    fetchPlans();
+  }, [fetchPlans]);
 
   if (loading) return <Loader size="xl" />;
 
