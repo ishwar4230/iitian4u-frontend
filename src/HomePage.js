@@ -18,8 +18,8 @@ import {
   IconClipboardList,
   IconLogout,
   } from "@tabler/icons-react";
-import Cookies from "js-cookie";
-import {jwtDecode} from "jwt-decode"; // Import JWT decoder
+// import Cookies from "js-cookie";
+// import {jwtDecode} from "jwt-decode"; // Import JWT decoder
 import axios from "axios";
 import { login, logout } from "./redux/slices/authSlice";
 import config from "./Config";
