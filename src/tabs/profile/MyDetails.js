@@ -82,7 +82,7 @@ const MyDetails = () => {
 
       {/* Profile Picture */}
       <Group position="center" mb="lg">
-        <Avatar src={formData.image || "https://via.placeholder.com/150"} size={100} />
+        <Avatar src={formData.image || ""} size={100} />
       </Group>
 
       {/* Student Type Checkbox */}
