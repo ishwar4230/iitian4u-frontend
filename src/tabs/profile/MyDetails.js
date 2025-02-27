@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Loader, TextInput, Button, Avatar, Container, Group, Checkbox } from "@mantine/core";
+import { Loader, TextInput, Button, Container, Group, Checkbox } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import config from "../../Config";
+import UserAvatar from "../../helpers/UserAvatar";
 const MyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -17,7 +18,6 @@ const MyDetails = () => {
     college_year: "",
     school: "",
     school_class: "",
-    image: "",
   });
 
 
@@ -36,7 +36,6 @@ const MyDetails = () => {
         college_year: res.data.college_year || "",
         school: res.data.school || "",
         school_class: res.data.school_class || "",
-        image: res.data.image || "",
       };
 
       setFormData(profileData);
@@ -82,7 +81,7 @@ const MyDetails = () => {
 
       {/* Profile Picture */}
       <Group position="center" mb="lg">
-        <Avatar src={formData.image || ""} size={100} />
+        <UserAvatar name={formData.name} size={100} />
       </Group>
 
       {/* Student Type Checkbox */}
