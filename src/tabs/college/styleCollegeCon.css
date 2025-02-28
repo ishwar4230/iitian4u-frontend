@@ -1,0 +1,137 @@
+.accordion {
+    background-color: #E1EBEE;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the accordion panel. Note: hidden by default */
+  .panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+  }
+  .accordion:after {
+    content: '\02795'; 
+    font-size: 13px;
+    color: black;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; 
+  }
+  .aspirant-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .faq-section {
+    width: 100%;
+  }
+  .faqs-heading{
+    margin-left: 35%;
+    margin-bottom : 10px;
+    margin-top : 10px;
+    font-family : "Poppins";
+    font-size:50px;
+  }
+  /* FAQ CSS ENDS HERE*/
+  .Top-Image{
+    margin-top:0;
+    margin-bottom: 0;
+    padding-top:0;
+  }
+
+  /*WHy we stand out*/
+  .why-we-stand-out {
+  padding: 10px 0;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.whywso-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.whywso-section-title {
+  font-size: 34px;
+  font-family:"Poppins";
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.whywso-features-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 75px;
+}
+
+.whywso-feature-card {
+  flex: 1;
+  padding: 35px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px #0b5493;
+  text-align: center;
+  background-color: #fff;
+}
+
+.whywso-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.whywso-icon {
+  font-size: 24px;
+  background-color: #ddd;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.whywso-feature-title {
+  font-size: 22px;
+  font-family:"Poppins";
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.whywso-feature-description {
+  font-size: 15px;
+  font-family:"Poppins";
+  color: #555;
+}
+@media (max-width: 768px) {
+  .whywso-features-grid{
+    flex-direction:column;
+    gap:40px;
+  }
+  .faqs-heading{
+    margin-left:25%;
+    font-size:2rem;
+  }
+  .whywso-feature-description{
+    font-size:11px;
+  }
+  .whywso-feature-title{
+    font-size:15px;
+  }
+
+}
