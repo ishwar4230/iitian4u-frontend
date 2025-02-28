@@ -57,7 +57,7 @@
     padding-top:0;
   }
   .content-aspirant-top{
-    background-color: #cbedff;
+    background-color: #e9f1f5;
     margin-top:-20px;
     padding-top:0;
     display:flex;
@@ -94,11 +94,11 @@
   }
   
   .contact-card {
-    background-color: #E1EBEE;
+    background-color: #fff9ee;
     text-align: center;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 20px 5px #48abe0;
+    box-shadow: 0 0 20px 5px #f1b84e;
     margin-bottom:30px;
   }
   
