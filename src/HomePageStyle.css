@@ -75,3 +75,43 @@
       gap: 20px;
     }
   }
+
+  .navbar{
+    position: fixed;  
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links{
+    display: flex;
+    gap: 40px;
+  }
+
+  .mobile-header{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  .mobile-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  
