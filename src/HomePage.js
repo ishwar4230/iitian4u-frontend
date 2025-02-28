@@ -18,8 +18,8 @@ import {
   IconClipboardList,
   IconLogout,
   } from "@tabler/icons-react";
-import Cookies from "js-cookie";
-import {jwtDecode} from "jwt-decode"; // Import JWT decoder
+// import Cookies from "js-cookie";
+// import {jwtDecode} from "jwt-decode"; // Import JWT decoder
 import axios from "axios";
 import { login, logout } from "./redux/slices/authSlice";
 import config from "./Config";
@@ -48,19 +48,24 @@ const HomePage = () => {
   const API_PREFIX = config.API_PREFIX;
   // Check for authentication on page load
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
+    const verifyUser = async () => {
       try {
-        const decoded = jwtDecode(token); // Decode token to get user ID
-        if (decoded?.id) {
-          dispatch(login(decoded.id)); // Store ID as a string in Redux
+        const res = await axios.get(`${config.API_PREFIX}/api/auth/verify`, {
+          withCredentials: true, // Ensures cookies are sent
+        });
+  
+        if (res.status === 200) {
+          dispatch(login(res.data.userId)); // Store user ID in Redux
         }
       } catch (error) {
-        console.error("Invalid token:", error);
+        console.error("User verification failed:", error.response?.data?.message || error.message);
+        dispatch(logout());
       }
-    }
+    };
+  
+    verifyUser();
   }, [dispatch]);
-
+  
   const handleLogin = () => {
     //dispatch(login(userData)); // Dispatch actual login data
     setActiveTab("home"); // Redirect to home after login
@@ -68,8 +73,7 @@ const HomePage = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post(`${API_PREFIX}/api/auth/logout`,{ withCredentials: true });
-      Cookies.remove("token");
+      await axios.post(`${API_PREFIX}/api/auth/logout`,{},{ withCredentials: true });
       dispatch(logout());
       setActiveTab("home");
       notifications.show({

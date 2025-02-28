@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Card, Container, Group, Title, Loader, Text } from "@mantine/core";
+import { Card, Container, Title, Loader, Text } from "@mantine/core";
 import config from "../../Config";
 
 const MyUpcomingSessions = () => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_PREFIX = config.API_PREFIX;
 
-  useEffect(() => {
-    fetchSessions();
-  }, []);
-
-  const fetchSessions = async () => {
+  const fetchSessions = useCallback(async () => {
     try {
-      const res = await axios.get(`${API_PREFIX}/session/get-user-sessions`, { withCredentials: true });
+      const res = await axios.get(`${config.API_PREFIX}/session/get-user-sessions`, { withCredentials: true });
       setSessions(res.data.user_sessions);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching sessions:", error);
       setLoading(false);
     }
-  };
+  }, []); // Dependencies: Only re-create if API_PREFIX changes
+
+  useEffect(() => {
+    fetchSessions();
+  }, [fetchSessions]);
+
 
   if (loading) return <Loader size="xl" />;
 

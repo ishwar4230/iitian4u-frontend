@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Loader, TextInput, Button, Avatar, Container, Group, Title, Checkbox } from "@mantine/core";
+import { Loader, TextInput, Button, Container, Group, Checkbox } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import config from "../../Config";
+import UserAvatar from "../../helpers/UserAvatar";
 const MyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [isCollegeStudent, setIsCollegeStudent] = useState(false);
-  const API_PREFIX = config.API_PREFIX;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -18,18 +18,14 @@ const MyDetails = () => {
     college_year: "",
     school: "",
     school_class: "",
-    image: "",
   });
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
 
-  const fetchProfile = async () => {
+
+  const fetchProfile = useCallback(async () => {
     try {
-      const res = await axios.get(`${API_PREFIX}/api/profile`, { withCredentials: true });
+      const res = await axios.get(`${config.API_PREFIX}/api/profile`, { withCredentials: true });
 
-      // Extract only relevant fields, setting empty values if missing
       const profileData = {
         name: res.data.name || "",
         phone: res.data.phone || "",
@@ -40,17 +36,20 @@ const MyDetails = () => {
         college_year: res.data.college_year || "",
         school: res.data.school || "",
         school_class: res.data.school_class || "",
-        image: res.data.image || "",
       };
 
       setFormData(profileData);
-      setIsCollegeStudent(profileData.college); // If college exists, set as college student
+      setIsCollegeStudent(!!profileData.college); // Convert value to boolean
       setLoading(false);
     } catch (error) {
       console.error("Error fetching profile:", error);
       setLoading(false);
     }
-  };
+  }, []); // Dependency added to prevent stale closures
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +58,7 @@ const MyDetails = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      await axios.put(`${API_PREFIX}/api/profile`, formData, { withCredentials: true });
+      await axios.put(`${config.API_PREFIX}/api/profile`, formData, { withCredentials: true });
       setEditing(false);
       notifications.show({
         title: 'Profile Updated!',
@@ -82,7 +81,7 @@ const MyDetails = () => {
 
       {/* Profile Picture */}
       <Group position="center" mb="lg">
-        <Avatar src={formData.image || "https://via.placeholder.com/150"} size={100} />
+        <UserAvatar name={formData.name} size={100} />
       </Group>
 
       {/* Student Type Checkbox */}

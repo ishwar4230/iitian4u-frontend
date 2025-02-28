@@ -1,5 +1,5 @@
 const config = {
-    API_PREFIX: "http://localhost:5000",
+    API_PREFIX: "https://iitian4u-backend1.onrender.com",
 };
 
 export default config;
