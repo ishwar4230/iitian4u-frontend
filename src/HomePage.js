@@ -33,6 +33,7 @@ import BookSlot from "./tabs/slot/BookSlot";
 import MyDetails from "./tabs/profile/MyDetails";
 import MyPlans from "./tabs/profile/MyPlans";
 import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
+import AdminPanel from "./admin/AdminPanel";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
 
@@ -297,6 +298,7 @@ const HomePage = () => {
           <Route path="/profile" element={<ProtectedRoute element={<MyDetails />} />} />
           <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
           <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
+          <Route path="/admin" element={<AdminPanel />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
