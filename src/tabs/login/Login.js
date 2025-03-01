@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import { Button, TextInput, PasswordInput, Card, Group, Loader } from "@mantine/core";
 import axios from "axios";
 import config from "../../Config";
 import { notifications } from "@mantine/notifications";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -15,13 +16,19 @@ const Login = ({ onLogin }) => {
   const [isLoading, setIsLoading] = useState(false); // Loading state for button
   const dispatch = useDispatch();
   const API_PREFIX = config.API_PREFIX;
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     setIsLoading(true); // Start loading
     try {
       const res = await axios.post(`${API_PREFIX}/api/auth/login`, { phone: mobile, password }, { withCredentials: true });
       dispatch(login(res.data.user.id)); // Store user ID in Redux
-      onLogin(); // Redirect to Home tab
+
+      // Retrieve the intended path from session storage
+      const from = sessionStorage.getItem("from") || "/";
+      sessionStorage.removeItem("from"); // Clear the stored path
+
+      navigate(from, { replace: true }); // Navigate to the intended path
       notifications.show({
         title: "Success!",
         message: "Logged in successfully",

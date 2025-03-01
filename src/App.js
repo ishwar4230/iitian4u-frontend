@@ -5,8 +5,10 @@ import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { BrowserRouter as Router} from "react-router-dom";
 function App() {
   return (
+    <Router>
     <Provider store={store}>
     <MantineProvider>
       <Notifications />
@@ -15,6 +17,7 @@ function App() {
     </div>
     </MantineProvider>
     </Provider>
+    </Router>
   );
 }
 
