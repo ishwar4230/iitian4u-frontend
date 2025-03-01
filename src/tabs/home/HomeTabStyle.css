@@ -1,0 +1,96 @@
+.hometab-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+/*Our Services */
+.our-services-home {
+    padding: 10px 0;
+    padding-bottom:50px;
+    background-color: #21286e;
+    text-align: center;
+    width:100%;
+  }
+  
+  .ourservice-container {
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  .ourservice-section-title {
+    font-size: 34px;
+    color:white;
+    font-family:"Poppins";
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .ourservice-features-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 75px;
+  }
+  
+  .ourservice-feature-card {
+    flex: 1;
+    padding: 35px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 12px 12px 10px #f79839;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .ourservice-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .ourservice-icon {
+    font-size: 24px;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 50%;
+  }
+  
+  .ourservice-feature-title {
+    font-size: 22px;
+    font-family:"Poppins";
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .ourservice-button{
+      background-color: darkblue;
+      color: white;
+      border-radius : 8px;
+      width: 8rem;
+      height: 2rem;
+      
+  }
+  
+  .ourservice-feature-description {
+    font-size: 15px;
+    font-family:"Poppins";
+    color: #555;
+  }
+  @media (max-width: 768px) {
+    .ourservice-features-grid{
+      flex-direction:column;
+      gap:40px;
+    }
+    .ourservice-feature-description{
+      font-size:11px;
+    }
+    .ourservice-feature-title{
+      font-size:15px;
+    }
+    .ourservice-feature-card{
+        box-shadow:none;
+        margin-left:20px;
+        margin-right:20px;
+    }
+  
+  }
