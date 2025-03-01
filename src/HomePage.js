@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { Button, Burger, Drawer,Menu, Image } from "@mantine/core";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Button, Burger, Drawer, Menu, Image } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
 import {
@@ -18,9 +18,9 @@ import {
   IconCalendarClock,
   IconClipboardList,
   IconLogout,
-  } from "@tabler/icons-react";
+} from "@tabler/icons-react";
 import axios from "axios";
-import { login, logout } from "./redux/slices/authSlice";
+import { login, logout, setAuthLoading } from "./redux/slices/authSlice";
 import config from "./Config";
 import ProtectedRoute from "./helpers/ProtectedRoute";
 import Aspirant from "./tabs/aspirant/Aspirant";
@@ -38,7 +38,8 @@ import "./HomePageStyle.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  // const [activeTab, setActiveTab] = useState("home");
+  const location = useLocation(); // Get current pathname
+  const [activeTab, setActiveTab] = useState("home");
   const [mobileMenuOpened, { open, close }] = useDisclosure(false);
   const [profileDropdownOpened, setProfileDropdownOpened] = useState(false); // Profile dropdown state
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -46,37 +47,53 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 768px)"); // Detect mobile screens
   const API_PREFIX = config.API_PREFIX;
-  
+
   // Check for authentication on page load
   useEffect(() => {
     const verifyUser = async () => {
+      dispatch(setAuthLoading(true)); // Set loading to true before verification starts
       try {
         const res = await axios.get(`${config.API_PREFIX}/api/auth/verify`, {
-          withCredentials: true, // Ensures cookies are sent
+          withCredentials: true,
         });
   
         if (res.status === 200) {
-          dispatch(login(res.data.userId)); // Store user ID in Redux
+          dispatch(login(res.data.userId)); // Set user as logged in
         }
       } catch (error) {
         console.error("User verification failed:", error.response?.data?.message || error.message);
         dispatch(logout());
+      } finally {
+        dispatch(setAuthLoading(false)); // Mark authentication check as complete
       }
     };
   
     verifyUser();
   }, [dispatch]);
-  
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes("aspirant")) setActiveTab("aspirant");
+    else if (path.includes("college")) setActiveTab("college");
+    else if (path.includes("career")) setActiveTab("career");
+    else if (path.includes("book-slot")) setActiveTab("book-slot");
+    else if (path.includes("profile")) setActiveTab("profile");
+    else if (path.includes("upcoming-sessions")) setActiveTab("upcoming-sessions");
+    else if (path.includes("my-plans")) setActiveTab("my-plans");
+    else if (path.includes("login")) setActiveTab("login");
+    else setActiveTab("home");
+  }, [location.pathname]);
+
   const handleLogout = async () => {
     try {
-      await axios.post(`${API_PREFIX}/api/auth/logout`,{},{ withCredentials: true });
+      await axios.post(`${API_PREFIX}/api/auth/logout`, {}, { withCredentials: true });
       dispatch(logout());
       navigate("/login");
       notifications.show({
-              title: 'Logged out!',
-              message: 'Logged out successfully',
-              color: 'green',
-            })
+        title: 'Logged out!',
+        message: 'Logged out successfully',
+        color: 'green',
+      })
     } catch (error) {
       alert(error.response?.data?.message || "Logout failed!");
     }
@@ -89,25 +106,87 @@ const HomePage = () => {
         <nav className="navbar">
           <Image src={Logo} alt="Brand Logo" height={40} />
           <div className="nav-links">
-            <Button variant="subtle" leftSection={<IconHome size={15} />} onClick={() => navigate("/")}>Home</Button>
-            <Button variant="subtle" leftSection={<IconRocket size={15} />} onClick={() => navigate("/aspirant")}>Aspirant</Button>
-            <Button variant="subtle" leftSection={<IconSchool size={15} />} onClick={() => navigate("/college")}>College Counselling</Button>
-            <Button variant="subtle" leftSection={<IconBriefcase size={15} />} onClick={() => navigate("/career")}>Career Counselling</Button>
+            <Button
+              variant={activeTab === "home" ? "filled" : "subtle"}
+              leftSection={<IconHome size={15} />}
+              onClick={() => { navigate("/")}}
+            >
+              Home
+            </Button>
+            <Button
+              variant={activeTab === "aspirant" ? "filled" : "subtle"}
+              leftSection={<IconRocket size={15} />}
+              onClick={() => {navigate("/aspirant")}}
+            >
+              Aspirant
+            </Button>
+            <Button
+              variant={activeTab === "college" ? "filled" : "subtle"}
+              leftSection={<IconSchool size={15} />}
+              onClick={() => {navigate("/college")}}
+            >
+              College Counselling
+            </Button>
+            <Button
+              variant={activeTab === "career" ? "filled" : "subtle"}
+              leftSection={<IconBriefcase size={15} />}
+              onClick={() => {navigate("/career")}}
+            >
+              Career Counselling
+            </Button>
 
             {!isLoggedIn ? (
-              <Button variant="subtle" leftSection={<IconLogin size={15} />} onClick={() => navigate("/login")}>Login</Button>
+              <Button
+              variant={activeTab === "login" ? "filled" : "subtle"}
+                leftSection={<IconLogin size={15} />}
+                onClick={() => {navigate("/login")}}
+              >
+                Login
+              </Button>
             ) : (
               <>
-                <Button variant="subtle" leftSection={<IconCalendarClock size={15} />} onClick={() => navigate("/book-slot")}>Book Slot</Button>
-                <Menu opened={profileDropdownOpened} onClose={() => setProfileDropdownOpened(false)} shadow="md" position="bottom-end">
+                <Button
+                  variant={activeTab === "book-slot" ? "filled" : "subtle"}
+                  leftSection={<IconCalendarClock size={15} />}
+                  onClick={() => {navigate("/book-slot")}}
+                >
+                  Book Slot
+                </Button>
+                <Menu
+                  opened={profileDropdownOpened}
+                  onClose={() => setProfileDropdownOpened(false)}
+                  shadow="md"
+                  position="bottom-end"
+                >
                   <Menu.Target>
                     <IconUserCircle size={30} style={{ cursor: "pointer" }} onClick={() => setProfileDropdownOpened((o) => !o)} />
                   </Menu.Target>
                   <Menu.Dropdown style={{ marginTop: "10px" }}>
-                    <Menu.Item leftSection={<IconUserCircle size={15} />} onClick={() => navigate("/profile")}>My Profile</Menu.Item>
-                    <Menu.Item leftSection={<IconCalendar size={15} />} onClick={() => navigate("/upcoming-sessions")}>My Upcoming Sessions</Menu.Item>
-                    <Menu.Item leftSection={<IconClipboardList size={15} />} onClick={() => navigate("/my-plans")}>My Plans</Menu.Item>
-                    <Menu.Item leftSection={<IconLogout size={15} />} onClick={handleLogout} color="red">Logout</Menu.Item>
+                    <Menu.Item
+                      leftSection={<IconUserCircle size={15} />}
+                      onClick={() => {navigate("/profile")}}
+                    >
+                      My Profile
+                    </Menu.Item>
+                    <Menu.Item
+                      leftSection={<IconCalendar size={15} />}
+                      onClick={() => {navigate("/upcoming-sessions")}}
+                    >
+                      My Upcoming Sessions
+                    </Menu.Item>
+                    <Menu.Item
+                      leftSection={<IconClipboardList size={15} />}
+                      onClick={() => {navigate("/my-plans")}}
+                    >
+                      My Plans
+                    </Menu.Item>
+                    <Menu.Item
+                      leftSection={<IconLogout size={15} />}
+                      onClick={handleLogout}
+                      color="red"
+                    >
+                      Logout
+                    </Menu.Item>
                   </Menu.Dropdown>
                 </Menu>
               </>
@@ -127,20 +206,80 @@ const HomePage = () => {
       {/* Mobile Drawer Menu */}
       <Drawer opened={mobileMenuOpened} onClose={close} title="Menu" padding="md" size="75%" styles={{ content: { marginTop: "60px" } }}>
         <div className="mobile-menu">
-          <Button variant="subtle" leftSection={<IconHome size={15} />} onClick={() => { navigate("/"); close(); }}>Home</Button>
-          <Button variant="subtle" leftSection={<IconRocket size={15} />} onClick={() => { navigate("/aspirant"); close(); }}>Aspirant</Button>
-          <Button variant="subtle" leftSection={<IconSchool size={15} />} onClick={() => { navigate("/college"); close(); }}>College Counselling</Button>
-          <Button variant="subtle" leftSection={<IconBriefcase size={15} />} onClick={() => { navigate("/career"); close(); }}>Career Counselling</Button>
+          <Button
+            variant={activeTab === "home" ? "filled" : "subtle"}
+            leftSection={<IconHome size={15} />}
+            onClick={() => { navigate("/"); close(); }}
+          >
+            Home
+          </Button>
+          <Button
+            variant={activeTab === "aspirant" ? "filled" : "subtle"}
+            leftSection={<IconRocket size={15} />}
+            onClick={() => { navigate("/aspirant"); close(); }}
+          >
+            Aspirant
+          </Button>
+          <Button
+            variant={activeTab === "college" ? "filled" : "subtle"}
+            leftSection={<IconSchool size={15} />}
+            onClick={() => { navigate("/college"); close(); }}
+          >
+            College Counselling
+          </Button>
+          <Button
+            variant={activeTab === "career" ? "filled" : "subtle"}
+            leftSection={<IconBriefcase size={15} />}
+            onClick={() => { navigate("/career"); close(); }}
+          >
+            Career Counselling
+          </Button>
 
           {!isLoggedIn ? (
-            <Button variant="subtle" leftSection={<IconLogin size={15} />} onClick={() => { navigate("/login"); close(); }}>Login</Button>
+            <Button
+            variant={activeTab === "login" ? "filled" : "subtle"}
+              leftSection={<IconLogin size={15} />}
+              onClick={() => { navigate("/login"); close(); }}
+            >
+              Login
+            </Button>
           ) : (
             <>
-              <Button variant="subtle" leftSection={<IconCalendarClock size={15} />} onClick={() => { navigate("/book-slot"); close(); }}>Book Slot</Button>
-              <Button variant="subtle" leftSection={<IconUserCircle size={15} />} onClick={() => { navigate("/profile"); close(); }}>Profile</Button>
-              <Button variant="subtle" leftSection={<IconCalendar size={15} />} onClick={() => { navigate("/upcoming-sessions"); close(); }}>My Upcoming Sessions</Button>
-              <Button variant="subtle" leftSection={<IconClipboardList size={15} />} onClick={() => { navigate("/my-plans"); close(); }}>My Plans</Button>
-              <Button color="red" onClick={() => { handleLogout(); close(); }} style={{ marginTop: "10px" }}>Logout</Button>
+              <Button
+                variant={activeTab === "book-slot" ? "filled" : "subtle"}
+                leftSection={<IconCalendarClock size={15} />}
+                onClick={() => { navigate("/book-slot"); close(); }}
+              >
+                Book Slot
+              </Button>
+              <Button
+                variant={activeTab === "profile" ? "filled" : "subtle"}
+                leftSection={<IconUserCircle size={15} />}
+                onClick={() => { navigate("/profile"); close(); }}
+              >
+                Profile
+              </Button>
+              <Button
+                variant={activeTab === "upcoming-sessions" ? "filled" : "subtle"}
+                leftSection={<IconCalendar size={15} />}
+                onClick={() => { navigate("/upcoming-sessions"); close(); }}
+              >
+                My Upcoming Sessions
+              </Button>
+              <Button
+                variant={activeTab === "my-plans" ? "filled" : "subtle"}
+                leftSection={<IconClipboardList size={15} />}
+                onClick={() => { navigate("/my-plans"); close(); }}
+              >
+                My Plans
+              </Button>
+              <Button
+                color="red"
+                onClick={() => { handleLogout(); close(); }}
+                style={{ marginTop: "10px" }}
+              >
+                Logout
+              </Button>
             </>
           )}
         </div>
@@ -148,45 +287,45 @@ const HomePage = () => {
 
       {/* Routes */}
       <div style={{ marginTop: "60px" }}>
-      <Routes>
-        <Route path="/" element={<HomeTab />} />
-        <Route path="/aspirant" element={<Aspirant />} />
-        <Route path="/college" element={<CollegeCon />} />
-        <Route path="/career" element={<CareerCon />} />
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
-        <Route path="/book-slot" element={<ProtectedRoute element={<BookSlot />} />} />
-        <Route path="/profile" element={<ProtectedRoute element={<MyDetails />} />} />
-        <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
-        <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomeTab />} />
+          <Route path="/aspirant" element={<Aspirant />} />
+          <Route path="/college" element={<CollegeCon />} />
+          <Route path="/career" element={<CareerCon />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/book-slot" element={<ProtectedRoute element={<BookSlot />} />} />
+          <Route path="/profile" element={<ProtectedRoute element={<MyDetails />} />} />
+          <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
+          <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </div>
-    <footer className="footer" style={{marginTop:"20px"}}>
-  {/* Left Section */}
-  <div className="footer-left">
-    <img src={Logo} alt="IITians4U Logo" className="footer-logo" />
-    <p>© {new Date().getFullYear()} IITians4U. All Rights Reserved.</p>
-    <div className="social-icons">
-      <IconBrandFacebook size={20} />
-      <IconBrandLinkedin size={20} />
-      <IconBrandInstagram size={20} />
-    </div>
-  </div>
+      <footer className="footer" style={{ marginTop: "20px" }}>
+        {/* Left Section */}
+        <div className="footer-left">
+          <img src={Logo} alt="IITians4U Logo" className="footer-logo" />
+          <p>© {new Date().getFullYear()} IITians4U. All Rights Reserved.</p>
+          <div className="social-icons">
+            <IconBrandFacebook size={20} />
+            <IconBrandLinkedin size={20} />
+            <IconBrandInstagram size={20} />
+          </div>
+        </div>
 
-  {/* Right Section */}
-  <div className="footer-right">
-    <ul>
-      <li><a href="/about">About Us</a></li>
-      <li><a href="/services">Frequently asked</a></li>
-      <li><a href="/contact">Testimonials</a></li>
-    </ul>
-    <ul>
-      <li><a href="/privacy">Aspirant</a></li>
-      <li><a href="/terms">College Counselling</a></li>
-      <li><a href="/faq">Career Counselling</a></li>
-    </ul>
-  </div>
-</footer>
+        {/* Right Section */}
+        <div className="footer-right">
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">Frequently asked</a></li>
+            <li><a href="/contact">Testimonials</a></li>
+          </ul>
+          <ul>
+            <li><a href="/privacy">Aspirant</a></li>
+            <li><a href="/terms">College Counselling</a></li>
+            <li><a href="/faq">Career Counselling</a></li>
+          </ul>
+        </div>
+      </footer>
     </>
   );
 };
