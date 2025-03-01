@@ -3,7 +3,7 @@ import "./styleCollegeCon.css";  //HTML of FAQ Accordion
 import faqData from "./faqDataCC.json";   //JSON of FAQ questions
 import teamMembersCC from "./teamMembersCC.json" ; // JSON of Know Your Mentors
 import AspirantTopImage from "../data/aspirant-page-top.png";
-import WhyWeStandOut from "./WhyWeStandOut";
+import CounselingSection from "../career/CounselingSection";
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -69,7 +69,7 @@ const CollegeCon = () => {
       <img className="Top-Image" src={AspirantTopImage} alt="IITians4U"/>
       <h1 className="kym-heading">Know Your Mentors</h1>
       <ContactSection />
-      <WhyWeStandOut/>
+      <CounselingSection/>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
 

@@ -1,0 +1,73 @@
+/* Pricing Container */
+.Careers-pricing-section {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:0.5rem;
+}
+.career-pricing-container {
+    display: flex;
+    gap: 40px;
+}
+
+/* Card Styles */
+.careercard {
+    background-color: #21286e;
+    padding: 20px;
+    color:white;
+    font-family:"Poppins";
+    width: 350px;
+    height: 26rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.pricing-plan-name{
+    margin-top: 20%;
+}
+
+/* Highlighted Card */
+.career-highlighted {
+    background-color: #f8c006;
+    color:black;
+}
+
+/* Horizontal Line */
+hr {
+    border: 0;
+    height: 1px;
+    background: #666;
+    margin: 15px 0;
+}
+
+/* Price */
+.pricing-plan-price {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.career-pricing-btn {
+    background-color:#f79839 ;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.career-pricing-btn:hover {
+    background-color: #0F8A70;
+}
+@media (max-width: 768px) {
+    .career-pricing-container{
+        flex-direction:column;
+    }
+    .card{
+        height:21rem;
+    }
+  }
+  .pricing-heading{
+      font-family:"Poppins";
+      text-align:center;
+  }

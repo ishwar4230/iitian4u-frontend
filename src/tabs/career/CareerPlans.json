@@ -1,0 +1,23 @@
+[
+    {
+      "name": "Monthly Plan",
+      "description": "Ideal for students needing initial guidance for JEE and NEET.",
+      "price": "₹2,000",
+     "buttonText": "Choose Monthly",
+     "isHighlighted": false
+    },
+    {
+      "name": "Quarterly Plan",
+      "description": "Perfect for comprehensive support and preparation.",
+      "price": "₹5,000",
+      "buttonText": "Choose Quarterly",
+      "isHighlighted": true
+    },
+    {
+      "name": "Yearly Plan",
+      "description": "For those seeking extensive mentorship and guidance.",
+      "price": "₹10,000",
+      "buttonText": "Choose Yearly",
+      "isHighlighted": false
+    }
+  ]
