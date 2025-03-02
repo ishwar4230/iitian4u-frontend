@@ -100,13 +100,26 @@ const AdminPanel = () => {
             height="300px"
             width="100%"
             placeholder={jsonData}
-            onChange={(data) => {
+            onBlur={(data) => {
               if (!data.error) {
                 setJsonData(data.jsObject); // Update the state
                 jsonRef.current = data.jsObject; // Update the ref
               }
             }}
-            colors={{ background: "#f4f4f4" }}
+            colors={{
+              background: "#f4f4f4",  // Light gray background
+              default: "#333",        // Default text color (dark gray)
+              keys: "#1E1E1E",        // Darker color for keys
+              string: "#007acc",      // Blue for strings
+              number: "#098658",      // Green for numbers
+              colon: "#000",          // Black for colons
+              keys_whiteSpace: "#1E1E1E" // Ensure key spacing is also dark
+            }}
+            style={{
+              body: { fontSize: "18px" }, // Adjust the font size here
+              labelColumn: { fontSize: "18px" }, // For the keys
+              valueColumn: { fontSize: "18px" }, // For the values
+            }}
           />
           <Group mt="md">
             <Button onClick={handleSubmit}>Submit</Button>

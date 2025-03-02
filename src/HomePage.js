@@ -57,7 +57,7 @@ const HomePage = () => {
         const res = await axios.get(`${config.API_PREFIX}/api/auth/verify`, {
           withCredentials: true,
         });
-  
+
         if (res.status === 200) {
           dispatch(login(res.data.userId)); // Set user as logged in
         }
@@ -68,7 +68,7 @@ const HomePage = () => {
         dispatch(setAuthLoading(false)); // Mark authentication check as complete
       }
     };
-  
+
     verifyUser();
   }, [dispatch]);
 
@@ -101,7 +101,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div id="homepage-root">
       {/* Desktop Navbar */}
       {!isMobile && (
         <nav className="navbar">
@@ -110,37 +110,37 @@ const HomePage = () => {
             <Button
               variant={activeTab === "home" ? "filled" : "subtle"}
               leftSection={<IconHome size={15} />}
-              onClick={() => { navigate("/")}}
+              onClick={() => { navigate("/") }}
             >
               Home
             </Button>
             <Button
               variant={activeTab === "aspirant" ? "filled" : "subtle"}
               leftSection={<IconRocket size={15} />}
-              onClick={() => {navigate("/aspirant")}}
+              onClick={() => { navigate("/aspirant") }}
             >
               Aspirant
             </Button>
             <Button
               variant={activeTab === "college" ? "filled" : "subtle"}
               leftSection={<IconSchool size={15} />}
-              onClick={() => {navigate("/college")}}
+              onClick={() => { navigate("/college") }}
             >
               College Counselling
             </Button>
             <Button
               variant={activeTab === "career" ? "filled" : "subtle"}
               leftSection={<IconBriefcase size={15} />}
-              onClick={() => {navigate("/career")}}
+              onClick={() => { navigate("/career") }}
             >
               Career Counselling
             </Button>
 
             {!isLoggedIn ? (
               <Button
-              variant={activeTab === "login" ? "filled" : "subtle"}
+                variant={activeTab === "login" ? "filled" : "subtle"}
                 leftSection={<IconLogin size={15} />}
-                onClick={() => {navigate("/login")}}
+                onClick={() => { navigate("/login") }}
               >
                 Login
               </Button>
@@ -149,7 +149,7 @@ const HomePage = () => {
                 <Button
                   variant={activeTab === "book-slot" ? "filled" : "subtle"}
                   leftSection={<IconCalendarClock size={15} />}
-                  onClick={() => {navigate("/book-slot")}}
+                  onClick={() => { navigate("/book-slot") }}
                 >
                   Book Slot
                 </Button>
@@ -165,19 +165,19 @@ const HomePage = () => {
                   <Menu.Dropdown style={{ marginTop: "10px" }}>
                     <Menu.Item
                       leftSection={<IconUserCircle size={15} />}
-                      onClick={() => {navigate("/profile")}}
+                      onClick={() => { navigate("/profile") }}
                     >
                       My Profile
                     </Menu.Item>
                     <Menu.Item
                       leftSection={<IconCalendar size={15} />}
-                      onClick={() => {navigate("/upcoming-sessions")}}
+                      onClick={() => { navigate("/upcoming-sessions") }}
                     >
                       My Upcoming Sessions
                     </Menu.Item>
                     <Menu.Item
                       leftSection={<IconClipboardList size={15} />}
-                      onClick={() => {navigate("/my-plans")}}
+                      onClick={() => { navigate("/my-plans") }}
                     >
                       My Plans
                     </Menu.Item>
@@ -238,7 +238,7 @@ const HomePage = () => {
 
           {!isLoggedIn ? (
             <Button
-            variant={activeTab === "login" ? "filled" : "subtle"}
+              variant={activeTab === "login" ? "filled" : "subtle"}
               leftSection={<IconLogin size={15} />}
               onClick={() => { navigate("/login"); close(); }}
             >
@@ -287,7 +287,7 @@ const HomePage = () => {
       </Drawer>
 
       {/* Routes */}
-      <div style={{ marginTop: "60px" }}>
+      <div style={{ marginTop: "60px" }} id="homepage-element">
         <Routes>
           <Route path="/" element={<HomeTab />} />
           <Route path="/aspirant" element={<Aspirant />} />
@@ -328,7 +328,7 @@ const HomePage = () => {
           </ul>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
