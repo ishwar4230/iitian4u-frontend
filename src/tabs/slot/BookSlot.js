@@ -16,6 +16,7 @@ const BookSlot = () => {
   const [courseName, setCourseName] = useState("");
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [fetchPlanLoading, setFetchPlanLoading]= useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null); // Stores selected slot for confirmation
   const API_PREFIX = config.API_PREFIX;
@@ -24,9 +25,12 @@ const BookSlot = () => {
 
   const fetchActivePlans = useCallback(async () => {
     try {
+      setFetchPlanLoading(true);
       const response = await axios.get(`${config.API_PREFIX}/plan/get-active-plans`, { withCredentials: true });
       setPlans(response.data.activePlans);
+      setFetchPlanLoading(false);
     } catch (error) {
+      setFetchPlanLoading(false);
       console.error("Error fetching active plans:", error);
       setPlans([]);
     }
@@ -78,6 +82,7 @@ const BookSlot = () => {
       showNotification({ title: "Error", message: "Failed to book slot", color: "red" });
     }
   };
+  if (fetchPlanLoading) return <Loader size="xl" />;
 
   return (
     <Container size="md">
