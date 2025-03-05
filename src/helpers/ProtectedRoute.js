@@ -12,7 +12,7 @@ const ProtectedRoute = ({ element }) => {
 
   if (!isLoggedIn) {
     // Store the intended path in session storage
-    sessionStorage.setItem("from", location.pathname);
+    sessionStorage.setItem("from", location.pathname + location.search);
     return <Navigate to="/login" replace />;
   }
 
