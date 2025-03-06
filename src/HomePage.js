@@ -8,9 +8,6 @@ import {
   IconHome,
   IconSchool,
   IconBriefcase,
-  IconBrandInstagram,
-  IconBrandYoutube,
-  IconMail,
   IconLogin,
   IconUserCircle,
   IconRocket,
@@ -35,7 +32,7 @@ import MyPlans from "./tabs/profile/MyPlans";
 import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import AdminPanel from "./admin/AdminPanel";
 import Checkout from "./tabs/checkout/Checkout";
-import { About, PrivacyPolicy, RefundPolicy, TermsConditions, FAQs, ContactUs } from "./tabs/footer-items/FooterPages";
+import { About, PrivacyPolicy, RefundPolicy, TermsConditions, ContactUs } from "./tabs/footer-items/FooterPages";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
 
@@ -306,7 +303,6 @@ const HomePage = () => {
           <Route path="/about" element={<About />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/faq" element={<FAQs />} />
           <Route path="/TnC" element={<TermsConditions />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<Navigate to="/" />} />
@@ -319,13 +315,13 @@ const HomePage = () => {
           <p>© {new Date().getFullYear()} IITians4U. All Rights Reserved.</p>
           <div className="social-icons">
             <a href="https://www.instagram.com/iitians_4_u/" target="_blank" rel="noopener noreferrer">
-              <IconBrandInstagram size={24} />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" />
             </a>
             <a href="https://www.youtube.com/@IITians_4_u" target="_blank" rel="noopener noreferrer">
-              <IconBrandYoutube size={24} />
-            </a>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="40" />            
+              </a>
             <a href="mailto:admin@iitians4u.in" target="_blank" rel="noopener noreferrer">
-              <IconMail size={24} />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Mail" width="30" />
             </a>
           </div>
         </div>
@@ -338,7 +334,7 @@ const HomePage = () => {
             <li><a href="/refund-policy">Refund-Policy</a></li>
           </ul>
           <ul>
-            <li><a href="/faq">FAQs</a></li>
+            <li><a href={isLoggedIn ? "/" : "/login"}>Join-Us</a></li>
             <li><a href="/TnC">Terms & Conditions</a></li>
             <li><a href="/contact-us">Contact Us</a></li>
           </ul>
