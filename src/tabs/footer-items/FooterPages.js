@@ -4,12 +4,12 @@ import { Card, Text } from "@mantine/core";
 
 export function About() {
   return (
-    <Card shadow="sm" radius="md" withBorder ta="center" style={{ width: "80%", margin: "0 auto" }} padding="5%">
-      <Text size="xl" fw={1000}>About Us</Text>
+    <Card shadow="sm" radius="md" withBorder style={{ width: "80%", margin: "0 auto" }} padding="5%">
+      <Text size="xl" ta="center" fw={1000}>About Us</Text>
       <Text mt="sm">
         At <b>IITians4u</b>, we are a team of <b>IITians</b> committed to guiding JEE aspirants, engineering
         students, and college applicants at every stage. From <b>strategic JEE preparation</b> and
-        <b>personalized JoSAA counselling</b> to <b>career mentorship in specialized domains</b>, we
+        <b> personalized JoSAA counselling</b> to <b>career mentorship in specialized domains</b>, we
         provide expert support to help you make informed decisions. Whether you’re striving for
         a top JEE rank, selecting the right college, or shaping your career, <b>we’ve been there
           and we’re here to help you succeed</b>.
@@ -20,8 +20,8 @@ export function About() {
 
 export function PrivacyPolicy() {
   return (
-    <Card shadow="sm" radius="md" withBorder ta="center" style={{ width: "80%", margin: "0 auto" }} padding="5%">
-      <Text size="xl" fw={1000}>Privacy Policy</Text>
+    <Card shadow="sm" radius="md" withBorder style={{ width: "80%", margin: "0 auto" }} padding="5%">
+      <Text size="xl" ta="center" fw={1000}>Privacy Policy</Text>
       <Text mt="sm">
         At IITians4u, we prioritize your privacy and are committed to safeguarding your personal
         information. Any data you provide, including your name, contact details, and
@@ -41,8 +41,8 @@ export function PrivacyPolicy() {
 
 export function RefundPolicy() {
   return (
-    <Card shadow="sm" radius="md" withBorder ta="center" style={{ width: "80%", margin: "0 auto" }} padding="5%">
-      <Text size="xl" fw={1000}>Refund Policy</Text>
+    <Card shadow="sm" radius="md" withBorder style={{ width: "80%", margin: "0 auto" }} padding="5%">
+      <Text size="xl" ta="center" fw={1000}>Refund Policy</Text>
       <Text mt="sm">
         At IITians4u, we strive to provide the best mentorship experience. However, we
         understand that circumstances may require you to cancel your subscription.
@@ -70,8 +70,8 @@ export function RefundPolicy() {
 
 export function TermsConditions() {
   return (
-    <Card shadow="sm" radius="md" withBorder ta="center" style={{ width: "80%", margin: "0 auto" }} padding="5%">
-      <Text size="xl" fw={1000}>Terms and Conditions</Text>
+    <Card shadow="sm" radius="md" withBorder style={{ width: "80%", margin: "0 auto" }} padding="5%">
+      <Text size="xl" ta="center"  fw={1000}>Terms and Conditions</Text>
       <Text mt="sm">
         Welcome to IITians4u. By accessing and using our website and services, you agree to
         comply with the following terms and conditions. Please read them carefully.
