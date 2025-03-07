@@ -3,7 +3,7 @@
     color: #444;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 90%;
     text-align: left;
     border: none;
     outline: none;
@@ -41,7 +41,8 @@
   }
   
   .faq-section {
-    width: 100%;
+    max-width: 90%;
+    margin:auto;
   }
   .faqs-heading{
     margin-left: 35%;

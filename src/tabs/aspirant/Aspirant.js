@@ -6,7 +6,7 @@ import teamMembers from "./teamMembers.json" ; // JSON of Know Your Mentors
 import CardSlider from "./CardSlider";
 import AspirantTopImage from "../data/aspirant-page-top.png";
 import ContentAspirant from "./ContentAspirant";
-
+import AspirantPricingCards from "./AspirantPricingCards";
 
 //Here the code for FAQ section in FAQitem.js is processed i.e. Integrate Q&A data stored in JSON to FAQItem component
 const FAQSection = () => {
@@ -65,6 +65,7 @@ const Aspirant = () => {
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
         <CardSlider/>
       </div>
+      <AspirantPricingCards/>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
 
