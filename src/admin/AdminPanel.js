@@ -11,10 +11,9 @@ const AdminPanel = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [activeTab, setActiveTab] = useState("addSlot");
   const [jsonData, setJsonData] = useState(defaultJsons.addSlot);
+  const [fetchedData, setFetchedData] = useState(null);
   const [adminId, setAdminId] = useState("");
   const [adminPwd, setAdminPwd] = useState("");
-
-  // To keep track of the latest JSON value
   const jsonRef = useRef(defaultJsons.addSlot);
 
   const endpoint = {
@@ -23,6 +22,7 @@ const AdminPanel = () => {
     addPlan: "add-plan",
     addPrice: "add-price",
     addUserPlan: "add-userplan",
+    viewData: "get-upcoming-sessions"
   };
 
   useEffect(() => {
@@ -50,20 +50,29 @@ const AdminPanel = () => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setJsonData(defaultJsons[tab]);
-    jsonRef.current = defaultJsons[tab]; // Reset JSON editor value when tab changes
+    setJsonData(defaultJsons[tab] || {});
+    jsonRef.current = defaultJsons[tab] || {};
   };
 
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
         `${config.API_PREFIX}/admin/${endpoint[activeTab]}`,
-        jsonRef.current, // Use the latest JSON value
+        jsonRef.current,
         { withCredentials: true }
       );
       notifications.show({ title: "Success", message: res.data.message, color: "green" });
     } catch (error) {
       notifications.show({ title: "Error", message: "Failed to submit", color: "red" });
+    }
+  };
+
+  const handleFetchData = async () => {
+    try {
+      const res = await axios.get(`${config.API_PREFIX}/admin/${endpoint.viewData}`, { withCredentials: true });
+      setFetchedData(res.data);
+    } catch (error) {
+      notifications.show({ title: "Error", message: "Failed to fetch data", color: "red" });
     }
   };
 
@@ -91,40 +100,57 @@ const AdminPanel = () => {
           <Tabs.Tab value="addPlan">Add Plan</Tabs.Tab>
           <Tabs.Tab value="addPrice">Add Price</Tabs.Tab>
           <Tabs.Tab value="addUserPlan">Add User Plan</Tabs.Tab>
+          <Tabs.Tab value="viewData">View Data</Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value={activeTab}>
-          <JSONInput
-            id="json-editor"
-            locale={locale}
-            height="300px"
-            width="100%"
-            placeholder={jsonData}
-            onBlur={(data) => {
-              if (!data.error) {
-                setJsonData(data.jsObject); // Update the state
-                jsonRef.current = data.jsObject; // Update the ref
-              }
-            }}
-            colors={{
-              background: "#f4f4f4",  // Light gray background
-              default: "#333",        // Default text color (dark gray)
-              keys: "#1E1E1E",        // Darker color for keys
-              string: "#007acc",      // Blue for strings
-              number: "#098658",      // Green for numbers
-              colon: "#000",          // Black for colons
-              keys_whiteSpace: "#1E1E1E" // Ensure key spacing is also dark
-            }}
-            style={{
-              body: { fontSize: "18px" }, // Adjust the font size here
-              labelColumn: { fontSize: "18px" }, // For the keys
-              valueColumn: { fontSize: "18px" }, // For the values
-            }}
-          />
-          <Group mt="md">
-            <Button onClick={handleSubmit}>Submit</Button>
-          </Group>
-        </Tabs.Panel>
+        {activeTab === "viewData" ? (
+          <Tabs.Panel value="viewData">
+            <Button onClick={handleFetchData}>Fetch Data</Button>
+            {fetchedData && (
+              <JSONInput
+                id="view-json-editor"
+                locale={locale}
+                height="300px"
+                width="100%"
+                viewOnly
+                placeholder={fetchedData}
+              />
+            )}
+          </Tabs.Panel>
+        ) : (
+          <Tabs.Panel value={activeTab}>
+            <JSONInput
+              id="json-editor"
+              locale={locale}
+              height="300px"
+              width="100%"
+              placeholder={jsonData}
+              onBlur={(data) => {
+                if (!data.error) {
+                  setJsonData(data.jsObject);
+                  jsonRef.current = data.jsObject;
+                }
+              }}
+              colors={{
+                background: "#f4f4f4",  // Light gray background
+                default: "#333",        // Default text color (dark gray)
+                keys: "#1E1E1E",        // Darker color for keys
+                string: "#007acc",      // Blue for strings
+                number: "#098658",      // Green for numbers
+                colon: "#000",          // Black for colons
+                keys_whiteSpace: "#1E1E1E" // Ensure key spacing is also dark
+              }}
+              style={{
+                body: { fontSize: "18px" }, // Adjust the font size here
+                labelColumn: { fontSize: "18px" }, // For the keys
+                valueColumn: { fontSize: "18px" }, // For the values
+              }}
+            />
+            <Group mt="md">
+              <Button onClick={handleSubmit}>Submit</Button>
+            </Group>
+          </Tabs.Panel>
+        )}
       </Tabs>
     </Container>
   );

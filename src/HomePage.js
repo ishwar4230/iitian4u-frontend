@@ -8,9 +8,6 @@ import {
   IconHome,
   IconSchool,
   IconBriefcase,
-  IconBrandFacebook,
-  IconBrandLinkedin,
-  IconBrandInstagram,
   IconLogin,
   IconUserCircle,
   IconRocket,
@@ -34,6 +31,8 @@ import MyDetails from "./tabs/profile/MyDetails";
 import MyPlans from "./tabs/profile/MyPlans";
 import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import AdminPanel from "./admin/AdminPanel";
+import Checkout from "./tabs/checkout/Checkout";
+import { About, PrivacyPolicy, RefundPolicy, TermsConditions, ContactUs } from "./tabs/footer-items/FooterPages";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
 
@@ -82,7 +81,8 @@ const HomePage = () => {
     else if (path.includes("upcoming-sessions")) setActiveTab("upcoming-sessions");
     else if (path.includes("my-plans")) setActiveTab("my-plans");
     else if (path.includes("login")) setActiveTab("login");
-    else setActiveTab("home");
+    else if (path === '/') setActiveTab("home");
+    else setActiveTab('');
   }, [location.pathname]);
 
   const handleLogout = async () => {
@@ -298,7 +298,13 @@ const HomePage = () => {
           <Route path="/profile" element={<ProtectedRoute element={<MyDetails />} />} />
           <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
           <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
+          <Route path="/checkout" element={<ProtectedRoute element={<Checkout />} />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/TnC" element={<TermsConditions />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
@@ -308,9 +314,15 @@ const HomePage = () => {
           <img src={Logo} alt="IITians4U Logo" className="footer-logo" />
           <p>© {new Date().getFullYear()} IITians4U. All Rights Reserved.</p>
           <div className="social-icons">
-            <IconBrandFacebook size={20} />
-            <IconBrandLinkedin size={20} />
-            <IconBrandInstagram size={20} />
+            <a href="https://www.instagram.com/iitians_4_u/" target="_blank" rel="noopener noreferrer">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" />
+            </a>
+            <a href="https://www.youtube.com/@IITians_4_u" target="_blank" rel="noopener noreferrer">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="40" />            
+              </a>
+            <a href="mailto:admin@iitians4u.in" target="_blank" rel="noopener noreferrer">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Mail" width="30" />
+            </a>
           </div>
         </div>
 
@@ -318,13 +330,13 @@ const HomePage = () => {
         <div className="footer-right">
           <ul>
             <li><a href="/about">About Us</a></li>
-            <li><a href="/services">Frequently asked</a></li>
-            <li><a href="/contact">Testimonials</a></li>
+            <li><a href="/privacy-policy">Privacy-Policy</a></li>
+            <li><a href="/refund-policy">Refund-Policy</a></li>
           </ul>
           <ul>
-            <li><a href="/privacy">Aspirant</a></li>
-            <li><a href="/terms">College Counselling</a></li>
-            <li><a href="/faq">Career Counselling</a></li>
+            <li><a href={isLoggedIn ? "/" : "/login"}>Join-Us</a></li>
+            <li><a href="/TnC">Terms & Conditions</a></li>
+            <li><a href="/contact-us">Contact Us</a></li>
           </ul>
         </div>
       </footer>
