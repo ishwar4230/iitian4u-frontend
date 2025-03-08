@@ -13,9 +13,10 @@ export const defaultJsons = {
       total_session_count: 10
     },
     addPrice: {
-      course_id: "65e74aefb3f1a6c1d1a12345",
-      plan_id: "65e74b2cb3f1a6c1d1a67890",
-      price: 2999
+      course_type: "jee",
+      course_name: "physics",
+      plan_type: "monthly",
+      price: 999
     },
     addUserPlan: {
       user_id: "65e749f8b3f1a6c1d1a11111",

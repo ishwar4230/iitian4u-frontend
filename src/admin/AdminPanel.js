@@ -63,7 +63,7 @@ const AdminPanel = () => {
       );
       notifications.show({ title: "Success", message: res.data.message, color: "green" });
     } catch (error) {
-      notifications.show({ title: "Error", message: "Failed to submit", color: "red" });
+      notifications.show({ title: "Error", message: error.response?.data?.error || "Failed to submit", color: "red" });
     }
   };
 
