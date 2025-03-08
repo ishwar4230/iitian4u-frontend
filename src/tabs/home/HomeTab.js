@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
-import HomeTabTopImage from "../data/aspirant-page-top.png";
+import HomeTabTopImage from "../data/homepagetopimage.png";
 import "./HomeTabStyle.css" ;
 import WhyWeStandOut from "../college/WhyWeStandOut";
 import OurServices from "./OurServices";
 import faqdatahome from "./faqdatahome.json";
 import AboutUs from "./AboutUs";
-import teamHome from "./teamHome.json";
 import CardSlider from "./CardSlider";
+import TeamSlider from "./TeamSlider";
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -39,30 +39,6 @@ const FAQSection = () => {
   );
 };
 
-const ContactCard = ({ name, title, imgSrc }) => {
-  return (
-    <div className="contact-card">
-      <div className="picture">
-        <img className="img-fluid" src={imgSrc} alt={name} />
-      </div>
-      <div className="team-content">
-        <h3 className="name">{name}</h3>
-        <h4 className="title">{title}</h4>
-      </div>
-     
-    </div>
-  );
-};
-// Mapping JSON to Contact Cards
-const ContactSection = () => {
-  return (
-    <div className="contact-section">
-      {teamHome.map((member, index) => (
-        <ContactCard key={index} {...member} />
-      ))}
-    </div>
-  );
-};
 
 const HomeTab = () => {
   return (
@@ -71,7 +47,7 @@ const HomeTab = () => {
       <AboutUs/>
       <OurServices/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <ContactSection/>
+      <TeamSlider/>
     <WhyWeStandOut/>
     <div className="Testimonials">
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
