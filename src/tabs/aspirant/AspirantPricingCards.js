@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AspirantPricing.css";
 import config from "../../Config";
@@ -6,6 +7,7 @@ import config from "../../Config";
 const AspirantPricingCards = () => {
   const [priceData, setPriceData] = useState({});
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const Aspirantplans = [
     {
@@ -34,7 +36,6 @@ const AspirantPricingCards = () => {
       course_name: "strategy",
     },
   ];
-
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -68,6 +69,13 @@ const AspirantPricingCards = () => {
     fetchPrices();
   }, []);
 
+  // Handle navigation to checkout
+  const handleCheckout = (courseName, period, price) => {
+    navigate(
+      `/checkout?course_type=jee&course_name=${courseName}&plan_type=${period}`
+    );
+  };
+
   return (
     <section className="aspirant-pricing-section">
       <div className="aspirant-pricing-container">
@@ -85,9 +93,13 @@ const AspirantPricingCards = () => {
             ) : (
               priceData[plan.course_name]?.map((option, j) => (
                 <div key={j} className="aspirant-pricing-option">
-                  {/* <span className="aspirant-period">{option.period}</span> */}
                   <span className="aspirant-price">₹{option.price}</span>
-                  <button className="aspirant-pricing-btn">Choose {option.period}</button>
+                  <button
+                    className="aspirant-pricing-btn"
+                    onClick={() => handleCheckout(plan.course_name, option.period, option.price)}
+                  >
+                    Choose {option.period}
+                  </button>
                 </div>
               ))
             )}
