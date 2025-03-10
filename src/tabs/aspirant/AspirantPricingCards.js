@@ -94,12 +94,14 @@ const AspirantPricingCards = () => {
               priceData[plan.course_name]?.map((option, j) => (
                 <div key={j} className="aspirant-pricing-option">
                   <span className="aspirant-price">₹{option.price}</span>
-                  <button
-                    className="aspirant-pricing-btn"
-                    onClick={() => handleCheckout(plan.course_name, option.period, option.price)}
-                  >
-                    Choose {option.period}
-                  </button>
+                  <div className="aspirant-pricing-btn-div">
+                    <button
+                      className="aspirant-pricing-btn"
+                      onClick={() => handleCheckout(plan.course_name, option.period, option.price)}
+                    >
+                      Choose {option.period}
+                    </button>
+                  </div>
                 </div>
               ))
             )}

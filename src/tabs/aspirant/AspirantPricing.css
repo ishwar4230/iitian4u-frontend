@@ -11,21 +11,23 @@
     display:flex;
     flex-wrap:wrap;
     width:90%;
+    justify-content: center;
 }
 /* Pricing Card Container */
 .aspirant-card {
     background-color: #f5f5f5; /* Subtle color */
-    margin:auto;
-    padding: 20px 10px 20px 10px;
+    padding: 20px 10px;
     color: black;
     font-family: "Poppins", sans-serif;
-    width: 19%;
+    width: 27%; /* 3 cards per row on large screens */
+    min-width: 300px;
     min-height: 30rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 20px; /* Space between rows */
 }
 
 /* Subject Name */
@@ -67,10 +69,14 @@
 }
 
 /* Pricing Section */
-.aspirant-pricing-options {
+.aspirant-pricing-option {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 /* Individual Pricing Row */
@@ -82,19 +88,29 @@
 
 /* Price Styling */
 .aspirant-price {
+    width: 30%;
+    text-align: right; /* Align price to the right */
     font-size: 18px;
     font-weight: bold;
+}
+.aspirant-pricing-btn-div{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Buttons */
 .aspirant-pricing-btn {
-    background-color: #f79839;
+    width: 80%; /* Button takes 60% of the 70% wrapper */
+    min-width: 160px;
+    text-align: center;
+    background-color: #f79839; /* Background color on button */
     color: black;
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left:4%;
     font-size: 14px;
     font-weight: bold;
 }
@@ -114,6 +130,11 @@
     .aspirant-card {
         width: 90%;
         min-height: auto;
+    }
+}
+@media (max-width: 1024px) {
+    .aspirant-card {
+        width: calc(50% - 20px); /* 2 cards per row */
     }
 }
 
