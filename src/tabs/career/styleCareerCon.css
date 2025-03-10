@@ -4,10 +4,12 @@
     align-items:center;
     justify-content:center;
     margin-top:0.5rem;
+    MAX-WIDTH:90%;
+    margin-left:5%;
 }
 .career-pricing-container {
     display: flex;
-    gap: 40px;
+    gap: 5%;
 }
 
 /* Card Styles */
@@ -16,7 +18,7 @@
     padding: 20px;
     color:white;
     font-family:"Poppins";
-    width: 350px;
+    width: 35%;
     height: 26rem;
     text-align: center;
     border-radius: 10px;
@@ -39,8 +41,6 @@ hr {
     background: #666;
     margin: 15px 0;
 }
-
-/* Price */
 .pricing-plan-price {
     font-size: 24px;
     margin: 10px 0;
@@ -63,11 +63,157 @@ hr {
     .career-pricing-container{
         flex-direction:column;
     }
-    .card{
+    .careercard{
         height:21rem;
+        width:350px;
     }
   }
   .pricing-heading{
       font-family:"Poppins";
       text-align:center;
+  }
+  /* Know Your Mentors*/
+  .team-slider-wrapper {
+    text-align: center;
+    padding: 20px;
+    max-width: 95%; 
+    margin: auto;
+  }
+  
+  .team-slider-container {
+    position: relative;
+    width: 95%; 
+    margin: auto;
+  }
+  
+  .team-slider {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center; /* Centers the cards */
+  }
+  
+  .team-card {
+    background: #E8EAEE;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    min-width: 250px;
+    max-width: 300px; 
+  }
+  
+  .team-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .team-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .team-college {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .team-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .team-description {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 15px;
+  }
+  
+  .team-button {
+    background: #ff7f00;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .team-button:hover {
+    background: #e66f00;
+  }
+  
+  /* Position navigation buttons inside the Swiper container */
+  .swiper-button-prev,
+  .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: black;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+  }
+  
+  /* Fix positioning relative to the slider container */
+  .team-slider-container .swiper-button-prev {
+    left: -40px;
+  }
+  
+  .team-slider-container .swiper-button-next {
+    right: -40px;
+  }
+  
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background: #ff7f00;
+    color: white;
+  }
+  
+  /* Responsive Fixes */
+  @media (max-width: 1024px) {
+    .team-slider-wrapper {
+      max-width: 95%; /* Slightly reduce max width on smaller screens */
+    }
+  
+    .team-slider-container {
+      width: 95%;
+    }
+  
+    .team-card {
+      min-width: 200px;
+      max-width: 280px;
+    }
+  
+    .team-slider-container .swiper-button-prev {
+      left: 5px;
+    }
+    
+    .team-slider-container .swiper-button-next {
+      right: 5px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .team-slider-container {
+      width: 100%;
+    }
+  
+    .team-card {
+      min-width: 180px;
+      max-width: 250px;
+    }
+  
+    .team-slider-container .swiper-button-prev,
+    .team-slider-container .swiper-button-next {
+      display: none; /* Hide navigation buttons on small screens */
+    }
   }

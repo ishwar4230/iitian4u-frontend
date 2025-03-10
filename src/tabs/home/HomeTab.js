@@ -7,6 +7,7 @@ import faqdatahome from "./faqdatahome.json";
 import AboutUs from "./AboutUs";
 import CardSlider from "./CardSlider";
 import TeamSlider from "./TeamSlider";
+import Banner from "../banner/Banner";
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -43,6 +44,7 @@ const FAQSection = () => {
 const HomeTab = () => {
   return (
     <div className="hometab-container">
+      <Banner course_type="jee" course_name="all"/>
       <img className="Top-Image" src={HomeTabTopImage} alt="IITians4U"/>
       <AboutUs/>
       <OurServices/>

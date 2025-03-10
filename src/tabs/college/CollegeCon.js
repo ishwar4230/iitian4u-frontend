@@ -4,6 +4,7 @@ import faqData from "./faqDataCC.json";   //JSON of FAQ questions
 import teamMembersCC from "./teamMembersCC.json" ; // JSON of Know Your Mentors
 import AspirantTopImage from "../data/aspirant-page-top.png";
 import CounselingSection from "../career/CounselingSection";
+import Banner from "../banner/Banner";
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -66,6 +67,7 @@ const ContactSection = () => {
 const CollegeCon = () => {
   return (
     <div className="aspirant-container">
+      <Banner course_type="counselling" course_name="counselling"/>
       <img className="Top-Image" src={AspirantTopImage} alt="IITians4U"/>
       <h1 className="kym-heading">Know Your Mentors</h1>
       <ContactSection />
