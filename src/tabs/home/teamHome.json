@@ -1,32 +1,32 @@
-  [
-    {
-      "name": "IIT Abu Dhabi",
-      "college": "Sagar Soni",
-      "image": "https://picsum.photos/130/130?image=1027",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
-    },
-    {
-      "name": "IIT Kharagpur",
-      "college": "Sonu Kumar Rai",
-      "image": "https://picsum.photos/130/130?image=1027",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
-    },
-    {
-      "name": "Thapar Institute",
-      "college": "Thapar",
-      "image": "https://picsum.photos/130/130?image=1027",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
-    },
-    {
-      "name": "Person's Name",
-      "college": "ABC Institute",
-      "image": "https://picsum.photos/130/130?image=1027",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
-    },
-    {
-      "name": "Person's Name",
-      "college": "DEF College",
-      "image": "https://picsum.photos/130/130?image=1027",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
-    }
-  ]
+[
+  {
+    "name": "Coming soon",
+    "college": "Coming soon",
+    "image": "https://picsum.photos/130/130?image=1027",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
+  },
+  {
+    "name": "Coming soon",
+    "college": "Coming soon",
+    "image": "https://picsum.photos/130/130?image=1027",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
+  },
+  {
+    "name": "Coming soon",
+    "college": "Coming soon",
+    "image": "https://picsum.photos/130/130?image=1027",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
+  },
+  {
+    "name": "Coming soon",
+    "college": "Coming soon",
+    "image": "https://picsum.photos/130/130?image=1027",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
+  },
+  {
+    "name": "Coming soon",
+    "college": "Coming soon",
+    "image": "https://picsum.photos/130/130?image=1027",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo, ullam."
+  }
+]

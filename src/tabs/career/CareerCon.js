@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import "./styleCareerCon.css";  //HTML of FAQ Accordion
-import CareerTopImage from "../data/aspirant-page-top.png";
+import CareerTopImage from "../data/homepagetopimage.png";
 import faqDatacareer from "./faqDatacareer.json";
-import careerteamCC from "./careerteamCC.json";
+import CareerTeamKYM from "./CareerTeamKYM";
 import CareersPricing from "./CareersPricing";
+import CardSliderCareer from "./CardSliderCareer";
+import Banner from "../banner/Banner";
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -37,42 +39,23 @@ const FAQSection = () => {
   );
 };
 
-// Contact Card Component for Know Your Mentors
-const ContactCard = ({ name, title, imgSrc }) => {
-  return (
-    <div className="contact-card">
-      <div className="picture">
-        <img className="img-fluid" src={imgSrc} alt={name} />
-      </div>
-      <div className="team-content">
-        <h3 className="name">{name}</h3>
-        <h4 className="title">{title}</h4>
-      </div>
-     
-    </div>
-  );
-};
-// Mapping JSON to Contact Cards
-const ContactSection = () => {
-  return (
-    <div className="contact-section">
-      {careerteamCC.map((member, index) => (
-        <ContactCard key={index} {...member} />
-      ))}
-    </div>
-  );
-};
 
 const CareerCon = () => {
   return (
     <div className="aspirant-container">
+      <Banner course_type="b_tech" course_name="placement"/>
       <img className="Top-Image" src={CareerTopImage} alt="IITians4U"/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <ContactSection />
-      <h1 className="faqs-heading">Frequently asked</h1>
-      <FAQSection />
+      <CareerTeamKYM />
       <h1 className="pricing-heading">Explore Our Plans</h1>
       <CareersPricing/>
+      <div className="Testimonials">
+        <h1 className="Testis-heading"> Hear Our Success Stories</h1>
+        <CardSliderCareer/>
+      </div>
+      <h1 className="faqs-heading">Frequently asked</h1>
+      <FAQSection />
+      
     </div>
     
   )
