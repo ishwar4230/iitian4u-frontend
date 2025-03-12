@@ -5,9 +5,9 @@ import WhyWeStandOut from "../college/WhyWeStandOut";
 import OurServices from "./OurServices";
 import faqdatahome from "./faqdatahome.json";
 import AboutUs from "./AboutUs";
-import CardSlider from "./CardSlider";
-import TeamSlider from "./TeamSlider";
-import Banner from "../banner/Banner";
+// import CardSlider from "./CardSlider";
+import TeamSlider from "../../components/TeamSlider";
+import teamHome from "./teamHome.json";
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -44,17 +44,16 @@ const FAQSection = () => {
 const HomeTab = () => {
   return (
     <div className="hometab-container">
-      <Banner course_type="jee" course_name="all"/>
       <img className="Top-Image" src={HomeTabTopImage} alt="IITians4U"/>
       <AboutUs/>
       <OurServices/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <TeamSlider/>
+      <TeamSlider teamHome={teamHome}/>
     <WhyWeStandOut/>
-    <div className="Testimonials">
+    {/* <div className="Testimonials">
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
         <CardSlider/>
-      </div>
+      </div> */}
     <h1 className="faqs-heading">Frequently asked</h1>
     <FAQSection/>
     </div>

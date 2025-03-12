@@ -1,8 +1,11 @@
 import React from "react";
 import "../college/styleCollegeCon.css";
-import counselingImage from "../data/scholar_icon.png"; // Update the path accordingly
+import counselingImage from "../data/scholar_icon.png";
+import {Button} from "@mantine/core" ;
+import {useNavigate} from "react-router-dom"; 
 
 const CounselingSection = () => {
+  const navigate=useNavigate();
   return (
     <div className="counsel-container">
       {/* Left Side - Text Section */}
@@ -22,7 +25,7 @@ const CounselingSection = () => {
           <li>🏛 Application Assistance: Get expert help with essays, interviews, and all application materials.</li>
           <li>🏛 Admissions Insights: Understand the nuances of college admissions and stand out from the crowd.</li>
         </ul>
-        <button className="counsel-button">Enroll Now</button>
+        <Button className="counsel-button" onClick={()=>{navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=life_time")}}>Enroll Now</Button>
       </div>
 
       {/* Right Side - Image Section */}

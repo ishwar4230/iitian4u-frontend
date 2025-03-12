@@ -1,22 +1,29 @@
 import React from "react";
 import "./HomeTabStyle.css"; // Import the corresponding CSS file
+import {Button} from "@mantine/core" ;
+import {useNavigate} from "react-router-dom";
 
 const OurServices = () => {
+  const navigate=useNavigate();
+  
   const ourservfeatures = [
     {
       title: "JEE Exam Strategy Mentorship",
       description:
         "Our JEE Exam Strategy Mentorship service is designed to equip aspirants with the right strategies to excel in their exams. Guided by top IITians, students receive personalised study plans that focus on strengthening core concepts and efficient time management. Our mentors share valuable insights from their own experiences, helping students to avoid common pitfalls and maximise their scores.",
+      route:"/aspirant",
     },
     {
       title: "College Selection and Counselling",
       description:
         "Whether you're a JEE aspirant, a student navigating college choices, or planning your career, IITians4U offers personalized guidance tailored to your unique needs. Our flexible mentorship plans ensure that you receive targeted advice and support, helping you make informed decisions at every critical juncture.",
+        route:"/college",
     },
     {
       title: "Internships and Placement Guidance",
       description:
         "Our mentors provide not just academic guidance, but also practical insights on study techniques, internships, and placements. Benefit from real-world advice that prepares you for the challenges ahead and equips you with the skills needed to achieve your career goals.",
+        route:"/career",
     },
   ];
 
@@ -32,7 +39,7 @@ const OurServices = () => {
               </div>
               <h3 className="ourservice-feature-title">{feature.title}</h3>
               <p className="ourservice-feature-description">{feature.description}</p>
-              <button className="ourservice-button">Know More</button>
+              <Button className="ourservice-button" onClick={()=>{navigate(feature.route)}}>Know More</Button>
             </div>
           ))}
         </div>
