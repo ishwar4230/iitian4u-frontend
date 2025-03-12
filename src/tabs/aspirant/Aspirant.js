@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./styleAspirant.css";
 import FAQItem from "./FAQItem";  //HTML of FAQ Accordion
 import faqData from "./faqData.json";   //JSON of FAQ questions
-import teamMembers from "./teamMembers.json" ; // JSON of Know Your Mentors
-import CardSlider from "./CardSlider";
-import AspirantTopImage from "../data/aspirant-page-top.png";
+import teamAspirant from "./teamAspirant.json" ; // JSON of Know Your Mentors
+// import CardSlider from "./CardSlider";
+import AspirantTopImage from "../data/homepagetopimage.png";
 import ContentAspirant from "./ContentAspirant";
 import AspirantPricingCards from "./AspirantPricingCards";
-
+import Banner from "../banner/Banner";
+import TeamSlider from "../../components/TeamSlider";
 //Here the code for FAQ section in FAQitem.js is processed i.e. Integrate Q&A data stored in JSON to FAQItem component
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -27,44 +28,20 @@ const FAQSection = () => {
   );
 };
 
-// Contact Card Component for Know Your Mentors
-const ContactCard = ({ name, title, imgSrc }) => {
-  return (
-    <div className="contact-card">
-      <div className="picture">
-        <img className="img-fluid" src={imgSrc} alt={name} />
-      </div>
-      <div className="team-content">
-        <h3 className="name">{name}</h3>
-        <h4 className="title">{title}</h4>
-      </div>
-     
-    </div>
-  );
-};
-// Mapping JSON to Contact Cards
-const ContactSection = () => {
-  return (
-    <div className="contact-section">
-      {teamMembers.map((member, index) => (
-        <ContactCard key={index} {...member} />
-      ))}
-    </div>
-  );
-};
 
 // Main Component
 const Aspirant = () => {
   return (
     <div className="aspirant-container">
+      <Banner course_type="jee" course_name="all"/>
       <img className="Top-Image" src={AspirantTopImage} alt="IITians4U"/>
       <ContentAspirant/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <ContactSection />
-      <div className="Testimonials">
+      <TeamSlider teamHome={teamAspirant}/>
+      {/* <div className="Testimonials">
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
         <CardSlider/>
-      </div>
+      </div> */}
       <AspirantPricingCards/>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />

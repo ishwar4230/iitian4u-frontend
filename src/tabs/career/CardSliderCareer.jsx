@@ -56,7 +56,6 @@ const CardSliderCareer = () => {
               <div className="card-content">
                 <h3 className="name">{card.name}</h3>
                 <p className="description">{card.description}</p>
-                <button className="button">Know More</button>
               </div>
             </div>
           </SwiperSlide>
