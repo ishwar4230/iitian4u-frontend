@@ -15,6 +15,7 @@
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "dayjs": "^1.11.13",
+    "fs-extra": "^11.3.0",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
@@ -23,11 +24,14 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.2.0",
     "react-scripts": "5.0.1",
+    "sitemap": "^8.0.0",
     "swiper": "^11.2.3",
     "web-vitals": "^4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "generate-sitemap": "node --experimental-specifier-resolution=node generate-sitemap.mjs",
+    "prebuild": "npm run generate-sitemap",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
