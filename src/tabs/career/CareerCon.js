@@ -2,10 +2,12 @@ import React,{useState} from 'react'
 import "./styleCareerCon.css";  //HTML of FAQ Accordion
 import CareerTopImage from "../data/homepagetopimage.png";
 import faqDatacareer from "./faqDatacareer.json";
-import CareerTeamKYM from "./CareerTeamKYM";
+import careerteamCC from "./careerteamCC.json"
 import CareersPricing from "./CareersPricing";
-import CardSliderCareer from "./CardSliderCareer";
+// import CardSliderCareer from "./CardSliderCareer";
 import Banner from "../banner/Banner";
+import TeamSlider from "../../components/TeamSlider";
+
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -46,13 +48,13 @@ const CareerCon = () => {
       <Banner course_type="b_tech" course_name="placement"/>
       <img className="Top-Image" src={CareerTopImage} alt="IITians4U"/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <CareerTeamKYM />
+      <TeamSlider teamHome={careerteamCC}/>
       <h1 className="pricing-heading">Explore Our Plans</h1>
       <CareersPricing/>
-      <div className="Testimonials">
+      {/* <div className="Testimonials">
         <h1 className="Testis-heading"> Hear Our Success Stories</h1>
         <CardSliderCareer/>
-      </div>
+      </div> */}
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
       

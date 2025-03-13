@@ -1,6 +1,23 @@
 [
-    { "name": "Coming soon", "title": "IIT Bombay", "imgSrc": "https://picsum.photos/130/130?image=1027" },
-    { "name": "Coming soon", "title": "IIT Delhi", "imgSrc": "https://picsum.photos/130/130?image=1027"},
-    { "name": "Coming soon", "title": "IIT Madras", "imgSrc": "https://picsum.photos/130/130?image=1027" },
-    { "name": "Coming soon", "title": "IIT Kharagpur", "imgSrc": "https://picsum.photos/130/130?image=1027" }
-  ]
+  {
+    "name": "Sonu Kumar Rai",
+    "college": "IIT Kharagpur",
+    "image": "https://media.licdn.com/dms/image/v2/D4D03AQH0wD2pgsOryA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724587407209?e=1747267200&v=beta&t=drMbJzRgnTmAek2xkTMtjZ0JdaXxu5zVM2m_B2xJrLc",
+    "description": "Sonu Kumar Rai is an IIT Kharagpur graduate with a passion for guiding JEE aspirants. With deep expertise in Physics and Mathematics, he simplifies complex concepts with ease. Having mentored numerous students, he focuses on strategy, time management, and problem-solving.",
+    "linkedin": "https://www.linkedin.com/in/sonu-kumar-rai-971ba81ba/"
+  },
+  {
+    "name": "Biswa Ranjan Barik",
+    "college": "IIT Kharagpur",
+    "image": "https://media.licdn.com/dms/image/v2/D5603AQE3VFdOsvwHzw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1665303466063?e=1747267200&v=beta&t=M011XJOCDaEGXYX3kL-Omh8sbEDWUIPismDUC0t_dsQ",
+    "description": "Biswa Ranjan Barik, an IIT Kharagpur graduate, is dedicated to mentoring JEE aspirants. With a strong command over Physics, Chemistry, and Mathematics, he helps students master concepts effectively. His mentorship focuses on exam strategies, conceptual clarity, and problem-solving techniques to boost success.",
+    "linkedin": "https://www.linkedin.com/in/biswa-ranjan-barik-423537202/"
+  },
+  {
+    "name": "Sambhav Jena",
+    "college": "IIT Kharagpur",
+    "image": "https://media.licdn.com/dms/image/v2/D5603AQFYjLFCtEg_uQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1688897873591?e=1747267200&v=beta&t=5pXZ8VnH9_TUj18F03n4LAyxki-iqH5xxYH8RDCDojA",
+    "description": "Sambhav Jena, an IIT Kharagpur graduate, is passionate about guiding JEE aspirants toward success. With expertise in Mathematics and Physics, he simplifies challenging concepts for better understanding. His mentorship focuses on smart problem-solving techniques, exam strategies, and structured study plans.",
+    "linkedin": "https://www.linkedin.com/in/sambhav-jena-7a7ab5200/"
+  }
+]

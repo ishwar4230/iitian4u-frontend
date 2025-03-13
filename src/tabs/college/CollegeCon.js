@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import "./styleCollegeCon.css";  //HTML of FAQ Accordion
 import faqData from "./faqDataCC.json";   //JSON of FAQ questions
 import teamMembersCC from "./teamMembersCC.json" ; // JSON of Know Your Mentors
-import AspirantTopImage from "../data/aspirant-page-top.png";
-import CounselingSection from "../career/CounselingSection";
+import AspirantTopImage from "../data/homepagetopimage.png";
+import CounselingSection from "./CounselingSection";
 import Banner from "../banner/Banner";
+import TeamSlider from "../../components/TeamSlider";
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -38,31 +39,7 @@ const FAQSection = () => {
   );
 };
 
-// Contact Card Component for Know Your Mentors
-const ContactCard = ({ name, title, imgSrc }) => {
-  return (
-    <div className="contact-card">
-      <div className="picture">
-        <img className="img-fluid" src={imgSrc} alt={name} />
-      </div>
-      <div className="team-content">
-        <h3 className="name">{name}</h3>
-        <h4 className="title">{title}</h4>
-      </div>
-     
-    </div>
-  );
-};
-// Mapping JSON to Contact Cards
-const ContactSection = () => {
-  return (
-    <div className="contact-section">
-      {teamMembersCC.map((member, index) => (
-        <ContactCard key={index} {...member} />
-      ))}
-    </div>
-  );
-};
+
 
 const CollegeCon = () => {
   return (
@@ -70,7 +47,7 @@ const CollegeCon = () => {
       <Banner course_type="counselling" course_name="counselling"/>
       <img className="Top-Image" src={AspirantTopImage} alt="IITians4U"/>
       <h1 className="kym-heading">Know Your Mentors</h1>
-      <ContactSection />
+      <TeamSlider teamHome={teamMembersCC} />
       <CounselingSection/>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />

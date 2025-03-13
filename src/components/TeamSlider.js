@@ -3,10 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./styleCareerCon.css";
-import careerteamCC from "./careerteamCC.json";
 
-const CareerTeamKYM = () => {
+
+const TeamSlider = ({teamHome}) => {
     return (
       <div className="team-slider-wrapper">
       <div className="team-slider-container">
@@ -24,13 +23,14 @@ const CareerTeamKYM = () => {
           }}
           className="team-slider"
         >
-          {careerteamCC.map((member, index) => (
+          {teamHome.map((member, index) => (
             <SwiperSlide key={index} className="team-card">
               <img src={member.image} alt={member.name} className="team-image" />
-              <h1 className="team-college">{member.college}</h1>
               <h3 className="team-name">{member.name}</h3>
+              <h1 className="team-college">{member.college}</h1>
+              
               <p className="team-description">{member.description}</p>
-              <button className="team-button">Learn More</button>
+              <a className="team-button" href={member.linkedin} target="_blank" rel="noopener noreferrer"> Learn More</a>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -43,4 +43,4 @@ const CareerTeamKYM = () => {
     );
   };
   
-  export default CareerTeamKYM;
+  export default TeamSlider;

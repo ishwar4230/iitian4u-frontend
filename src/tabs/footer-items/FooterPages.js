@@ -143,6 +143,13 @@ export function ContactUs() {
         <a href="mailto:admin@iitians4u.in" target="_blank" rel="noopener noreferrer">
           <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Mail" width="60" />
         </a>
+        
+      </div>
+      <div>
+        <p>Or Feel Free to reach out to us at</p>
+        <p> <b>Mob No.</b> : +91 8114325164</p>
+        <p><b>Email ID</b> : admin@iitians4u.in</p>
+        <p><b>Address</b> : IIT Kharagpur campus, Kharagpur, West Bengal</p>
       </div>
     </Card>
   );
