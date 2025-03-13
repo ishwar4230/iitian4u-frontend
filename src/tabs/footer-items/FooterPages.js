@@ -60,7 +60,7 @@ export function RefundPolicy() {
         of the remaining fees will be refunded after deducting the convenience fee.
       </Text>
       <Text mt="sm">
-        All refunds will be processed within a reasonable timeframe. For any refund-related
+        All refunds will be processed within <b>14 business days</b> post refund request. For any refund-related
         queries, please contact our support team.
       </Text>
     </Card>
