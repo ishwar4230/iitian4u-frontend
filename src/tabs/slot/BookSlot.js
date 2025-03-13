@@ -1,5 +1,5 @@
-import React, {useCallback, useState, useEffect } from "react";
-import { Select, Button, Card, Text, Container, Grid, Loader, Modal } from "@mantine/core";
+import React, { useCallback, useState, useEffect } from "react";
+import { Select, Button, Card, Text, Container, Grid, Loader, Modal, Center } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -16,12 +16,12 @@ const BookSlot = () => {
   const [courseName, setCourseName] = useState("");
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [fetchPlanLoading, setFetchPlanLoading]= useState(false);
+  const [fetchPlanLoading, setFetchPlanLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null); // Stores selected slot for confirmation
   const API_PREFIX = config.API_PREFIX;
 
-  
+
 
   const fetchActivePlans = useCallback(async () => {
     try {
@@ -82,7 +82,13 @@ const BookSlot = () => {
       showNotification({ title: "Error", message: "Failed to book slot", color: "red" });
     }
   };
-  if (fetchPlanLoading) return <Loader size="xl" />;
+  if (fetchPlanLoading) {
+    return (
+      <Center style={{ height: "100vh" }}>
+        <Loader size="lg" />
+      </Center>
+    );
+  }
 
   return (
     <Container size="md">
@@ -137,7 +143,9 @@ const BookSlot = () => {
 
           {/* Show Slots */}
           {loading ? (
-            <Loader size="lg" mt="md" />
+            <Center style={{ height: "40vh" }}>
+              <Loader size="lg" />
+            </Center>
           ) : (
             Object.entries(
               slots

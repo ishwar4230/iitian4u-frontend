@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Loader, TextInput, Button, Container, Group, Checkbox } from "@mantine/core";
+import { Loader, TextInput, Button, Container, Group, Checkbox, Center } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import config from "../../Config";
 import UserAvatar from "../../helpers/UserAvatar";
@@ -67,14 +67,20 @@ const MyDetails = () => {
       })
     } catch (error) {
       notifications.show({
-              title: 'Error!',
-              message: `Error while updating profile! ${error}`,
-              color: 'red',
-            })
-        }
+        title: 'Error!',
+        message: `Error while updating profile! ${error}`,
+        color: 'red',
+      })
+    }
   };
 
-  if (loading) return <Loader size="xl" />;
+  if (loading) {
+    return (
+      <Center style={{ height: "100vh" }}>
+        <Loader size="lg" />
+      </Center>
+    );
+  }
 
   return (
     <Container size="sm">
@@ -97,7 +103,7 @@ const MyDetails = () => {
       {Object.entries(formData).map(([key, value]) => {
         // Conditionally show college/school fields
         if ((isCollegeStudent && (key === "school" || key === "school_class")) ||
-            (!isCollegeStudent && (key === "college" || key === "college_year")) || key==='image') {
+          (!isCollegeStudent && (key === "college" || key === "college_year")) || key === 'image') {
           return null;
         }
 

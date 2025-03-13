@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { Card, Text, Badge, Button, Container, Title, Stack, Loader, Center, Group } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Accordion, Container, Title, Loader, Text } from "@mantine/core";
 import config from "../../Config";
 
 const MyPlans = () => {
   const [activePlans, setActivePlans] = useState([]);
   const [expiredPlans, setExpiredPlans] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
 
   const fetchPlans = useCallback(async () => {
     try {
@@ -22,40 +23,79 @@ const MyPlans = () => {
       console.error("Error fetching plans:", error);
       setLoading(false);
     }
-  }, []); // No dependencies since config.API_PREFIX doesn't change frequently
+  }, []);
 
   useEffect(() => {
     fetchPlans();
   }, [fetchPlans]);
 
-  if (loading) return <Loader size="xl" />;
+  if (loading) {
+    return (
+      <Center style={{ height: "100vh" }}>
+        <Loader size="lg" />
+      </Center>
+    );
+  }
 
   return (
-    <Container>
+    <Container size="lg" mx="auto">
       <Title mb="lg">My Plans</Title>
-      <Accordion>
-        <Accordion.Item value="active">
-          <Accordion.Control>Active Plans</Accordion.Control>
-          <Accordion.Panel>
-            {activePlans.length === 0 ? <Text>No active plans.</Text> : 
-              activePlans.map((plan, index) => (
-                <Text key={index}>{plan.course_type} - {plan.course_name} ({plan.plan_type}) - {plan.remaining_slots} slots left</Text>
-              ))
-            }
-          </Accordion.Panel>
-        </Accordion.Item>
+      <Group spacing="lg" wrap="wrap" justify="center">
+        {[...activePlans, ...expiredPlans].map((plan, index) => (
+          <Card key={index} shadow="sm" padding="lg" radius="md" withBorder >
+            <Stack spacing="sm" style={{ height: "100%", display: "flex", justifyContent: "space-between" }}>
+              {/* Course Name & Active/Expired Badge */}
+              <Group justify="flex-start">
+                <Text fw={500} style={{ textTransform: "capitalize" }}>
+                  {plan.course_type} - {plan.course_name.charAt(0).toUpperCase() + plan.course_name.slice(1)}
+                </Text>
+                <Badge
+                  radius="sm"
+                  c={activePlans.includes(plan) ? "black" : "white"}
+                  color={activePlans.includes(plan) ? "green" : "#E01F1F"}
+                >
+                  {activePlans.includes(plan) ? "Active" : "Expired"}
+                </Badge>
+                <Badge radius="sm" color="grey">
+                  {plan.plan_type.replace("_", " ")}
+                </Badge>
+              </Group>
 
-        <Accordion.Item value="expired">
-          <Accordion.Control>Expired Plans</Accordion.Control>
-          <Accordion.Panel>
-            {expiredPlans.length === 0 ? <Text>No expired plans.</Text> : 
-              expiredPlans.map((plan, index) => (
-                <Text key={index}>{plan.course_type} - {plan.course_name} ({plan.plan_type})</Text>
-              ))
-            }
-          </Accordion.Panel>
-        </Accordion.Item>
-      </Accordion>
+              {/* Remaining Slots (Only for Active Plans) */}
+              {activePlans.includes(plan) ? (
+                <Text size="sm">Remaining Slots: {plan.remaining_slots}</Text>
+              ):(
+                <Text size="sm">Text TBD</Text>
+              )}
+
+              {/* Action Buttons */}
+              {activePlans.includes(plan) ? (
+                <Button
+                  color="teal"
+                  fullWidth
+                  mt="md"
+                  radius="md"
+                  onClick={() => navigate(`/book-slot`)}
+                >
+                  Book Now
+                </Button>
+              ) : (
+                <Button
+                  color="blue"
+                  fullWidth
+                  mt="md"
+                  radius="md"
+                  onClick={() =>
+                    navigate(`/checkout?course_type=${plan.course_type}&course_name=${plan.course_name}&plan_type=${plan.plan_type}`)
+                  }
+                >
+                  Renew Plan
+                </Button>
+              )}
+            </Stack>
+          </Card>
+        ))}
+      </Group>
     </Container>
   );
 };
