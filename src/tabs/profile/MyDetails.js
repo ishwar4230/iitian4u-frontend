@@ -114,7 +114,7 @@ const MyDetails = () => {
               name={key}
               value={value}
               onChange={handleInputChange}
-              disabled={!editing || key === "phone"}
+              disabled={!editing || key === "email"}
               style={{ flex: 1 }}
               variant={editing ? "default" : "filled"} // Use filled variant for better visibility
               styles={(theme) => ({
