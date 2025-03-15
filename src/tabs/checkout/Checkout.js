@@ -39,6 +39,57 @@ const Checkout = () => {
         fetchPrice();
     }, [courseType, courseName, planType, navigate]);
 
+    const handlePayment = async () => {
+        try {
+            const response = await axios.post(
+                `${config.API_PREFIX}/payment/create-order`,
+                { amount: price },
+                { withCredentials: true }
+            );
+
+            const { order_id, key } = response.data;
+
+            const options = {
+                key,
+                amount: price * 100,
+                currency: "INR",
+                name: "IITIANS4U",
+                description: "Course Plan Purchase",
+                order_id,
+                handler: async function (response) {
+                    // Verify payment on backend
+                    const verifyRes = await axios.post(
+                        `${config.API_PREFIX}/payment/verify-payment`,
+                        {
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_signature: response.razorpay_signature,
+                            courseType,
+                            courseName,
+                            planType,
+                            amount:price
+                        },
+                        { withCredentials: true }
+                    );
+
+                    if (verifyRes.data.success) {
+                        navigate(`/thank-you?course_type=${courseType}&course_name=${courseName}&plan_type=${planType}`);
+                    } else {
+                        alert("Payment verification failed!");
+                    }
+                },
+                theme: {
+                    color: "#3399cc",
+                },
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+        } catch (error) {
+            console.error("Payment initiation failed:", error);
+        }
+    };
+
     if (loading) {
         return (
             <Center style={{ height: "100vh" }}>
@@ -65,7 +116,7 @@ const Checkout = () => {
                 <Text size="xl" fw={700} style={{ textTransform: "uppercase" }}>
                     Price: ₹{price}
                 </Text>
-                <Button fullWidth color="blue" size="md">
+                <Button fullWidth color="blue" size="md" onClick={handlePayment}>
                     Buy Now
                 </Button>
             </Stack>

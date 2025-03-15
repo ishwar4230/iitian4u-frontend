@@ -53,9 +53,11 @@ const BookSlot = () => {
 
   const uniqueCourseTypes = [...new Set(plans.map(plan => plan.course_type.replace(/_/g, " ").toUpperCase()))];
 
-  const filteredCourseNames = plans
+  const filteredCourseNames = [...new Set(plans
     .filter(plan => plan.course_type.replace(/_/g, " ").toUpperCase() === courseType)
-    .map(plan => plan.course_name.replace(/_/g, " ").toUpperCase());
+    .map(plan => plan.course_name.replace(/_/g, " ").toUpperCase())
+  )];
+  
 
   // Handle booking with modal confirmation
   const openBookingModal = (slot) => {

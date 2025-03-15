@@ -32,6 +32,7 @@ import MyPlans from "./tabs/profile/MyPlans";
 import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import AdminPanel from "./admin/AdminPanel";
 import Checkout from "./tabs/checkout/Checkout";
+import ThankYou from "./tabs/checkout/ThankYou";
 import { About, PrivacyPolicy, RefundPolicy, TermsConditions, ContactUs } from "./tabs/footer-items/FooterPages";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
@@ -299,6 +300,7 @@ const HomePage = () => {
           <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
           <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
           <Route path="/checkout" element={<ProtectedRoute element={<Checkout />} />} />
+          <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/about" element={<About />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
