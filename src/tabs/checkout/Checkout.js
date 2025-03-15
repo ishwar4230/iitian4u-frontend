@@ -8,6 +8,7 @@ const Checkout = () => {
     const navigate = useNavigate();
     const [price, setPrice] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isPaying, setIsPaying] = useState(false);
 
     const courseType = searchParams.get("course_type");
     const courseName = searchParams.get("course_name");
@@ -40,6 +41,7 @@ const Checkout = () => {
     }, [courseType, courseName, planType, navigate]);
 
     const handlePayment = async () => {
+        setIsPaying(true);
         try {
             const response = await axios.post(
                 `${config.API_PREFIX}/payment/create-order`,
@@ -67,7 +69,7 @@ const Checkout = () => {
                             courseType,
                             courseName,
                             planType,
-                            amount:price
+                            amount: price
                         },
                         { withCredentials: true }
                     );
@@ -87,6 +89,8 @@ const Checkout = () => {
             rzp.open();
         } catch (error) {
             console.error("Payment initiation failed:", error);
+        } finally {
+            setIsPaying(false);
         }
     };
 
@@ -116,8 +120,8 @@ const Checkout = () => {
                 <Text size="xl" fw={700} style={{ textTransform: "uppercase" }}>
                     Price: ₹{price}
                 </Text>
-                <Button fullWidth color="blue" size="md" onClick={handlePayment}>
-                    Buy Now
+                <Button fullWidth color="blue" size="md" onClick={handlePayment} disabled={isPaying}>
+                    {isPaying ? <Loader size="sm" color="white" /> : "Buy Now"}
                 </Button>
             </Stack>
         </Card>

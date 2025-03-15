@@ -19,6 +19,7 @@ const BookSlot = () => {
   const [fetchPlanLoading, setFetchPlanLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null); // Stores selected slot for confirmation
+  const [bookingLoading, setBookingLoading] = useState(false);
   const API_PREFIX = config.API_PREFIX;
 
 
@@ -57,7 +58,7 @@ const BookSlot = () => {
     .filter(plan => plan.course_type.replace(/_/g, " ").toUpperCase() === courseType)
     .map(plan => plan.course_name.replace(/_/g, " ").toUpperCase())
   )];
-  
+
 
   // Handle booking with modal confirmation
   const openBookingModal = (slot) => {
@@ -67,6 +68,7 @@ const BookSlot = () => {
 
   const confirmBooking = async () => {
     if (!selectedSlot) return;
+    setBookingLoading(true);
     try {
       const selectedCourseType = courseType.replace(/ /g, "_").toLowerCase();
       const selectedCourseName = courseName.replace(/ /g, "_").toLowerCase();
@@ -82,6 +84,8 @@ const BookSlot = () => {
       fetchSlots();
     } catch (error) {
       showNotification({ title: "Error", message: "Failed to book slot", color: "red" });
+    } finally {
+      setBookingLoading(false);
     }
   };
   if (fetchPlanLoading) {
@@ -103,8 +107,8 @@ const BookSlot = () => {
             <strong>{dayjs(selectedSlot.start_time).tz("Asia/Kolkata").format("hh:mm A")}</strong>?
           </Text>
         )}
-        <Button color="green" fullWidth mt="md" onClick={confirmBooking}>
-          Confirm Booking
+        <Button color="green" fullWidth mt="md" onClick={confirmBooking} disabled={bookingLoading}>
+          {bookingLoading ? <Loader size="sm" color="white" /> : "Confirm Booking"}
         </Button>
       </Modal>
 

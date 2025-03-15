@@ -1,5 +1,5 @@
 .whatsapp-banner {
-    background-color: #009965;
+    background-color: #ff9800;
     color: white;
     width: 100%;
     padding: 1rem; /* Default padding for phones */
@@ -21,19 +21,22 @@
 }
 
 .whatsapp-text h3 {
-    font-weight: normal;
+    font-weight: bold;
 }
 
 .join-button {
-    background-color: white;
+    background-color: #198754;
     color: black;
-    padding: 6px 20px;
+    padding: 4px 15px;
     border-radius: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    /* font-family: ''; */
     border: none;
     cursor: pointer;
     width: 90%;
-    max-width: 300px;
+    max-width: 200px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -45,6 +48,6 @@
         flex-direction: row;
         justify-content: space-between;
         text-align: left;
-        padding: 1rem 14%; /* Padding for larger screens */
+        padding: 0rem 14%; /* Padding for larger screens */
     }
 }

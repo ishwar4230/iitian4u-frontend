@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import "./styleCollegeCon.css";  //HTML of FAQ Accordion
 import faqData from "./faqDataCC.json";   //JSON of FAQ questions
 import teamMembersCC from "./teamMembersCC.json" ; // JSON of Know Your Mentors
-import AspirantTopImage from "../data/homepagetopimage.png";
+import AspirantTopImage from "../data/counselling-page-top-img.png";
 import CounselingSection from "./CounselingSection";
 import Banner from "../banner/Banner";
 import TeamSlider from "../../components/TeamSlider";
