@@ -25,6 +25,7 @@ import CareerCon from "./tabs/career/CareerCon";
 import HomeTab from "./tabs/home/HomeTab";
 import CollegeCon from "./tabs/college/CollegeCon";
 import Login from "./tabs/login/Login";
+import ChangePassword from "./tabs/login/ChangePassword";
 import BookSlot from "./tabs/slot/BookSlot";
 // import Profile from "./tabs/profile/Profile"; // Importing Profile tab
 import MyDetails from "./tabs/profile/MyDetails";
@@ -62,7 +63,10 @@ const HomePage = () => {
           dispatch(login(res.data.userId)); // Set user as logged in
         }
       } catch (error) {
-        console.error("User verification failed:", error.response?.data?.message || error.message);
+        if (error.response.status === 401)
+          console.log("no token found");
+        else
+          console.error("User verification failed:", error.response?.data?.message || error.message);
         dispatch(logout());
       } finally {
         dispatch(setAuthLoading(false)); // Mark authentication check as complete
@@ -307,6 +311,7 @@ const HomePage = () => {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/TnC" element={<TermsConditions />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
@@ -320,8 +325,8 @@ const HomePage = () => {
               <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" />
             </a>
             <a href="https://www.youtube.com/@IITians_4_u" target="_blank" rel="noopener noreferrer">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="40" />            
-              </a>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" width="40" />
+            </a>
             <a href="mailto:admin@iitians4u.in" target="_blank" rel="noopener noreferrer">
               <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Mail" width="30" />
             </a>

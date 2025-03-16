@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
-import { Button, TextInput, PasswordInput, Card, Group, Loader } from "@mantine/core";
+import { Button, TextInput, PasswordInput, Card, Group, Loader, Anchor } from "@mantine/core";
 import axios from "axios";
 import config from "../../Config";
 import { notifications } from "@mantine/notifications";
@@ -120,6 +120,11 @@ const Login = () => {
 
       <TextInput label="Mobile" placeholder="Enter your mobile number" value={mobile} onChange={(e) => setMobile(e.target.value)} required mt="md" />
       <PasswordInput label="Password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required mt="md" />
+      {!isSignup && (
+        <Anchor size="sm" onClick={() => navigate("/change-password")} style={{ cursor: "pointer", display: "block", marginTop: "5px" }}>
+          Forgot Password?
+        </Anchor>
+      )}
 
       <Button color="blue" fullWidth mt="md" onClick={isSignup ? handleSignup : handleLogin} disabled={isLoading}>
         {isLoading ? <Loader size="xs" color="white" /> : isSignup ? "Sign Up" : "Login"}
