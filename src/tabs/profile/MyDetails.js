@@ -1,9 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Loader, TextInput, Button, Container, Group, Checkbox, Center } from "@mantine/core";
-import { notifications } from '@mantine/notifications';
+import {
+  Loader,
+  TextInput,
+  Button,
+  Container,
+  Group,
+  Checkbox,
+  Center,
+  Card,
+  Title,
+  Stack,
+  Divider,
+} from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { IconEdit, IconCheck } from "@tabler/icons-react";
 import config from "../../Config";
 import UserAvatar from "../../helpers/UserAvatar";
+
 const MyDetails = () => {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -20,11 +34,11 @@ const MyDetails = () => {
     school_class: "",
   });
 
-
-
   const fetchProfile = useCallback(async () => {
     try {
-      const res = await axios.get(`${config.API_PREFIX}/api/profile`, { withCredentials: true });
+      const res = await axios.get(`${config.API_PREFIX}/api/profile`, {
+        withCredentials: true,
+      });
 
       const profileData = {
         name: res.data.name || "",
@@ -39,13 +53,18 @@ const MyDetails = () => {
       };
 
       setFormData(profileData);
-      setIsCollegeStudent(!!profileData.college); // Convert value to boolean
+      setIsCollegeStudent(!!profileData.college);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching profile:", error);
+      showNotification({
+        id: "fetch-profile-error",
+        title: "Error",
+        message: `Error fetching profile: ${error.response?.data?.message}`,
+        color: "red",
+      });
       setLoading(false);
     }
-  }, []); // Dependency added to prevent stale closures
+  }, []);
 
   useEffect(() => {
     fetchProfile();
@@ -58,19 +77,21 @@ const MyDetails = () => {
 
   const handleUpdateProfile = async () => {
     try {
-      await axios.put(`${config.API_PREFIX}/api/profile`, formData, { withCredentials: true });
+      await axios.put(`${config.API_PREFIX}/api/profile`, formData, {
+        withCredentials: true,
+      });
       setEditing(false);
-      notifications.show({
-        title: 'Profile Updated!',
-        message: 'Your Profile is updated successfully',
-        color: 'green',
-      })
+      showNotification({
+        title: "Profile Updated!",
+        message: "Your profile has been updated successfully",
+        color: "green",
+      });
     } catch (error) {
-      notifications.show({
-        title: 'Error!',
+      showNotification({
+        title: "Error!",
         message: `Error while updating profile! ${error}`,
-        color: 'red',
-      })
+        color: "red",
+      });
     }
   };
 
@@ -83,58 +104,79 @@ const MyDetails = () => {
   }
 
   return (
-    <Container size="sm">
+    <Container size="md" py="lg">
+      <Card shadow="md" padding="lg" radius="md" withBorder>
+        <Stack spacing="lg">
+          {/* Profile Picture */}
+          <Center>
+            <UserAvatar name={formData.name} size={100} />
+          </Center>
 
-      {/* Profile Picture */}
-      <Group position="center" mb="lg">
-        <UserAvatar name={formData.name} size={100} />
-      </Group>
+          {/* Title */}
+          <Title align="center" order={2}>
+            My Details
+          </Title>
 
-      {/* Student Type Checkbox */}
-      <Checkbox
-        label="I am a college student"
-        checked={isCollegeStudent}
-        onChange={(e) => setIsCollegeStudent(e.currentTarget.checked)}
-        disabled={!editing}
-        mb="md"
-      />
+          <Divider />
 
-      {/* Profile Fields */}
-      {Object.entries(formData).map(([key, value]) => {
-        // Conditionally show college/school fields
-        if ((isCollegeStudent && (key === "school" || key === "school_class")) ||
-          (!isCollegeStudent && (key === "college" || key === "college_year")) || key === 'image') {
-          return null;
-        }
+          {/* College Student Checkbox */}
+          <Checkbox
+            label="I am a college student"
+            checked={isCollegeStudent}
+            onChange={(e) => setIsCollegeStudent(e.currentTarget.checked)}
+            disabled={!editing}
+          />
 
-        return (
-          <Group key={key} position="apart" mb="md">
-            <TextInput
-              label={key.replace("_", " ").toUpperCase()} // Format field labels
-              name={key}
-              value={value}
-              onChange={handleInputChange}
-              disabled={!editing || key === "email"}
-              style={{ flex: 1 }}
-              variant={editing ? "default" : "filled"} // Use filled variant for better visibility
-              styles={(theme) => ({
-                input: !editing
-                  ? { backgroundColor: theme.colors.gray[1], fontWeight: 600, color: theme.black }
-                  : {}, // Darker background, bold text for non-editing mode
-              })}
-            />
+          {/* Profile Fields */}
+          {Object.entries(formData).map(([key, value]) => {
+            if (
+              (isCollegeStudent && (key === "school" || key === "school_class")) ||
+              (!isCollegeStudent && (key === "college" || key === "college_year")) 
+            ) {
+              return null;
+            }
 
+            return (
+              <TextInput
+                key={key}
+                label={key.replace("_", " ").toUpperCase()}
+                name={key}
+                value={value}
+                onChange={handleInputChange}
+                disabled={!editing || key === "email"}
+                variant={editing ? "default" : "filled"}
+                radius="md"
+                size="md"
+                styles={(theme) => ({
+                  input: !editing
+                    ? {
+                        backgroundColor: theme.colors.gray[1],
+                        fontWeight: 500,
+                        color: theme.black,
+                      }
+                    : {},
+                })}
+              />
+            );
+          })}
+
+          {/* Edit & Update Buttons */}
+          <Group position="apart">
+            <Button
+              variant="outline"
+              leftSection={<IconEdit size={18} />}
+              onClick={() => setEditing(!editing)}
+            >
+              {editing ? "Cancel" : "Edit"}
+            </Button>
+            {editing && (
+              <Button leftSection={<IconCheck size={18} />} onClick={handleUpdateProfile}>
+                Update Profile
+              </Button>
+            )}
           </Group>
-        );
-      })}
-
-      {/* Edit & Update Buttons */}
-      <Group position="apart" mt="lg" mb="lg">
-        <Button variant="outline" onClick={() => setEditing(!editing)}>
-          {editing ? "Cancel" : "Edit"}
-        </Button>
-        {editing && <Button onClick={handleUpdateProfile}>Update Profile</Button>}
-      </Group>
+        </Stack>
+      </Card>
     </Container>
   );
 };

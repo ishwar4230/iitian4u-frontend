@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AspirantPricing.css";
 import config from "../../Config";
+import { showNotification } from "@mantine/notifications";
 
 const AspirantPricingCards = () => {
   const [priceData, setPriceData] = useState({});
@@ -60,7 +61,7 @@ const AspirantPricingCards = () => {
           setPriceData(formattedPrices);
         }
       } catch (error) {
-        console.error("Error fetching price data:", error);
+        showNotification({ title: "Error", message: `Error fetching price data: ${error}`, color: "red" });
       } finally {
         setLoading(false);
       }

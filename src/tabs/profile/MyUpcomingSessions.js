@@ -1,6 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Card, Container, Title, Loader, Text, Center } from "@mantine/core";
+import {
+  Card,
+  Container,
+  Title,
+  Loader,
+  Text,
+  Center,
+  Badge,
+  Group,
+} from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import { IconClock, IconBook } from "@tabler/icons-react";
 import config from "../../Config";
 
 const MyUpcomingSessions = () => {
@@ -9,19 +20,26 @@ const MyUpcomingSessions = () => {
 
   const fetchSessions = useCallback(async () => {
     try {
-      const res = await axios.get(`${config.API_PREFIX}/session/get-user-sessions`, { withCredentials: true });
+      const res = await axios.get(
+        `${config.API_PREFIX}/session/get-user-sessions`,
+        { withCredentials: true }
+      );
       setSessions(res.data.user_sessions);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching sessions:", error);
+      showNotification({
+        id: "fetch-session-error",
+        title: "Error",
+        message: `Error fetching sessions: ${error.response?.data?.message}`,
+        color: "red",
+      });
       setLoading(false);
     }
-  }, []); // Dependencies: Only re-create if API_PREFIX changes
+  }, []);
 
   useEffect(() => {
     fetchSessions();
   }, [fetchSessions]);
-
 
   if (loading) {
     return (
@@ -32,16 +50,51 @@ const MyUpcomingSessions = () => {
   }
 
   return (
-    <Container>
-      <Title mb="lg">My Upcoming Sessions</Title>
-      {sessions.length === 0 ? <Text>No upcoming sessions found.</Text> :
-        sessions.map((session, index) => (
-          <Card key={index} shadow="sm" p="lg" mb="md">
-            <Text><b>Course:</b> {session.course_type} - {session.course_name}</Text>
-            <Text><b>Time:</b> {session.slot_time}</Text>
-          </Card>
-        ))
-      }
+    <Container size="md" py="lg">
+      <Title order={2} mb="lg" align="center">
+        My Upcoming Sessions
+      </Title>
+
+      {sessions.length === 0 ? (
+        <Center>
+          <Text c="dimmed" size="lg">
+            No upcoming sessions found.
+          </Text>
+        </Center>
+      ) : (
+        <Group spacing="md">
+          {sessions.map((session, index) => (
+            <Card
+              key={index}
+              shadow="md"
+              radius="md"
+              padding="lg"
+              withBorder
+              sx={{
+                transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                "&:hover": {
+                  transform: "scale(1.02)",
+                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                },
+              }}
+            >
+              <Group position="apart">
+                <Badge
+                  color="blue"
+                  size="lg"
+                  variant="filled"
+                  leftSection={<IconBook size={16} />}
+                >
+                  {session.course_type} - {session.course_name}
+                </Badge>
+                <Badge color="green" size="lg" leftSection={<IconClock size={16} />}>
+                  {session.slot_time}
+                </Badge>
+              </Group>
+            </Card>
+          ))}
+        </Group>
+      )}
     </Container>
   );
 };

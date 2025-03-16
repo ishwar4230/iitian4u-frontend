@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Card, Text, Badge, Button, Container, Title, Stack, Loader, Center, Group } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
+import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import config from "../../Config";
 
@@ -20,7 +21,7 @@ const MyPlans = () => {
 
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching plans:", error);
+      showNotification({id: "fetch-myplan-error", title: "Error", message: `Error fetching plans: ${error.response?.data?.message}`, color: "red" });
       setLoading(false);
     }
   }, []);
