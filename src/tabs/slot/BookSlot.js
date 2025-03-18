@@ -71,9 +71,9 @@ const BookSlot = () => {
 
       await axios.post(
         `${API_PREFIX}/slot/book-slot`,
-         { slot_id: selectedSlot._id, course_type: selectedCourseType, course_name: selectedCourseName },
-          { withCredentials: true }
-        );
+        { slot_id: selectedSlot._id, course_type: selectedCourseType, course_name: selectedCourseName },
+        { withCredentials: true }
+      );
 
       showNotification({ title: "Success", message: "Slot booked successfully!", color: "green" });
       setModalOpen(false);
@@ -100,10 +100,12 @@ const BookSlot = () => {
       <Modal
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
-        title={<Title order={4}>Confirm Booking</Title>}
+        title={<Text fw={600} size="lg">Confirm Booking</Text>}
         centered
-        overlayOpacity={0.55}
-        overlayBlur={3}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
       >
         {selectedSlot && (
           <Text align="center" size="md">
@@ -166,14 +168,14 @@ const BookSlot = () => {
           ) : (
             Object.entries(
               slots
-              .sort((a, b) => new Date(a.start_time) - new Date(b.start_time)) // Sort slots by date
-              .reduce((groupedSlots, slot) => {
-              const dateKey = dayjs(slot.start_time).tz("Asia/Kolkata").format("DD MMM YYYY");
-              if (!groupedSlots[dateKey]) groupedSlots[dateKey] = [];
-              groupedSlots[dateKey].push(slot);
-              return groupedSlots;
-            }, {})
-          ).map(([date, slotsForDate]) => (
+                .sort((a, b) => new Date(a.start_time) - new Date(b.start_time)) // Sort slots by date
+                .reduce((groupedSlots, slot) => {
+                  const dateKey = dayjs(slot.start_time).tz("Asia/Kolkata").format("DD MMM YYYY");
+                  if (!groupedSlots[dateKey]) groupedSlots[dateKey] = [];
+                  groupedSlots[dateKey].push(slot);
+                  return groupedSlots;
+                }, {})
+            ).map(([date, slotsForDate]) => (
               <div key={date}>
                 <Title order={4} mt="lg" mb="sm">{date}</Title>
                 <Grid>

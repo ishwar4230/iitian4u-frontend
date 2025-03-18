@@ -5,7 +5,7 @@ import {IconArrowUpRight  } from '@tabler/icons-react'
 
 const TeamSlider = ({ teamHome }) => {
   return (
-    <div style={{ maxWidth: "95%", margin: "auto", padding: "20px" }}>
+    <div style={{ maxWidth: "95%", margin: "auto"}}>
       <Carousel
         slideSize={{ base: "80%", sm: "40%", md: "25%" }} // Responsive size
         slideGap="md"

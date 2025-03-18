@@ -113,28 +113,28 @@ const HomePage = () => {
           <Image src={Logo} alt="Brand Logo" height={40} />
           <div className="nav-links">
             <Button
-              variant={activeTab === "home" ? "filled" : "subtle"}
+              variant={activeTab === "home" ? "light" : "subtle"}
               leftSection={<IconHome size={15} />}
               onClick={() => { navigate("/") }}
             >
               Home
             </Button>
             <Button
-              variant={activeTab === "aspirant" ? "filled" : "subtle"}
+              variant={activeTab === "aspirant" ? "light" : "subtle"}
               leftSection={<IconRocket size={15} />}
               onClick={() => { navigate("/aspirant") }}
             >
               JEE Aspirant
             </Button>
             <Button
-              variant={activeTab === "college" ? "filled" : "subtle"}
+              variant={activeTab === "college" ? "light" : "subtle"}
               leftSection={<IconSchool size={15} />}
               onClick={() => { navigate("/college") }}
             >
               College Counselling
             </Button>
             <Button
-              variant={activeTab === "career" ? "filled" : "subtle"}
+              variant={activeTab === "career" ? "light" : "subtle"}
               leftSection={<IconBriefcase size={15} />}
               onClick={() => { navigate("/career") }}
             >
@@ -143,7 +143,7 @@ const HomePage = () => {
 
             {!isLoggedIn ? (
               <Button
-                variant={activeTab === "login" ? "filled" : "subtle"}
+                variant={activeTab === "login" ? "light" : "subtle"}
                 leftSection={<IconLogin size={15} />}
                 onClick={() => { navigate("/login") }}
               >
@@ -152,7 +152,7 @@ const HomePage = () => {
             ) : (
               <>
                 <Button
-                  variant={activeTab === "book-slot" ? "filled" : "subtle"}
+                  variant={activeTab === "book-slot" ? "light" : "subtle"}
                   leftSection={<IconCalendarClock size={15} />}
                   onClick={() => { navigate("/book-slot") }}
                 >
@@ -213,28 +213,28 @@ const HomePage = () => {
       <Drawer opened={mobileMenuOpened} onClose={close} title="Menu" padding="md" size="75%" styles={{ content: { marginTop: "60px" } }}>
         <div className="mobile-menu">
           <Button
-            variant={activeTab === "home" ? "filled" : "subtle"}
+            variant={activeTab === "home" ? "light" : "subtle"}
             leftSection={<IconHome size={15} />}
             onClick={() => { navigate("/"); close(); }}
           >
             Home
           </Button>
           <Button
-            variant={activeTab === "aspirant" ? "filled" : "subtle"}
+            variant={activeTab === "aspirant" ? "light" : "subtle"}
             leftSection={<IconRocket size={15} />}
             onClick={() => { navigate("/aspirant"); close(); }}
           >
             JEE Aspirant
           </Button>
           <Button
-            variant={activeTab === "college" ? "filled" : "subtle"}
+            variant={activeTab === "college" ? "light" : "subtle"}
             leftSection={<IconSchool size={15} />}
             onClick={() => { navigate("/college"); close(); }}
           >
             College Counselling
           </Button>
           <Button
-            variant={activeTab === "career" ? "filled" : "subtle"}
+            variant={activeTab === "career" ? "light" : "subtle"}
             leftSection={<IconBriefcase size={15} />}
             onClick={() => { navigate("/career"); close(); }}
           >
@@ -243,7 +243,7 @@ const HomePage = () => {
 
           {!isLoggedIn ? (
             <Button
-              variant={activeTab === "login" ? "filled" : "subtle"}
+              variant={activeTab === "login" ? "light" : "subtle"}
               leftSection={<IconLogin size={15} />}
               onClick={() => { navigate("/login"); close(); }}
             >
@@ -252,28 +252,28 @@ const HomePage = () => {
           ) : (
             <>
               <Button
-                variant={activeTab === "book-slot" ? "filled" : "subtle"}
+                variant={activeTab === "book-slot" ? "light" : "subtle"}
                 leftSection={<IconCalendarClock size={15} />}
                 onClick={() => { navigate("/book-slot"); close(); }}
               >
                 Book Slot
               </Button>
               <Button
-                variant={activeTab === "profile" ? "filled" : "subtle"}
+                variant={activeTab === "profile" ? "light" : "subtle"}
                 leftSection={<IconUserCircle size={15} />}
                 onClick={() => { navigate("/profile"); close(); }}
               >
                 Profile
               </Button>
               <Button
-                variant={activeTab === "upcoming-sessions" ? "filled" : "subtle"}
+                variant={activeTab === "upcoming-sessions" ? "light" : "subtle"}
                 leftSection={<IconCalendar size={15} />}
                 onClick={() => { navigate("/upcoming-sessions"); close(); }}
               >
                 My Upcoming Sessions
               </Button>
               <Button
-                variant={activeTab === "my-plans" ? "filled" : "subtle"}
+                variant={activeTab === "my-plans" ? "light" : "subtle"}
                 leftSection={<IconClipboardList size={15} />}
                 onClick={() => { navigate("/my-plans"); close(); }}
               >
