@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Tabs, Button, Container, Text, Paper, PasswordInput, TextInput, Stack, Group } from "@mantine/core";
 import JSONInput from "react-json-editor-ajrm";
+import { IconSkull } from "@tabler/icons-react";
 import locale from "react-json-editor-ajrm/locale/en";
 import { notifications } from "@mantine/notifications";
 import axios from "axios";
@@ -22,7 +23,8 @@ const AdminPanel = () => {
     addPlan: "add-plan",
     addPrice: "add-price",
     addUserPlan: "add-userplan",
-    viewData: "get-upcoming-sessions"
+    viewData: "get-upcoming-sessions",
+    deleteOldSlots: "delete-old-slots"
   };
 
   useEffect(() => {
@@ -75,6 +77,14 @@ const AdminPanel = () => {
       notifications.show({ title: "Error", message: "Failed to fetch data", color: "red" });
     }
   };
+  const handleDeleteUnusedSlots = async () => {
+    try {
+      const res = await axios.delete(`${config.API_PREFIX}/admin/${endpoint.deleteOldSlots}`, { withCredentials: true });
+      notifications.show({ title: "Success", message: `${res.data.deletedCount} Unused slots deleted successfully!`, color: "green" });
+    } catch (error) {
+      notifications.show({ title: "Error", message: "Failed to delete unused slots", color: "red" });
+    }
+  };
 
   if (!isAdmin) {
     return (
@@ -101,6 +111,7 @@ const AdminPanel = () => {
           <Tabs.Tab value="addPrice">Add Price</Tabs.Tab>
           <Tabs.Tab value="addUserPlan">Add User Plan</Tabs.Tab>
           <Tabs.Tab value="viewData">View Data</Tabs.Tab>
+          <Tabs.Tab value="dangerousActions">Dangerous Actions</Tabs.Tab>
         </Tabs.List>
 
         {activeTab === "viewData" ? (
@@ -116,6 +127,14 @@ const AdminPanel = () => {
                 placeholder={fetchedData}
               />
             )}
+          </Tabs.Panel>
+        ) : activeTab === "dangerousActions" ? (
+          <Tabs.Panel value="dangerousActions">
+            <Group mt="md">
+              <Button color="red" leftSection={<IconSkull />} onClick={handleDeleteUnusedSlots}>
+                Delete Unused Slots
+              </Button>
+            </Group>
           </Tabs.Panel>
         ) : (
           <Tabs.Panel value={activeTab}>

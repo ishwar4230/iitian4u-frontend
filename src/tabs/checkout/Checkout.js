@@ -125,15 +125,15 @@ const Checkout = () => {
           <Divider style={{ width: "100%" }} />
 
           <Text fw={600} size="md" transform="uppercase" c="gray">
-            Course Type: <Text span fw={700} c="black">{courseType}</Text>
+            Course Type: <Text span fw={700} c="black">{courseType.replace(/_/g, " ").toUpperCase()}</Text>
           </Text>
 
           <Text fw={600} size="md" transform="uppercase" c="gray">
-            Course Name: <Text span fw={700} c="black">{courseName}</Text>
+            Course Name: <Text span fw={700} c="black">{courseName.replace(/_/g, " ").toUpperCase()}</Text>
           </Text>
 
           <Text fw={600} size="md" transform="uppercase" c="gray">
-            Plan Type: <Text span fw={700} c="black">{planType}</Text>
+            Plan Type: <Text span fw={700} c="black">{planType.replace(/_/g, " ").toUpperCase()}</Text>
           </Text>
 
           <Divider style={{ width: "100%" }} />

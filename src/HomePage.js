@@ -124,7 +124,7 @@ const HomePage = () => {
               leftSection={<IconRocket size={15} />}
               onClick={() => { navigate("/aspirant") }}
             >
-              Aspirant
+              JEE Aspirant
             </Button>
             <Button
               variant={activeTab === "college" ? "filled" : "subtle"}
@@ -138,7 +138,7 @@ const HomePage = () => {
               leftSection={<IconBriefcase size={15} />}
               onClick={() => { navigate("/career") }}
             >
-              Career Counselling
+              Career Coach
             </Button>
 
             {!isLoggedIn ? (
@@ -224,7 +224,7 @@ const HomePage = () => {
             leftSection={<IconRocket size={15} />}
             onClick={() => { navigate("/aspirant"); close(); }}
           >
-            Aspirant
+            JEE Aspirant
           </Button>
           <Button
             variant={activeTab === "college" ? "filled" : "subtle"}
@@ -238,7 +238,7 @@ const HomePage = () => {
             leftSection={<IconBriefcase size={15} />}
             onClick={() => { navigate("/career"); close(); }}
           >
-            Career Counselling
+            Career Coach
           </Button>
 
           {!isLoggedIn ? (

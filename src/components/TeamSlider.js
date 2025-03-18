@@ -1,46 +1,70 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import { Carousel } from "@mantine/carousel";
+import { Card, Text, Button, Image, Center, Stack} from "@mantine/core";
+import {IconArrowUpRight  } from '@tabler/icons-react'
 
+const TeamSlider = ({ teamHome }) => {
+  return (
+    <div style={{ maxWidth: "95%", margin: "auto", padding: "20px" }}>
+      <Carousel
+        slideSize={{ base: "80%", sm: "40%", md: "25%" }} // Responsive size
+        slideGap="md"
+        loop
+        height={500}
+        withIndicators
+        withControls
+        styles={{
+          indicator: {
+            backgroundColor: "blue", // Change indicator color to blue
+          },
+        }}
+      >
+        {teamHome.map((member, index) => (
+          <Carousel.Slide key={index}>
+            <Card shadow="lg" radius="md" padding="md" withBorder style={{ textAlign: "center" }}>
+              {/* Circular Image */}
+              <Center>
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  radius="100%"
+                  width={100}
+                  height={100}
+                  style={{ borderRadius: "50%", objectFit: "cover" }}
+                />
+              </Center>
 
-const TeamSlider = ({teamHome}) => {
-    return (
-      <div className="team-slider-wrapper">
-      <div className="team-slider-container">
-        <Swiper
-          modules={[Navigation]}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          spaceBetween={50} // Adjusted spacing
-          slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 1 },
-            1024: { slidesPerView: 4 },
-          }}
-          className="team-slider"
-        >
-          {teamHome.map((member, index) => (
-            <SwiperSlide key={index} className="team-card">
-              <img src={member.image} alt={member.name} className="team-image" />
-              <h3 className="team-name">{member.name}</h3>
-              <h1 className="team-college">{member.college}</h1>
-              
-              <p className="team-description">{member.description}</p>
-              <a className="team-button" href={member.linkedin} target="_blank" rel="noopener noreferrer"> Learn More</a>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              {/* Details */}
+              <Stack spacing="xs" mt="md">
+                <Text fw={700} size="lg">
+                  {member.name}
+                </Text>
+                <Text fw={500} color="dimmed">
+                  {member.college}
+                </Text>
+                <Text size="sm">{member.description}</Text>
+              </Stack>
 
-        {/* Navigation buttons inside the container to position correctly */}
-        <div className="swiper-button-prev">&#10094;</div>
-        <div className="swiper-button-next">&#10095;</div>
-      </div>
+              {/* Button */}
+              <Button
+                mt="md"
+                fullWidth
+                component="a"
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="light"
+                color="blue"
+                rightSection ={<IconArrowUpRight />}
+              >
+                Linkdin
+              </Button>
+            </Card>
+          </Carousel.Slide>
+        ))}
+      </Carousel>
     </div>
-    );
-  };
-  
-  export default TeamSlider;
+  );
+};
+
+export default TeamSlider;
