@@ -66,6 +66,7 @@ hr {
     .careercard{
         height:21rem;
         width:350px;
+        margin-bottom: 1.5rem;
     }
   }
   .pricing-heading{
@@ -179,9 +180,9 @@ hr {
   }
   
   /* Responsive Fixes */
-  @media (max-width: 1024px) {
+  /*@media (max-width: 1024px) {
     .team-slider-wrapper {
-      max-width: 95%; /* Slightly reduce max width on smaller screens */
+      max-width: 95%; 
     }
   
     .team-slider-container {
@@ -200,20 +201,58 @@ hr {
     .team-slider-container .swiper-button-next {
       right: 5px;
     }
-  }
+  }*/
   
   @media (max-width: 768px) {
     .team-slider-container {
-      width: 100%;
+      width: 90%; 
     }
   
     .team-card {
-      min-width: 180px;
-      max-width: 250px;
+      min-width: 160px;
+      max-width: 200px;
+      padding: 10px; /* Reduce padding for compactness */
     }
   
+    .team-image {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+  
+    .team-college {
+      font-size: 16px; /* Reduce font size for mobile */
+    }
+  
+    .team-name {
+      font-size: 14px; /* Reduce text size */
+    }
+  
+    .team-description {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  
+    .team-button {
+      font-size: 12px;
+      padding: 6px 12px; /* Reduce button padding */
+    }
+  
+    /* Make navigation buttons visible in mobile */
     .team-slider-container .swiper-button-prev,
     .team-slider-container .swiper-button-next {
-      display: none; /* Hide navigation buttons on small screens */
+      display: block;
+      font-size: 18px;
+      padding: 6px;
+      width: 30px;
+      height: 30px;
+    }
+  
+    .team-slider-container .swiper-button-prev {
+      left: -10px;
+    }
+  
+    .team-slider-container .swiper-button-next {
+      right: -10px;
     }
   }

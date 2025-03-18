@@ -40,6 +40,10 @@
     box-shadow: 12px 12px 10px #f79839;
     text-align: center;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
   }
   
   .ourservice-icon-container {
@@ -63,10 +67,14 @@
     margin-bottom: 10px;
   }
   .ourservice-button{
+    margin-top: auto;
+    position: absolute;
+    bottom: 2%; /* Adjust this value to set the desired height from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
       background-color: darkblue;
       color: white;
       border-radius : 8px;
-      width: 8rem;
       height: 2rem;
       
   }
@@ -96,7 +104,7 @@
   }
   /*css for content about us*/
   .content-home-top{
-    background-color: #d8dbe2;
+    background-color: #ffffff;
     margin-top:-20px;
     padding-top:0;
     display:flex;
@@ -104,7 +112,7 @@
     flex-wrap:nowrap;
   }
 .content-home-right{
-  margin-right:25%;
+  margin-right:10%;
   margin-left:15%;
 }
 
