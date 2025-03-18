@@ -5,8 +5,9 @@
     padding: 18px;
     width: 100%;
     text-align: left;
-    border: none;
-    outline: none;
+    border:none;
+    outline:none;
+    margin-bottom:0.5%;
     transition: 0.4s;
   }
   
@@ -100,7 +101,7 @@
 }
 
 .whywso-icon {
-  font-size: 24px;
+  width:35%;
   background-color: #ddd;
   padding: 10px;
   border-radius: 50%;
@@ -124,8 +125,9 @@
     gap:40px;
   }
   .faqs-heading{
-    margin-left:25%;
-    font-size:2rem;
+    margin-left:0;
+    font-size:24px;
+    text-align:center;
   }
   .whywso-feature-description{
     font-size:11px;

@@ -1,14 +1,37 @@
 [
-    {
-      "question": "Why is IITians4U the best mentoring Platform for JEE preparation?",
-      "answer": "Our team of mentors includes current students at some of the top IITs."
-    },
-    {
-      "question": "What will be the mode of the mentorship?",
-      "answer": "The mentorship will be in a remote setting via Zoom/Teams/Google Meet. Phone calls available for network issues."
-    },
-    {
-      "question": "What if I want to change the mentor allotted to me?",
-      "answer": "It is possible. Contact our team to know more."
-    }
-  ]
+  {
+    "question": "Who are the mentors, and how do they help?",
+    "answer": "Our mentors are IITians and JEE experts who provide personalized strategies, test analysis, and stress management tips to help you optimize your preparation."
+  },
+  {
+    "question": " Is this mentorship different from coaching classes?",
+    "answer": " Yes! We don’t teach but guide you with expert strategies, personalized plans, and mentor insights to help you make the most of your coaching or self-study."
+  },
+  {
+    "question": "How will I receive mentorship sessions?",
+    "answer": " Sessions are conducted through one-on-one calls, chat support, and structured discussions, ensuring continuous guidance."
+  },
+  {
+    "question": "Can I change my mentor if I feel the need?",
+    "answer": "Yes! If you feel a different mentor would be a better fit, we’ll arrange a change upon request."
+  },
+  {
+    "question": "How is my study plan created?",
+    "answer": "Your study plan is customized based on your strengths, weaknesses, and exam timeline, ensuring efficient preparation."
+  },
+  {"question":"Will I get help in analyzing my test performance?",
+   "answer":"Yes! Our mentors help you identify mistakes, improve accuracy, and refine your test-taking strategy."
+  },
+  {
+    "question": "Can I withdraw in between if I am not satisfied?",
+    "answer": "Yes, you can (though we don’t want you to 😆). For cancellations and refunds, please check out our refund policy for details on the process."
+  },
+  {
+    "question": " What if I have doubts outside of my mentorship session?",
+    "answer": "You can reach out anytime through our doubt-solving support, ensuring you're never stuck for long."
+  },
+  {
+    "question": " Do you provide study materials or mock tests?",
+    "answer": "Yes, we do offer study materials and mock tests but we focus on mentorship and strategy to help you optimize your existing resources and coaching materials."
+  }
+]
