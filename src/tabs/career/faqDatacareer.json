@@ -1,14 +1,33 @@
 [
-    {
-      "question": "Why is IITians4U the best mentoring Platform for JEE preparation?",
-      "answer": "Our team of mentors includes current students at some of the top IITs."
-    },
-    {
-      "question": "What will be the mode of the mentorship?",
-      "answer": "The mentorship will be in a remote setting via Zoom/Teams/Google Meet. Phone calls available for network issues."
-    },
-    {
-      "question": "What if I want to change the mentor allotted to me?",
-      "answer": "It is possible. Contact our team to know more."
-    }
-  ]
+  {
+    "question": "Who are the mentors, and how do they help?",
+    "answer": "Our mentors are IITians and experts who have firsthand experience with JEE preparation, college selection, and career growth. They provide strategic guidance, personalized study plans, test analysis, and career mentorship to help you succeed."
+  },
+  {
+    "question": "How is this different from coaching institutes or career counselors?",
+    "answer": " Unlike traditional coaching centers that focus only on academics, we offer holistic mentorship covering exam strategies, college counseling, and career guidance—all tailored to your individual needs."
+  },
+  {
+    "question": "Will I get one-on-one guidance, or is it group-based?",
+    "answer": "We offer both. You get one-on-one mentorship for personalized solutions and access to exclusive group discussions, expert sessions, and peer interactions to enhance your learning."
+  },
+  {
+    "question": "Is this mentorship only for IIT aspirants, or can other students benefit too?",
+    "answer": "Our platform is open to all engineering aspirants and students, whether you are preparing for JEE, seeking the right college, or looking for career guidance during your college years."
+  },
+  {
+    "question": "Can I get guidance only for college counseling without JEE mentorship?",
+    "answer": "Yes! If you have already cleared JEE or are looking for the best college and branch selection, you can enroll in our college counseling service separately. We offer complete end-to-end guidance to help you make the right choice."
+  },
+  {"question":"Can I join multiple services at once?",
+   "answer":"Yes! You can enroll in as many services as you like, and you will be eligible for a special discount (terms and conditions apply)."
+  },
+  {
+    "question": "Can I withdraw in between if I am not satisfied?",
+    "answer": "Yes, you can (though we don’t want you to 😆). For cancellations and refunds, please check out our refund policy for details on the process."
+  },
+  {
+    "question": "What if I have doubts in between my mentorship sessions?",
+    "answer": "Our mentors are always available to clear your doubts through scheduled sessions, chat support, and community discussions, ensuring you get continuous guidance whenever you need it."
+  }
+]

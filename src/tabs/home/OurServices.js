@@ -8,21 +8,21 @@ const OurServices = () => {
   
   const ourservfeatures = [
     {
-      title: "JEE Exam Strategy Mentorship",
+      title: "JEE Expert Mentor – Learn from the Best to Ace JEE",
       description:
-        "Our JEE Exam Strategy Mentorship service is designed to equip aspirants with the right strategies to excel in their exams. Guided by top IITians, students receive personalised study plans that focus on strengthening core concepts and efficient time management. Our mentors share valuable insights from their own experiences, helping students to avoid common pitfalls and maximise their scores.",
+        "Cracking JEE is not just about hard work; it’s about working smart! Our mentors will help you with topic-wise strategy mantras to maximize your score, a personalized study plan tailored to your strengths, and stress management techniques to keep you focused. From test analysis to refining your attempt strategy, we ensure you learn from the experience of top scorers. Are you ready to ace JEE with us?",
       route:"/aspirant",
     },
     {
-      title: "College Selection and Counselling",
+      title: "Personal Counselor – Make the Right College and Branch Choice",
       description:
-        "Whether you're a JEE aspirant, a student navigating college choices, or planning your career, IITians4U offers personalized guidance tailored to your unique needs. Our flexible mentorship plans ensure that you receive targeted advice and support, helping you make informed decisions at every critical juncture.",
+        "Many students regret their college or branch choice after joining. The reason? Lack of guidance during counseling. We solve this by connecting you with seniors from your target colleges, offering an end-to-end counseling plan that aligns with your interests, and providing college and branch predictions. Whether it’s state government, private college counseling, or spot choice filling, we ensure you make informed decisions. Let’s secure your dream college together!",
         route:"/college",
     },
     {
-      title: "Internships and Placement Guidance",
+      title: "Career Buddy – Your Guide from College to a Dream Career",
       description:
-        "Our mentors provide not just academic guidance, but also practical insights on study techniques, internships, and placements. Benefit from real-world advice that prepares you for the challenges ahead and equips you with the skills needed to achieve your career goals.",
+        " A great JEE rank doesn’t guarantee a great career. Many students struggle in college due to a lack of resources and mentorship. We bridge this gap by guiding you in CV building, mock interviews, off-campus internships, and on-campus placements. From hackathons to real-world projects, our domain experts will help you prepare for your dream role. Think of us as your guide, coach, and constant support in this journey!",
         route:"/career",
     },
   ];
@@ -39,7 +39,7 @@ const OurServices = () => {
               </div>
               <h3 className="ourservice-feature-title">{feature.title}</h3>
               <p className="ourservice-feature-description">{feature.description}</p>
-              <Button className="ourservice-button" onClick={()=>{navigate(feature.route)}}>Know More</Button>
+              <Button w="8rem" className="ourservice-button" onClick={()=>{navigate(feature.route)}}>Know More</Button>
             </div>
           ))}
         </div>

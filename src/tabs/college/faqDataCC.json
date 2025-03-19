@@ -1,14 +1,34 @@
 [
-    {
-      "question": "Why is IITians4U the best mentoring Platform for JEE preparation?",
-      "answer": "Our team of mentors includes current students at some of the top IITs."
-    },
-    {
-      "question": "What will be the mode of the mentorship?",
-      "answer": "The mentorship will be in a remote setting via Zoom/Teams/Google Meet. Phone calls available for network issues."
-    },
-    {
-      "question": "What if I want to change the mentor allotted to me?",
-      "answer": "It is possible. Contact our team to know more."
-    }
-  ]
+  {
+    "question": "How will a personal counselor help me?",
+    "answer": "Your dedicated counselor will guide you through the entire counseling process, helping you with college selection, choice filling, branch prediction, and last-minute decision-making."
+  },
+  {
+    "question": "Do you provide guidance for CSAB special rounds?",
+    "answer": "Yes! We offer expert strategies for CSAB spot rounds, helping you secure a better seat even after JoSAA counseling."
+  },
+  {
+    "question": "Can I connect with students from my preferred college and branch?",
+    "answer": "Absolutely! We connect you with seniors who share real experiences about academics, campus life, and placements."
+  },
+  {
+    "question": "Do you assist with private and state college counseling?",
+    "answer": "Yes, along with JoSAA, we provide insights into top private universities and state government counseling to expand your options."
+  },
+  {
+    "question": "Will you help me with choice filling and branch selection?",
+    "answer": "Yes! Based on your rank, preferences, and future career goals, we recommend the best college and branch combinations."
+  },
+  {
+    "question": "What if I need urgent guidance during the counseling process?",
+    "answer": "We offer real-time decision support, ensuring you get expert advice whenever you need it."
+  },
+  {
+    "question": "Is there a refund policy if I decide to opt out?",
+    "answer": "Yes, you can withdraw at any time. Check our refund policy for details."
+  },
+  {
+    "question": "Can I upgrade to a more comprehensive counseling plan later?",
+    "answer": "Of course! You can upgrade your plan anytime for additional services and extended support."
+  }
+]
