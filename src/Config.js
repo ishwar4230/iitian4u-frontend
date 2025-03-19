@@ -1,5 +1,5 @@
 const config = {
-    API_PREFIX: "https://api.iitians4u.in",
+    API_PREFIX: "https://apis.iitians4u.in",
 };
 
 export default config;
