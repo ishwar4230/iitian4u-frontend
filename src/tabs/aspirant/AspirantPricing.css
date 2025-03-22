@@ -105,8 +105,8 @@
     width: 80%; /* Button takes 60% of the 70% wrapper */
     min-width: 160px;
     text-align: center;
-    background-color: #f79839; /* Background color on button */
-    color: black;
+    background-color: #24a0ed; /* Background color on button */
+    color: #ffffffee;
     padding: 10px 12px;
     border: none;
     border-radius: 5px;
