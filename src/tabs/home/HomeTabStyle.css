@@ -8,7 +8,7 @@
 .our-services-home {
     padding: 10px 0;
     padding-bottom:50px;
-    background-color: #21286e;
+    background-color: #1e417b;
     text-align: center;
     width:100%;
   }
@@ -37,7 +37,6 @@
     padding: 35px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 12px 12px 10px #f79839;
     text-align: center;
     background-color: #fff;
     display: flex;
@@ -137,6 +136,9 @@
     font-size:1.5rem;
     font-family:"Poppins";
     text-align:center;
+  }
+  .content-home-right{
+    margin-left:0;
   }
   .content-home-image{
     display:none;

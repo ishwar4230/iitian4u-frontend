@@ -7,6 +7,7 @@ import CareersPricing from "./CareersPricing";
 // import CardSliderCareer from "./CardSliderCareer";
 import Banner from "../banner/Banner";
 import TeamSlider from "../../components/TeamSlider";
+import ContentCareer from "../career/ContentCareer";
 
 
 // FAQ Component
@@ -47,6 +48,7 @@ const CareerCon = () => {
     <div className="aspirant-container">
       <Banner course_type="b_tech" course_name="placement"/>
       <img className="Top-Image" src={CareerTopImage} alt="IITians4U"/>
+      <ContentCareer/>
       <h1 className="kym-heading">Know Your Mentors</h1>
       <TeamSlider teamHome={careerteamCC}/>
       <h1 className="pricing-heading">Explore Our Plans</h1>
@@ -63,4 +65,4 @@ const CareerCon = () => {
   )
 }
 
-export default CareerCon
+export default CareerCon;

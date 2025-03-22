@@ -13,27 +13,27 @@ const AspirantPricingCards = () => {
   const Aspirantplans = [
     {
       name: "Physics",
-      details: ["Concept clarity", "Practice Problems", "Doubt Solving Sessions"],
+      details: ["Topic-Specific Techniques", "Score-Boosting Strategies", "Error Analysis Guidance"],
       course_name: "physics",
     },
     {
       name: "Chemistry",
-      details: ["Interactive video lessons", "Conceptual clarity", "Live Q&A sessions"],
+      details: ["Reaction & Concept Mnemonics", "Score-Boosting Strategies", " High-Scoring Topic Focus"],
       course_name: "chemistry",
     },
     {
       name: "Mathematics",
-      details: ["Step-by-step solutions", "Live quizzes & tests", "One-on-one mentoring"],
+      details: ["High-Weightage Topics Focus", "Shortcut Methods & Tricks", "Time & Speed Improvement"],
       course_name: "math",
     },
     {
       name: "All Subjects",
-      details: ["Comprehensive syllabus", "Custom study plans", "24/7 mentor support"],
+      details: [" Physics, Chemistry & Maths Plans", "Combined Resource List", "Personalized Doubt-Solving"],
       course_name: "all",
     },
     {
       name: "Strategy",
-      details: ["Exam preparation", "Time management tips", "Weekly progress analysis"],
+      details: ["Stress Management Techniques", " Motivation & Productivity Webinars", "Exclusive Toppers' Talk"],
       course_name: "strategy",
     },
   ];

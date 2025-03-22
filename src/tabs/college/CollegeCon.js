@@ -5,6 +5,7 @@ import teamMembersCC from "./teamMembersCC.json"; // JSON of Know Your Mentors
 import CollegeConLaptopImg from "../data/counselling-page-top-img.svg";
 import CollegeConMobileImg from "../data/collegeConMobileTopImg.svg";
 import CounselingSection from "./CounselingSection";
+import ContentCollege from "./ContentCollege";
 import Banner from "../banner/Banner";
 import TeamSlider from "../../components/TeamSlider";
 import { useMediaQuery } from "@mantine/hooks";
@@ -53,6 +54,7 @@ const CollegeCon = () => {
         src={isMobile ? CollegeConMobileImg : CollegeConLaptopImg}
         alt="IITians4U"
       />
+      <ContentCollege/>
       <h1 className="kym-heading">Know Your Mentors</h1>
       <TeamSlider teamHome={teamMembersCC} />
       <CounselingSection />
