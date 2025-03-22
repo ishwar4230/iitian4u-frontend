@@ -44,6 +44,8 @@ const BookSlot = () => {
     try {
       const response = await axios.get(`${API_PREFIX}/slot/get-slots`, { withCredentials: true });
       setSlots(response.data);
+      if(response.data.length===0)
+        showNotification({ title: "Info", message: `Currently no slots are available, wait for some time`, color: "blue" });
     } catch (error) {
       showNotification({ title: "Error", message: `Error fetching slots: ${error}`, color: "red" });
     } finally {

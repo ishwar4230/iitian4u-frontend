@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "@mantine/carousel";
 import { Card, Text, Button, Image, Center, Stack} from "@mantine/core";
 import {IconArrowUpRight  } from '@tabler/icons-react'
+import linkedinLogo from '../tabs/data/linkdinLogo.png'
 
 const TeamSlider = ({ teamHome }) => {
   return (
@@ -55,9 +56,12 @@ const TeamSlider = ({ teamHome }) => {
                 rel="noopener noreferrer"
                 variant="light"
                 color="blue"
+                leftSection={
+                  <Image src={linkedinLogo} width={30} height={25} alt="LinkedIn" />
+                }
                 rightSection ={<IconArrowUpRight />}
               >
-                Linkdin
+                
               </Button>
             </Card>
           </Carousel.Slide>
