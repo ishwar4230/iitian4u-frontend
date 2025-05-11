@@ -13,6 +13,7 @@
     "@mui/material": "^6.4.2",
     "@reduxjs/toolkit": "^2.5.1",
     "@tabler/icons-react": "^3.29.0",
+    "ag-grid-react": "^33.2.4",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "dayjs": "^1.11.13",
