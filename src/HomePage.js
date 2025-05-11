@@ -34,6 +34,7 @@ import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import AdminPanel from "./admin/AdminPanel";
 import Checkout from "./tabs/checkout/Checkout";
 import ThankYou from "./tabs/checkout/ThankYou";
+import Predictor from "./tabs/Predictor/Predictor";
 import { About, PrivacyPolicy, RefundPolicy, TermsConditions, ContactUs } from "./tabs/footer-items/FooterPages";
 import Logo from "./tabs/data/logo.svg";
 import "./HomePageStyle.css";
@@ -312,6 +313,7 @@ const HomePage = () => {
           <Route path="/TnC" element={<TermsConditions />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/predictor" element={<Predictor />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
