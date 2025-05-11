@@ -5,15 +5,14 @@ import { IconCheck } from "@tabler/icons-react";
     
 const ContentAspirant = () => {
   const points = [
-    "Personalized Study Plan – A roadmap tailored to your strengths and target score.",
-    "Topic-Wise Strategy Mantras – Proven techniques from IITians to master tough topics.",
-    "Test Analysis & Attempt Strategy – Optimize accuracy and time management.",
-    "24/7 Doubt-Solving Support – Get instant help from experienced mentors.",
-    "Stress & Mindset Coaching – Stay motivated and handle exam pressure effectively.",
-    "Mentor Experience Sharing – Learn from real JEE success stories.",
-    "Adaptive Learning Approach – Flexible mentorship based on your progress.",
-    "Last Month’s High-Impact Plan – Structured revision for the final push.",
-    "Exam-Day Blueprint – Smart strategies for time and question selection."
+    "Personalized Study Plan as per strengths & weaknesses ",
+    "Topic-Wise Strategy Mantras to master tough topics",
+    "Test Analysis & Attempt Strategy to optimise time",
+    "24/7 Doubt-Solving Support from experienced mentors",
+    "Stress & Mindset Coaching to handle exam pressure",
+    "Learn from real JEE success stories of Mentors",
+    "Adaptive Learning Approach - Based on your progress",
+    "Last Month’s High-Impact Plan - Structured final push",
   ];
 
   return (

@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import HomeTabTopImage from "../data/homepagetopimage.png";
+import HomeTabTopImageMobile from "../data/homepagetopimageMobile.png";
 import "./HomeTabStyle.css" ;
 import WhyWeStandOut from "../college/WhyWeStandOut";
 import OurServices from "./OurServices";
@@ -8,6 +9,7 @@ import AboutUs from "./AboutUs";
 // import CardSlider from "./CardSlider";
 import TeamSlider from "../../components/TeamSlider";
 import teamHome from "./teamHome.json";
+import { useMediaQuery } from "@mantine/hooks";
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -42,9 +44,14 @@ const FAQSection = () => {
 
 
 const HomeTab = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <div className="hometab-container">
-      <img className="Top-Image" src={HomeTabTopImage} alt="IITians4U"/>
+      <img
+        className="Top-Image"
+        src={isMobile ? HomeTabTopImageMobile : HomeTabTopImage}
+        alt="IITians4U"
+      />
       <AboutUs/>
       <OurServices/>
       <h1 className="kym-heading">Know Your Mentors</h1>

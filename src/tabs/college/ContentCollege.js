@@ -9,10 +9,10 @@ const ContentCollege = () => {
     " College & Branch Selection Assistance",
     "One-on-One Counseling Sessions",
     "JoSAA & CSAB Special Round Guidance",
-    " Connect with Students from Specific Branch & College",
+    "Connect with students of specific streams",
     "Private College Insights & Guidance",
     "Spot Round & Choice Filling Strategies",
-    "  Real-Time Decision Support",
+    "Real-Time Decision Support",
   ];
 
   return (
