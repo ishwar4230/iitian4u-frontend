@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import "./styleCareerCon.css";  //HTML of FAQ Accordion
-import CareerTopImage from "../data/homepagetopimage.png";
+import CareerTopImage from "../data/careerTopImage.jpeg";
+import CareerTopImageMobile from "../data/careerCoachTopMobile.png";
 import faqDatacareer from "./faqDatacareer.json";
 import careerteamCC from "./careerteamCC.json"
 import CareersPricing from "./CareersPricing";
@@ -8,7 +9,7 @@ import CareersPricing from "./CareersPricing";
 import Banner from "../banner/Banner";
 import TeamSlider from "../../components/TeamSlider";
 import ContentCareer from "../career/ContentCareer";
-
+import { useMediaQuery } from "@mantine/hooks"; 
 
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -44,10 +45,15 @@ const FAQSection = () => {
 
 
 const CareerCon = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <div className="aspirant-container">
       <Banner course_type="b_tech" course_name="placement"/>
-      <img className="Top-Image" src={CareerTopImage} alt="IITians4U"/>
+      <img
+        className="Top-Image"
+        src={isMobile ? CareerTopImageMobile : CareerTopImage}
+        alt="IITians4U"
+      />
       <ContentCareer/>
       <h1 className="kym-heading">Know Your Mentors</h1>
       <TeamSlider teamHome={careerteamCC}/>

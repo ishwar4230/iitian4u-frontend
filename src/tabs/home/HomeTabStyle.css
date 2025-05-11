@@ -116,7 +116,7 @@
 }
 
 .content-home-right-heading{
-  font-size:2.2rem;
+  font-size:34px;
   margin-top: 2rem;
   font-family:"Poppins";
 }
@@ -133,7 +133,7 @@
 }
 @media (max-width: 768px) {
   .content-home-right-heading{
-    font-size:1.5rem;
+    font-size:34px;
     font-family:"Poppins";
     text-align:center;
   }
@@ -148,7 +148,7 @@
     justify-content:center;
   }
   .home-point{
-    margin-left:20%;
+    margin-left:10%;
     font-size:0.8rem;
   }
 }

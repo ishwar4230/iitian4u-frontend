@@ -3,9 +3,11 @@ import "../college/styleCollegeCon.css";
 import counselingImage from "../data/scholar_icon.png";
 import {Button} from "@mantine/core" ;
 import {useNavigate} from "react-router-dom"; 
+import { useMediaQuery } from "@mantine/hooks";
 
 const CounselingSection = () => {
   const navigate=useNavigate();
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <div className="counsel-container">
       {/* Left Side - Text Section */}
@@ -21,17 +23,18 @@ const CounselingSection = () => {
         </p>
 
         <ul className="counsel-list">
-          <li>🏛 Personalized College Selection: Find the perfect fit for your academic and personal goals.</li>
-          <li>🏛 Application Assistance: Get expert help with essays, interviews, and all application materials.</li>
-          <li>🏛 Admissions Insights: Understand the nuances of college admissions and stand out from the crowd.</li>
+          <li>🏛 Personalized College Selection</li>
+          <li>🏛 Application Assistance</li>
+          <li>🏛 Admissions Insights</li>
         </ul>
         <Button className="counsel-button" onClick={()=>{navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=life_time")}}>Enroll Now</Button>
       </div>
 
-      {/* Right Side - Image Section */}
-      <div className="counsel-image">
-        <img src={counselingImage} alt="College Counseling" />
-      </div>
+      {!isMobile && (
+        <div className="counsel-image">
+          <img src={counselingImage} alt="College Counseling" />
+        </div>
+      )}
     
      
     </div>
