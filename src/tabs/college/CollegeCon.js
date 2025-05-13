@@ -9,7 +9,7 @@ import ContentCollege from "./ContentCollege";
 import Banner from "../banner/Banner";
 import TeamSlider from "../../components/TeamSlider";
 import { useMediaQuery } from "@mantine/hooks";
-
+import PromoCard from "../../components/PromoCard";
 // FAQ Component
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -58,6 +58,7 @@ const CollegeCon = () => {
       <h1 className="kym-heading">Know Your Mentors</h1>
       <TeamSlider teamHome={teamMembersCC} />
       <CounselingSection />
+      <PromoCard />
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
 
