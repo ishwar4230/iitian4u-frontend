@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import HomeTabTopImage from "../data/homepagetopimage.png";
-import HomeTabTopImageMobile from "../data/homepagetopimageMobile.png";
+import HomeTabTopImageMobile from "../data/homeTopMobile.svg";
 import "./HomeTabStyle.css" ;
 import WhyWeStandOut from "../college/WhyWeStandOut";
 import OurServices from "./OurServices";

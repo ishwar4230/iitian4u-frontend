@@ -1,44 +1,55 @@
 import React from "react";
 import "../college/styleCollegeCon.css";
-import counselingImage from "../data/scholar_icon.png";
 import {Button} from "@mantine/core" ;
 import {useNavigate} from "react-router-dom"; 
-import { useMediaQuery } from "@mantine/hooks";
+import SiteLogoImage from "../data/logo.svg";
+import CardImage1 from "../data/collegepricecard1.jpeg";
+import CardImage2 from "../data/collegepricecard2.jpeg";
+
 
 const CounselingSection = () => {
   const navigate=useNavigate();
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  return (
-    <div className="counsel-container">
-      {/* Left Side - Text Section */}
-      <div className="counsel-text">
-        <h1>
-          Navigate Your <em>College Journey</em> with Confidence
-        </h1>
-        <p>
-          Our college counseling services at IITians4u provide expert guidance through the complex 
-          college selection and application process. We ensure you make informed decisions, aligning your 
-          aspirations with the best educational opportunities. Let us help you unlock your potential and 
-          achieve your academic dreams.
-        </p>
-
-        <ul className="counsel-list">
+    return (
+      <div className="course-card">
+        <div className="course-header">
+          <img
+            src={SiteLogoImage}
+            alt="Site logo"
+            className="site-logo"
+          />
+          <h2>Make Smarter College Choices with Expert Guidance</h2>
+          <p className="skills">
+            <strong>From JOSAA to CSAB - We've got it all covered.</strong>{" "}
+            <span>Connect with students from IITs, NITs, BITS and more to explore branches firsthand and make informed, confident choices.</span>
+          </p>
+          <div className="rating-section">
+          <ul className="counsel-list">
           <li>🏛 Personalized College Selection</li>
           <li>🏛 Application Assistance</li>
           <li>🏛 Admissions Insights</li>
         </ul>
-        <Button className="counsel-button" onClick={()=>{navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=life_time")}}>Enroll Now</Button>
-      </div>
-
-      {!isMobile && (
-        <div className="counsel-image">
-          <img src={counselingImage} alt="College Counseling" />
+          </div>
+          
+          <div className="cta-buttons">
+            <Button className="enroll"  onClick={()=>{navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=life_time")}}>Enroll Now</Button>
+            <p className="details">Expert Guidance at Just Rs. 499</p>
+          </div>
         </div>
-      )}
-    
-     
-    </div>
-  );
+  
+        <div className="image-row">
+        <img
+          src={CardImage1}
+          alt="Course1"
+          className="course-img"
+        />
+        <img
+          src={CardImage2}
+          alt="Course2"
+          className="course-img"
+        />
+      </div>
+      </div>
+    );
 };
 
 export default CounselingSection;

@@ -5,7 +5,7 @@ import faqData from "./faqData.json";   //JSON of FAQ questions
 import teamAspirant from "./teamAspirant.json" ; // JSON of Know Your Mentors
 // import CardSlider from "./CardSlider";
 import AspirantTopImage from "../data/aspirant-page-top.svg";
-import AspirantTopImageMobile from "../data/aspirantTopImageMobile.png";
+import AspirantTopImageMobile from "../data/aspirantTopMobile.svg";
 import ContentAspirant from "./ContentAspirant";
 import AspirantPricingCards from "./AspirantPricingCards";
 import Banner from "../banner/Banner";

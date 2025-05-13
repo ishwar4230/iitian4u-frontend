@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import "./styleCareerCon.css";  //HTML of FAQ Accordion
 import CareerTopImage from "../data/careerTopImage.jpeg";
-import CareerTopImageMobile from "../data/careerCoachTopMobile.png";
+import CareerTopImageMobile from "../data/careerTopMobile.svg";
 import faqDatacareer from "./faqDatacareer.json";
 import careerteamCC from "./careerteamCC.json"
 import CareersPricing from "./CareersPricing";
