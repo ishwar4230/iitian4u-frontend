@@ -54,11 +54,13 @@ const CollegeCon = () => {
         src={isMobile ? CollegeConMobileImg : CollegeConLaptopImg}
         alt="IITians4U"
       />
-      <ContentCollege/>
+      <CounselingSection />
+      
       <h1 className="kym-heading">Know Your Mentors</h1>
       <TeamSlider teamHome={teamMembersCC} />
-      <CounselingSection />
+      
       <PromoCard />
+      <ContentCollege/>
       <h1 className="faqs-heading">Frequently asked</h1>
       <FAQSection />
 
