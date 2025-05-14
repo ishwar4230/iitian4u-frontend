@@ -2,7 +2,6 @@ import React from "react";
 import "../college/styleCollegeCon.css";
 import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import SiteLogoImage from "../data/logo.svg";
 import CardImage1 from "../data/collegepricecard1.jpeg";
 import CardImage2 from "../data/collegepricecard2.jpeg";
 import { useMediaQuery } from '@mantine/hooks';
@@ -14,11 +13,11 @@ const CounselingSection = () => {
   return (
     <div className="course-card">
       <div className="course-header">
-        <img
+        {/* <img
           src={SiteLogoImage}
           alt="Site logo"
           className="site-logo"
-        />
+        /> */}
         <h2>Make Smarter College Choices with Expert Guidance</h2>
         <p className="skills">
           <strong>From JOSAA to CSAB - We've got it all covered.</strong>{" "}
