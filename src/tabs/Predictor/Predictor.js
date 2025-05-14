@@ -207,7 +207,7 @@ const Predictor = () => {
       />
       <PredictorResults data={results.nits} title="NITs"
         imageSrc="https://media.licdn.com/dms/image/v2/D4D03AQEFg5NnevrZsw/profile-displayphoto-shrink_400_400/B4DZZrU1TrGgAk-/0/1745557346546?e=1752710400&v=beta&t=dveBogcrKIYheCjdZB4HFgoZDugAjJoPIFXSHfBzd_Q"
-        mentorName="Apoorva Rajadhyaksha"
+        mentorName="Apoorva"
         college="IIT Bombay"
       />
       <PredictorResults data={results.gftis} title="GFTIs"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Image, Text, Title, Flex, Divider, Button } from '@mantine/core';
+import { Card, Image, Text, Flex, Divider, Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from '@mantine/hooks';
 
@@ -42,7 +42,7 @@ const MentorCard = ({ imageSrc, mentorName, college }) => {
     };
 
     return (
-        <Card shadow="md" radius="md" withBorder p="lg" style={{ margin: 'auto', maxWidth: 800 }}>
+        <Card shadow="md" radius="md" withBorder p="lg" style={{ margin: 'auto', maxWidth: 850 }}>
             <Flex
                 gap="md"
                 direction={{ base: 'column', sm: 'row' }}
@@ -69,14 +69,14 @@ const MentorCard = ({ imageSrc, mentorName, college }) => {
 
                 {/* Text Section */}
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                    <Title order={3} mb="sm">
-                        Get End-to-End Counselling Guidance
-                    </Title>
+                    {/* <Title order={3} mb="sm">
+                        Get personalized JOSAA Counselling by {mentorName}({college})
+                    </Title> */}
 
                     <Divider my="xs" />
 
-                    <Text size="sm" mb="md">
-                        Get end-to-end college counselling guidance with <span style={{ fontWeight: 'bold' }}>{mentorName}</span> from <span style={{ fontWeight: 'bold' }}>{college}</span>.
+                    <Text size="lg" mb="md">
+                        Get personalized <span style={{ fontWeight: 'bold' }}>JOSAA</span> Counselling by <span style={{ fontWeight: 'bold' }}>{mentorName}</span> ( <span style={{ fontWeight: 'bold' }}>{college}</span>)
                     </Text>
 
                     <Button
@@ -90,7 +90,7 @@ const MentorCard = ({ imageSrc, mentorName, college }) => {
                         }
                         style={{ margin: '0 auto' }}
                     >
-                        Grab the Offer <s style={{ margin: '0 5px', color: 'red' }}>₹799</s> ₹499
+                        Grab the Offer <s style={{ margin: '0 5px', color: 'yellow' }}>₹799</s> ₹499
                         {!timerExpired && (
                             <span style={{ background: '#fff', color: '#2C3E50', padding: '0 6px', borderRadius: '4px', marginLeft: '10px' }}>
                                 {formatTime(timeLeft)}

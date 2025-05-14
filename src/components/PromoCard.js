@@ -33,7 +33,7 @@ const PromoCard = () => {
           style={{ flex: 1 }}
         >
           <Title order={3} align="center" mb="sm">
-            Discover Your Future
+            Discover Your Future with Our College-Predictor
           </Title>
           
           <Divider my="md" style={{ width: '80%' }} />
@@ -51,7 +51,7 @@ const PromoCard = () => {
             fullWidth
             style={{ maxWidth: 200 }}
           >
-            Try Now
+            College Predictor
           </Button>
         </Flex>
       </Flex>

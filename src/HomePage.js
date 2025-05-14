@@ -87,6 +87,7 @@ const HomePage = () => {
     else if (path.includes("upcoming-sessions")) setActiveTab("upcoming-sessions");
     else if (path.includes("my-plans")) setActiveTab("my-plans");
     else if (path.includes("login")) setActiveTab("login");
+    else if (path.includes("predictor")) setActiveTab("predictor");
     else if (path === '/') setActiveTab("home");
     else setActiveTab('');
   }, [location.pathname]);
@@ -133,6 +134,13 @@ const HomePage = () => {
               onClick={() => { navigate("/college") }}
             >
               College Counselling
+            </Button>
+            <Button
+              variant={activeTab === "predictor" ? "light" : "subtle"}
+              leftSection={<IconSchool size={15} />}
+              onClick={() => { navigate("/predictor") }}
+            >
+              College Predictor
             </Button>
             <Button
               variant={activeTab === "career" ? "light" : "subtle"}
@@ -233,6 +241,13 @@ const HomePage = () => {
             onClick={() => { navigate("/college"); close(); }}
           >
             College Counselling
+          </Button>
+          <Button
+            variant={activeTab === "predictor" ? "light" : "subtle"}
+            leftSection={<IconSchool size={15} />}
+            onClick={() => { navigate("/predictor"); close(); }}
+          >
+            College Predictor
           </Button>
           <Button
             variant={activeTab === "career" ? "light" : "subtle"}

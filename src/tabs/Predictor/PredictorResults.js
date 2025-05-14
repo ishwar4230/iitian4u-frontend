@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Title, Divider } from '@mantine/core';
+import { Table, Title, Divider, Text } from '@mantine/core';
 import MentorCard from '../../components/MentorCard';
 const PredictorResults = ({ data, title, imageSrc, mentorName, college }) => {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
@@ -42,6 +42,7 @@ const PredictorResults = ({ data, title, imageSrc, mentorName, college }) => {
         <Title order={3} mt="md" mb="sm">
           {title}
         </Title>
+        <Text>*Click on the column name to sort</Text>
         <div style={{ overflowX: 'auto', width: '100%' }}>
           <Table striped highlightOnHover withTableBorder withRowBorders withColumnBorders>
             <Table.Thead>
@@ -55,10 +56,10 @@ const PredictorResults = ({ data, title, imageSrc, mentorName, college }) => {
                 <Table.Th>State</Table.Th>
                 <Table.Th>Quota</Table.Th>
                 <Table.Th style={{ cursor: 'pointer' }} onClick={() => handleSort('opening_rank')}>
-                  Opening Rank {sortConfig.key === 'opening_rank' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
+                  Opening Rank-2024 {sortConfig.key === 'opening_rank' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
                 </Table.Th>
                 <Table.Th style={{ cursor: 'pointer' }} onClick={() => handleSort('closing_rank')}>
-                  Closing Rank {sortConfig.key === 'closing_rank' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
+                  Closing Rank-2024 {sortConfig.key === 'closing_rank' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
                 </Table.Th>
               </Table.Tr>
             </Table.Thead>
