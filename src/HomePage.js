@@ -15,6 +15,7 @@ import {
   IconCalendarClock,
   IconClipboardList,
   IconLogout,
+  IconHelp
 } from "@tabler/icons-react";
 import axios from "axios";
 import { login, logout, setAuthLoading } from "./redux/slices/authSlice";
@@ -364,6 +365,10 @@ const HomePage = () => {
           </ul>
         </div>
       </footer>
+      <div className="help-button" onClick={() => navigate("/contact-us")}>
+        <IconHelp size={20} style={{ marginRight: "8px" }} />
+        Need Help
+      </div>
     </div>
   );
 };

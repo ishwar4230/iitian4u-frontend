@@ -147,7 +147,7 @@ export function ContactUs() {
       </div>
       <div>
         <p>Or Feel Free to reach out to us at</p>
-        <p> <b>Mob No.</b> : +91 8114325164</p>
+        <p> <b>Mob No.</b> : +91 8114325164, +91 8092775996</p>
         <p><b>Email ID</b> : admin@iitians4u.in</p>
         <p><b>Address</b> : IIT Kharagpur campus, Kharagpur, West Bengal, 721302</p>
       </div>
