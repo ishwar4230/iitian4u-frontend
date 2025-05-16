@@ -196,7 +196,7 @@ const Predictor = () => {
       {renderTable(results.nits, 'NITs')}
       {renderTable(results.gftis, 'GFTIs')} */}
       <PredictorResults data={results.iits} title="IITs"
-        imageSrc="https://media.licdn.com/dms/image/v2/D4D03AQH0wD2pgsOryA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724587407209?e=1747267200&v=beta&t=drMbJzRgnTmAek2xkTMtjZ0JdaXxu5zVM2m_B2xJrLc"
+        imageSrc="https://media.licdn.com/dms/image/v2/D4D03AQH0wD2pgsOryA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724587407207?e=1752710400&v=beta&t=WrcMI3bUIqv2D9qGHCpYRcwAjaFa9dIrEIsp6JabuMU"
         mentorName="Sonu Kumar Rai"
         college="IIT Kharagpur"
       />
@@ -211,7 +211,7 @@ const Predictor = () => {
         college="IIT Bombay"
       />
       <PredictorResults data={results.gftis} title="GFTIs"
-        imageSrc="https://media.licdn.com/dms/image/v2/D5603AQE3VFdOsvwHzw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1665303466063?e=1747267200&v=beta&t=M011XJOCDaEGXYX3kL-Omh8sbEDWUIPismDUC0t_dsQ"
+        imageSrc="https://media.licdn.com/dms/image/v2/D5603AQE3VFdOsvwHzw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1665303466063?e=1752710400&v=beta&t=qYjrot-DPfB2MlFMlkI7fU6fI995wizWSfwSsLjpy7U"
         mentorName="Biswa Ranjan Barik"
         college="IIT Kharagpur"
       />
