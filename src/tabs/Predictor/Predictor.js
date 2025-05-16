@@ -212,7 +212,7 @@ const Predictor = () => {
       />
       <PredictorResults data={results.gftis} title="GFTIs"
         imageSrc="https://media.licdn.com/dms/image/v2/D5603AQE3VFdOsvwHzw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1665303466063?e=1752710400&v=beta&t=qYjrot-DPfB2MlFMlkI7fU6fI995wizWSfwSsLjpy7U"
-        mentorName="Biswa Ranjan Barik"
+        mentorName="Biswa Ranjan"
         college="IIT Kharagpur"
       />
     </Container>
