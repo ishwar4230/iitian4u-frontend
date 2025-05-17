@@ -32,7 +32,7 @@ const CounselingSection = () => {
         </div>
 
         <div className="cta-buttons">
-          <Button className="enroll" onClick={() => { navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=life_time") }}>Enroll Now</Button>
+          <Button className="enroll" onClick={() => { navigate("/checkout?course_type=counselling&course_name=counselling&plan_type=end_to_end") }}>Enroll Now</Button>
           <p className="details">Expert Guidance at Just Rs. 499</p>
         </div>
       </div>

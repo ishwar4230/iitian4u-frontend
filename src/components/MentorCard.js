@@ -85,7 +85,7 @@ const MentorCard = ({ imageSrc, mentorName, college }) => {
                         size="md"
                         onClick={() =>
                             navigate(
-                                "/checkout?course_type=counselling&course_name=counselling&plan_type=life_time"
+                                "/checkout?course_type=counselling&course_name=counselling&plan_type=end_to_end"
                             )
                         }
                         style={{ margin: '0 auto' }}
