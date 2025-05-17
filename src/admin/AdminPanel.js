@@ -8,6 +8,7 @@ import axios from "axios";
 import { defaultJsons } from "./defaultJsons";
 import config from "../Config";
 import PredictorData from "./predictorData";
+import UserDataViewer from "./UserDataViewer";
 
 const AdminPanel = () => {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -114,6 +115,7 @@ const AdminPanel = () => {
           <Tabs.Tab value="viewData">View Data</Tabs.Tab>
           <Tabs.Tab value="dangerousActions">Dangerous Actions</Tabs.Tab>
           <Tabs.Tab value="predictorData">Predictor Data</Tabs.Tab>
+          <Tabs.Tab value="getUserData">Get User Data</Tabs.Tab>
         </Tabs.List>
 
         {activeTab === "viewData" ? (
@@ -133,6 +135,10 @@ const AdminPanel = () => {
         ) :activeTab === "predictorData" ? (
           <Tabs.Panel value="predictorData">
             <PredictorData />
+          </Tabs.Panel>
+        ) : activeTab === "getUserData" ? (
+          <Tabs.Panel value="getUserData">
+            <UserDataViewer />
           </Tabs.Panel>
         ) : activeTab === "dangerousActions" ? (
           <Tabs.Panel value="dangerousActions">
