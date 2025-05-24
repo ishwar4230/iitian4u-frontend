@@ -10,7 +10,7 @@ import {
   IconBriefcase,
   IconLogin,
   IconUserCircle,
-  IconRocket,
+  //IconRocket,
   IconCalendar,
   IconCalendarClock,
   IconClipboardList,
@@ -21,7 +21,7 @@ import axios from "axios";
 import { login, logout, setAuthLoading } from "./redux/slices/authSlice";
 import config from "./Config";
 import ProtectedRoute from "./helpers/ProtectedRoute";
-import Aspirant from "./tabs/aspirant/Aspirant";
+//import Aspirant from "./tabs/aspirant/Aspirant";
 import CareerCon from "./tabs/career/CareerCon";
 import HomeTab from "./tabs/home/HomeTab";
 import CollegeCon from "./tabs/college/CollegeCon";
@@ -122,13 +122,13 @@ const HomePage = () => {
             >
               Home
             </Button>
-            <Button
+            {/* <Button
               variant={activeTab === "aspirant" ? "light" : "subtle"}
               leftSection={<IconRocket size={15} />}
               onClick={() => { navigate("/aspirant") }}
             >
               JEE Aspirant
-            </Button>
+            </Button> */}
             <Button
               variant={activeTab === "college" ? "light" : "subtle"}
               leftSection={<IconSchool size={15} />}
@@ -229,13 +229,13 @@ const HomePage = () => {
           >
             Home
           </Button>
-          <Button
+          {/* <Button
             variant={activeTab === "aspirant" ? "light" : "subtle"}
             leftSection={<IconRocket size={15} />}
             onClick={() => { navigate("/aspirant"); close(); }}
           >
             JEE Aspirant
-          </Button>
+          </Button> */}
           <Button
             variant={activeTab === "college" ? "light" : "subtle"}
             leftSection={<IconSchool size={15} />}
@@ -312,7 +312,7 @@ const HomePage = () => {
       <div style={{ marginTop: "60px" }} id="homepage-element">
         <Routes>
           <Route path="/" element={<HomeTab />} />
-          <Route path="/aspirant" element={<Aspirant />} />
+          {/* <Route path="/aspirant" element={<Aspirant />} /> */}
           <Route path="/college" element={<CollegeCon />} />
           <Route path="/career" element={<CareerCon />} />
           <Route path="/login" element={<Login />} />
