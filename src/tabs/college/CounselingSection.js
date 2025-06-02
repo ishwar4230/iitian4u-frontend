@@ -18,16 +18,16 @@ const CounselingSection = () => {
           alt="Site logo"
           className="site-logo"
         /> */}
-        <h2>Make Smarter College Choices with Expert Guidance</h2>
+        <h2>COLLEGE COUNSELING BY IITians & NITians</h2>
         <p className="skills">
-          <strong>From JOSAA to CSAB - We've got it all covered.</strong>{" "}
-          <span>Connect with students from IITs, NITs, BITS and more to explore branches firsthand and make informed, confident choices.</span>
+          <strong>They have been in uour shoes, Now they'll guide you.</strong>{" "}
+          
         </p>
         <div className="rating-section">
           <ul className="counsel-list">
-            <li>🏛 Personalized College Selection</li>
-            <li>🏛 Application Assistance</li>
-            <li>🏛 Admissions Insights</li>
+            <li>🏛 Real stories on placements, branches & campus life</li>
+            <li>🏛 Personalized advice from top-tier mentors</li>
+            <li>🏛 Smarter choices post JEE (JOSAA + CSAB support)</li>
           </ul>
         </div>
 

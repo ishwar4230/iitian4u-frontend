@@ -190,6 +190,7 @@
 
 .course-header {
   margin-bottom: 24px;
+  margin-right:24px;
 }
 
 /* .site-logo {
@@ -304,6 +305,9 @@
   }
   .course-img{
     height:180px;
+  }
+  .course-header{
+    margin-right:0;
   }
 
 }
