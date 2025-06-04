@@ -34,6 +34,7 @@ import MyPlans from "./tabs/profile/MyPlans";
 import MyUpcomingSessions from "./tabs/profile/MyUpcomingSessions";
 import AdminPanel from "./admin/AdminPanel";
 import Checkout from "./tabs/checkout/Checkout";
+import GuestCheckout from "./tabs/checkout/GuestCheckout";
 import ThankYou from "./tabs/checkout/ThankYou";
 import Predictor from "./tabs/Predictor/Predictor";
 import { About, PrivacyPolicy, RefundPolicy, TermsConditions, ContactUs } from "./tabs/footer-items/FooterPages";
@@ -321,6 +322,7 @@ const HomePage = () => {
           <Route path="/upcoming-sessions" element={<ProtectedRoute element={<MyUpcomingSessions />} />} />
           <Route path="/my-plans" element={<ProtectedRoute element={<MyPlans />} />} />
           <Route path="/checkout" element={<ProtectedRoute element={<Checkout />} />} />
+          <Route path="/guest-checkout" element={<GuestCheckout/>}/>
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/about" element={<About />} />
